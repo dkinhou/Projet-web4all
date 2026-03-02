@@ -1,0 +1,49 @@
+.navbar {
+    display: flex;
+    padding: 10px 30px;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    font-size: 17px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: blue;
+}
+
+.nav-links a span{
+    text-decoration: none;
+    color: white;
+}
+.nav-links a:hover {
+    text-decoration: underline;
+    color: darkblue;
+}
+
+.nav-btn{
+     background-color: blue; 
+     padding: 9px 15px;
+     border-radius: 5px ;
+}
+
+.nav-btn:hover {
+    background-color: darkblue;
+}
+
+
+.logo-text {
+    font-size: 24px;
+    font-weight: bold;
+    color:#333;
+}
+
+
+
+
