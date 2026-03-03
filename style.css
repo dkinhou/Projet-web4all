@@ -45,5 +45,49 @@
 }
 
 
+.first-section {
+    margin:0;
+    width:100%;
+    align-items:center;
+    justify-content:flex-start;
+    display:flex;
+    padding: 100px 30px;
+    background-color: blue;
+    color: white;
+}
 
 
+.first-section-content {
+    max-width : 600px;
+}
+
+.first-section-content h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.first-section-btn1 {
+    background-color: White;
+    color: blue;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.first-section-btn1:hover {
+    background-color: lightgray;
+    color: blue;
+}
+
+.first-section-btn2 {
+    background-color: transparent;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 2px solid white;
+}
+
+.first-section-btn2:hover {
+    background-color: white;
+    color: blue;
+}
