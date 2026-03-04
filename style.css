@@ -92,15 +92,19 @@ body {
     color: white;
 }
  
+/* Remplacez votre règle .first-section-image img par celle-ci */
 .first-section-image img {
-    width: 600px;
-    height: 400px;
-    margin-left: 300px ;
-    align-items: center;
-    justify-content: center;
+    max-width: 100%; /* L'image ne dépassera jamais son parent */
+    height: auto;
+    width: 600px;    /* Largeur max sur PC */
+    margin-left: 0;  /* On enlève la marge fixe */
     border-radius: 10px;
     margin-top: 20px;
-   
+}
+
+/* Assurez-vous que vos sections peuvent s'adapter */
+.first-section, .second-section, .third-section {
+    flex-wrap: wrap; /* Permet aux éléments de revenir à la ligne */
 }
 
 .first-section-content {
@@ -286,4 +290,66 @@ footer {
     padding: 20px 0;
     background-color: rgb(22, 27, 52);
     color: rgba(255, 255, 255, 0.257);
+}
+
+
+/* --- RESPONSIVE DESIGN (Mobiles et Tablettes) --- */
+@media (max-width: 768px) {
+
+    /* 1. Navbar : On cache les liens ou on les empile */
+    .nav-links {
+        display: none; /* Cache le menu sur mobile (souvent remplacé par un menu burger) */
+    }
+    
+    .navbar {
+        padding: 10px 15px;
+    }
+
+    .logo-image, .logo-text {
+        font-size: 22px; /* Réduction du logo */
+        margin: 5px 10px;
+    }
+
+    /* 2. Sections : On passe tout en colonne */
+    .first-section, 
+    .second-section-content, 
+    .third-section-content, 
+    .footer-content {
+        flex-direction: column; 
+        text-align: center;
+        padding: 50px 20px;
+    }
+
+    /* 3. Ajustement de la section 1 */
+    .first-section-content {
+        max-width: 100%;
+    }
+
+    .first-section-buttons {
+        justify-content: center;
+    }
+
+    .first-section-image img {
+        width: 100%;    /* L'image prend toute la largeur disponible */
+        margin-left: 0;
+        margin-top: 30px;
+    }
+
+    /* 4. Espacement des items dans les autres sections */
+    .second-section-item, 
+    .third-section-item {
+        margin-bottom: 40px;
+        width: 100%;
+    }
+
+    .second-section h2, 
+    .third-section h2 {
+        margin-bottom: 40px;
+        font-size: 24px;
+    }
+
+    /* 5. Footer */
+    .footer-content {
+        gap: 20px;
+    }
 }
