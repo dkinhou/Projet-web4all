@@ -82,7 +82,141 @@ body {
 }
 
 
+.connexion-border {
+    margin-top: 100px;
+    margin-bottom: 200px;
+    margin-left: 200px;
+    align-items: center;
+    justify-content:center;
 
+}
+
+.connexion-container {
+    width: 400px;
+    height: 300px;
+    border: none;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: white;
+    height: 340px;
+    margin-top: 100px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.connexion-container input {
+    align-items: center;
+    justify-content:center;
+    width: 100%;
+    height: 30px;
+    margin-bottom: 20px;
+}
+.connexion-container h2 {
+       align-items: center;
+       justify-content:center;
+       text-align: center;
+}
+
+.connexion-container h5 {
+       align-items: center;
+       justify-content:center;
+       text-align: center;
+}
+
+.connexion-container a {
+       align-items: center;
+       justify-content:center;
+       text-align: center;
+       text-decoration: none;
+}
+
+.connexion-container a:hover {
+       align-items: center;
+       justify-content:center;
+       text-align: center;
+       text-decoration: underline;
+}
+
+.container {
+    display: flex;
+ 
+}
+
+
+.connexion-image img {
+    width: 500px; 
+    height: 400px;
+    margin-left: 100px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+
+.connexion-image-texte {
+    background-color:  lightblue;
+    width: 500px;
+    margin-left: 100px;
+    border: 1px solid #cc1;
+    border-radius: 5px;
+}
+
+.connexion-image h3 {
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    font-size: 24px;
+    margin-left: 100px;
+}
+
+.connexion-image p {
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    font-size: 16px;
+    margin-left: 100px;
+    width: 60%;
+    padding-bottom: 20px;
+}
+
+
+.connexion-container p {
+       align-items: center;
+       justify-content:center;
+       text-align: center;
+       font-size: 18px;
+       font-family:cursive;
+}
+
+.connexion-container p span {
+       font-weight: bold;
+}
+.connexion-container label {
+       align-items: center;
+       justify-content:center;
+       font-size : 15px;
+       font-weight: bold;
+       margin-bottom: 50px;
+
+}
+.connexion-container button {
+    align-items: center;
+    justify-content:center;
+    width:50%;
+    margin-left: 100px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.connexion-container button:hover {
+    background-color: darkblue;
+    text-decoration: underline ;
+}
 
 
 footer {
