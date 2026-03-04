@@ -1,355 +1,238 @@
+/* --- RESET & BASES --- */
+* {
+    box-sizing: border-box; /* Crucial : empêche les éléments de déborder */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden; /* Empêche le scroll horizontal et l'espace blanc à droite */
+    width: 100%;
+}
+
+/* --- NAVBAR --- */
 .navbar {
     display: flex;
-    padding: 10px 30px;
+    padding: 10px 5%; /* Utilisation de % pour la flexibilité */
     align-items: center;
     justify-content: space-between;
-    text-align: center;
     position: fixed;
-    right: 0;
-    z-index: 1000;
-    left: 0;
+    width: 100%;
     top: 0;
+    left: 0;
+    z-index: 1000;
     background-color: white;
     border-bottom: 2px solid blue;
+}
 
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    color: rgb(1, 191, 255);
+    font-size: 28px;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
 }
 
 .nav-links {
     display: flex;
-    gap: 20px;
+    gap: 15px;
     align-items: center;
-    font-size: 17px;
+}
+
+.nav-icone {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .nav-links a {
     text-decoration: none;
     color: blue;
+    font-size: 16px;
 }
 
-.nav-links a span{
-    text-decoration: none;
-    color: white;
-}
 .nav-links a:hover {
     text-decoration: underline;
     color: darkblue;
 }
 
-.nav-btn{
-     background-color: blue; 
-     padding: 9px 15px;
-     border-radius: 5px ;
+.nav-btn {
+    background-color: blue;
+    padding: 8px 15px;
+    border-radius: 5px;
+    color: white !important;
 }
 
-.nav-btn:hover {
-    background-color: darkblue;
+.nav-btn span {
+    color: white;
 }
 
-.logo {
-    display:flex;
-}
-
-.logo-image{
-    color: rgb(1, 191, 255);
-    font-size: 30px;
-    font-weight: bold;
-    margin: 8px 30px;
-}
-.logo-text {
-    font-size: 30px;
-    font-weight: bold;
-    color:#333;
-}
-
-.nav-links a {
-    margin: 0px 10px;
-}
-
-.icone {
-    color:grey;
-    margin-top: 5px;
-}
-
-.nav-icone {
-    display: flex;
-    align-items: center;  
-}
-
-body {
-    margin : 0;
-    padding: 0;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
+/* --- SECTION 1 (HERO) --- */
 .first-section {
-  
-    width:100%;
-    align-items:center;
-    justify-content:flex-start;
-    display:flex;
-    padding: 100px 30px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap; /* Permet à l'image de passer dessous sur mobile */
+    align-items: center;
+    justify-content: center;
+    padding: 120px 5% 60px 5%;
     background-color: blue;
     color: white;
 }
- 
-/* Remplacez votre règle .first-section-image img par celle-ci */
-.first-section-image img {
-    max-width: 100%; /* L'image ne dépassera jamais son parent */
-    height: auto;
-    width: 600px;    /* Largeur max sur PC */
-    margin-left: 0;  /* On enlève la marge fixe */
-    border-radius: 10px;
-    margin-top: 20px;
-}
-
-/* Assurez-vous que vos sections peuvent s'adapter */
-.first-section, .second-section, .third-section {
-    flex-wrap: wrap; /* Permet aux éléments de revenir à la ligne */
-}
 
 .first-section-content {
-    max-width : 600px;
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
 }
 
 .first-section-content h1 {
-    font-size: 36px;
+    font-size: clamp(28px, 5vw, 36px); /* Taille fluide */
     margin-bottom: 20px;
 }
 
 .first-section-buttons {
     display: flex;
+    gap: 15px;
     margin-top: 20px;
 }
-.first-section-btn1 {
-    background-color: White;
-    color: blue;
+
+.first-section-btn1, .first-section-btn2 {
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
-    margin-right: 15px;
-
-}
-.first-section-btn1:hover {
-    background-color: lightgray;
-    color: blue;
+    font-weight: bold;
 }
 
-.first-section-btn2 {
-    background-color: transparent;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    border: 2px solid white;
-     
-}
+.first-section-btn1 { background-color: white; color: blue; }
+.first-section-btn2 { background-color: transparent; color: white; border: 2px solid white; }
 
-.first-section-btn2:hover {
-    background-color: white;
-    color: blue;
-}
-
-.second-section {
-    padding: 100px 30px;
-}
-
-.second-section-content {
+.first-section-image {
+    flex: 1;
+    min-width: 300px;
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
-.second-section h2 {
-    font-size: 30px;
-    font-weight: bold;
-    justify-content: center;
-    text-align: center;
+.first-section-image img {
+    max-width: 100%; /* S'adapte à la largeur de l'écran */
+    height: auto;
+    width: 500px; 
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* --- SECTIONS COMMUNES --- */
+.second-section, .third-section, .fourth-section {
+    padding: 60px 5%;
     width: 100%;
-    margin-bottom: 100px; 
+    text-align: center;
 }
 
-.second-section-item {
+.second-section-content, .third-section-content {
+    display: flex;
+    flex-wrap: wrap; /* Aligne les items en colonne sur petit écran */
     justify-content: center;
-    text-align: center;
+    gap: 20px;
 }
 
-.second-section p {
-    margin: 16px 16px;
-    text-align: center;
-    align-items: center;
+.second-section-item, .third-section-item {
+    flex: 1;
+    min-width: 250px;
+    max-width: 300px;
+}
+
+.second-section h2, .third-section h2, .fourth-section h2 {
+    font-size: 28px;
+    margin-bottom: 40px;
 }
 
 .third-section {
     background-color: blue;
     color: white;
-    padding: 70px 30px;
-    align-items:center;
-    text-align: center;
-}
-
-.third-section h2 {
-    font-size:30px;
-    font-weight: bold;
-    justify-content:center;
-    margin-bottom: 100px;
-}
-
-.third-section-content {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-}
-
-.third-section-item {
-    justify-content: center;
-    text-align: center;
-    margin: 0px 20px;
-    width: 100%;
-}
-
-.fourth-section {
-    text-align: center;
-    justify-content: center;
-    padding: 70px 70px;
-}
-
-.fourth-section h2 {
-    font-size: 30px;
-    font-weight: bold;
-    margin-bottom: 30px;
-}
-
-.fourth-section p {
-    font-size: 18px;
-    margin-bottom: 50px;
 }
 
 .fourth-section-btn {
     background: blue;
     color: white;
+    padding: 12px 25px;
+    text-decoration: none;
     border-radius: 7px;
-     padding: 11px 15px;
-     text-decoration: none;
+    display: inline-block;
 }
 
-.fourth-section-btn:hover {
-    background-color: darkblue;
-    margin: 11px 15px;
-}
-
+/* --- FOOTER --- */
 footer {
-    padding: 50px 60px;
+    padding: 50px 5%;
     background-color: rgb(22, 27, 52);
+    color: white;
 }
+
 .footer-content {
-    background-color: rgb(22, 27, 52);
-    color: white;
-    align-items: center;
-    justify-content: space-between;
-     padding: 20px 30px;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
 }
 
-.footer-content p {
-    font-size: 15px;
-    color: rgb(86, 86, 173);
+.footer-brand, .footer-group {
+    flex: 1;
+    min-width: 200px;
 }
 
-.footer-links a{
-    font-size: 15px;
+.footer-content h2 { font-size: 20px; margin-bottom: 15px; }
+
+.footer-links a, .footer-info a {
+    color: rgb(150, 150, 200);
     text-decoration: none;
-    color: rgb(86, 86, 173);
-}
-
-.footer-links a:hover {
-    text-decoration: underline;
-    color: white;
-}
-
-.footer-info a {
-    font-size: 15px;
-    text-decoration: none;
-    color: rgb(86, 86, 173);
-}
-
-.footer-info a:hover {
-    text-decoration: underline;
-    color: white;
+    display: block;
+    margin-bottom: 8px;
 }
 
 .barre {
     width: 100%;
-    height: 2px;
-    background-color: rgb(255, 255, 255);
-    align-items: center;
-    justify-content: center;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin: 20px 0;
 }
 
 .copyright {
     text-align: center;
-    padding: 20px 0;
-    background-color: rgb(22, 27, 52);
-    color: rgba(255, 255, 255, 0.257);
+    color: rgba(255, 255, 255, 0.3);
 }
 
-
-/* --- RESPONSIVE DESIGN (Mobiles et Tablettes) --- */
+/* --- MEDIA QUERIES (ADAPTATION MOBILE) --- */
 @media (max-width: 768px) {
-
-    /* 1. Navbar : On cache les liens ou on les empile */
     .nav-links {
-        display: none; /* Cache le menu sur mobile (souvent remplacé par un menu burger) */
-    }
-    
-    .navbar {
-        padding: 10px 15px;
+        display: none; /* Cache les liens sur mobile pour éviter de casser la navbar */
     }
 
-    .logo-image, .logo-text {
-        font-size: 22px; /* Réduction du logo */
-        margin: 5px 10px;
-    }
-
-    /* 2. Sections : On passe tout en colonne */
-    .first-section, 
-    .second-section-content, 
-    .third-section-content, 
-    .footer-content {
-        flex-direction: column; 
+    .first-section {
+        padding-top: 100px;
         text-align: center;
-        padding: 50px 20px;
-    }
-
-    /* 3. Ajustement de la section 1 */
-    .first-section-content {
-        max-width: 100%;
     }
 
     .first-section-buttons {
-        justify-content: center;
+        flex-direction: column;
     }
 
-    .first-section-image img {
-        width: 100%;    /* L'image prend toute la largeur disponible */
-        margin-left: 0;
-        margin-top: 30px;
-    }
-
-    /* 4. Espacement des items dans les autres sections */
-    .second-section-item, 
-    .third-section-item {
-        margin-bottom: 40px;
+    .first-section-btn1, .first-section-btn2 {
         width: 100%;
+        text-align: center;
     }
 
-    .second-section h2, 
-    .third-section h2 {
-        margin-bottom: 40px;
-        font-size: 24px;
-    }
-
-    /* 5. Footer */
-    .footer-content {
-        gap: 20px;
+    .second-section-item, .third-section-item {
+        max-width: 100%;
+        margin-bottom: 30px;
     }
 }
