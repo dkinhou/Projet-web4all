@@ -165,9 +165,11 @@ body {
 }
 
 .connexion-to-inscription {
-     display: flex;
-     justify-content: space-between; 
+     justify-content: center; 
      align-items: center;
+     justify-content: center; 
+     align-items: center;
+     text-align: center;
 }
 
 .connexion-to-inscription a {
