@@ -1,20 +1,19 @@
-/* --- RESET & BASES --- */
+
 * {
-    box-sizing: border-box; /* Crucial : empêche les éléments de déborder */
+    box-sizing:border-box;
 }
 
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow-x: hidden; /* Empêche le scroll horizontal et l'espace blanc à droite */
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    overflow-x: hidden;
     width: 100%;
 }
 
-/* --- NAVBAR --- */
 .navbar {
     display: flex;
-    padding: 10px 5%; /* Utilisation de % pour la flexibilité */
+    padding: 10px 5%;
     align-items: center;
     justify-content: space-between;
     position: fixed;
@@ -71,18 +70,18 @@ body {
     background-color: blue;
     padding: 8px 15px;
     border-radius: 5px;
-    color: white !important;
+    color: white;
 }
 
 .nav-btn span {
     color: white;
 }
 
-/* --- SECTION 1 (HERO) --- */
+
 .first-section {
     width: 100%;
     display: flex;
-    flex-wrap: wrap; /* Permet à l'image de passer dessous sur mobile */
+    flex-wrap: wrap; 
     align-items: center;
     justify-content: center;
     padding: 120px 5% 60px 5%;
@@ -97,7 +96,7 @@ body {
 }
 
 .first-section-content h1 {
-    font-size: clamp(28px, 5vw, 36px); /* Taille fluide */
+    font-size: clamp(28px, 5vw, 36px); 
     margin-bottom: 20px;
 }
 
@@ -125,14 +124,14 @@ body {
 }
 
 .first-section-image img {
-    max-width: 100%; /* S'adapte à la largeur de l'écran */
+    max-width: 100%; 
     height: auto;
     width: 500px; 
     border-radius: 10px;
     margin-top: 20px;
 }
 
-/* --- SECTIONS COMMUNES --- */
+
 .second-section, .third-section, .fourth-section {
     padding: 60px 5%;
     width: 100%;
@@ -141,7 +140,7 @@ body {
 
 .second-section-content, .third-section-content {
     display: flex;
-    flex-wrap: wrap; /* Aligne les items en colonne sur petit écran */
+    flex-wrap: wrap; 
     justify-content: center;
     gap: 20px;
 }
@@ -171,7 +170,7 @@ body {
     display: inline-block;
 }
 
-/* --- FOOTER --- */
+
 footer {
     padding: 50px 5%;
     background-color: rgb(22, 27, 52);
@@ -211,10 +210,10 @@ footer {
     color: rgba(255, 255, 255, 0.3);
 }
 
-/* --- MEDIA QUERIES (ADAPTATION MOBILE) --- */
+
 @media (max-width: 768px) {
     .nav-links {
-        display: none; /* Cache les liens sur mobile pour éviter de casser la navbar */
+        display: none;
     }
 
     .first-section {
