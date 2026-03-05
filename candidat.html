@@ -53,14 +53,30 @@
             <div class="connexion-content">
                 <h1>Candidat</h1>
                 <p>Accedez à votre compte <span>StageAlternance</span>.</p>
-                <a href="#" class="connexion-btn">Se connecter</a>
+                 <form action="#" method="post">
+                            <label for="email">Email:</label>
+                            <br>
+                            <input type="email" id="email" name="email" required>
+                            <br>
+                            <label for="password">Mot de passe:</label>
+                            <br>
+                            <input type="password" id="password" name="password" required>
+                            <br>
+                            <div class="connexion-content-options">
+                                <div class="checkbox-group">
+                                <input type="checkbox" id="souvenir" name="souvenir">
+                                <label for="souvenir">Se souvenir de moi</label>
+                                </div>
+                                <div><a href="#">Mot de passe oublié ?</a></div>
+                            </div>
+                            <button type="submit">Se connecter</button>
+                  </form>
             </div>
             <div class="connexion-image">
-                <img src="connexion-image.jpg" alt="Image de livre pour la connexion">
+                <div><img src="connexion-image.jpg" alt="Image de livre pour la connexion"></div>
                 <div class="image-bottom">
                     <h2>Bienvenue sur StageAlternance</h2>
-                    <p>Connectez-vous pour accéder à toutes les fonctionnalités:
-                        <br> recherche d'offres, gestion des candidatures et bien plus encore !</p>
+                    <p>Connectez-vous pour accéder à toutes les fonctionnalités: recherche d'offres, gestion des candidatures et bien plus encore !</p>
                 </div>
             </div>
         </section>
