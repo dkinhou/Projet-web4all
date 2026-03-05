@@ -164,8 +164,24 @@ body {
     font-size: 12px;
 }
 
+.connexion-to-inscription {
+     display: flex;
+     justify-content: space-between; 
+     align-items: center;
+}
 
+.connexion-to-inscription a {
+    font-size: 12px;
+    text-decoration: none;
+}
 
+.connexion-to-inscription a:hover {
+    text-decoration: underline;
+}
+
+.connexion-to-inscription p {
+    font-size: 12px;
+}
 
 
 .connexion-image img {
