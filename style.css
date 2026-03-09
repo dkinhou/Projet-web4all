@@ -62,7 +62,7 @@ body {
 }
 
 .nav-links a:hover {
-    text-decoration: underline;
+    text-decoration: none;
     color: darkblue;
 }
 
@@ -163,6 +163,36 @@ body {
 
 }
 
+.search-bar {
+    padding: 40px 5%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(220, 220, 220);
+    border-radius: 5px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background-color: rgb(184, 184, 184);
+}
+
+.search-bar-content {
+    background-color: white;
+    box-shadow: 0 4px 15px rgba(5, 5, 5, 0.565);
+    border-radius: 10px;
+    padding: 1% 1%;
+    width: 100%;
+}
+
+.search-form input {
+    border-radius: 10px;
+    padding: 1% 1%;
+    border: 1px solid #ccc;
+}
+
+.search-form button {
+    border-radius: 10px;
+    padding: 1% 1%;
+    border: 1px solid #ccc;
+}
 
 .second-section, .third-section, .fourth-section {
     padding: 60px 5%;
@@ -189,10 +219,16 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+
+.third-section {
+    background-color:  rgb(28, 28, 52);
+    color: white;
+}
+
 .third-section-item:hover {
     transform: translateY(-5px);
     border-radius : 10px;
-    box-shadow: 0 5px 15px white;
+    box-shadow: 0 5px 15px grey;
 }
 
 .second-section h2, .third-section h2, .fourth-section h2 {
@@ -222,11 +258,6 @@ body {
 }
 
 
-
-.third-section {
-    background-color:  rgb(28, 28, 52);
-    color: white;
-}
 
 .fourth-section-btn {
     background: grey;
