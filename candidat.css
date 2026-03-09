@@ -95,8 +95,9 @@ body {
     justify-content: center;
     border: 1px solid black;
     border-radius: 10px;
-    padding: 40px 40px; 
+    padding: 20px 20px; 
     box-shadow: 5px 10px 20px black;
+    width: 70%;
 }
 
 .connexion-content h1 {
@@ -187,7 +188,7 @@ body {
 
 
 .connexion-image img {
-    width: 50%;
+    width: 70%;
     border-radius: 5px;
     box-shadow: 5px 10px 15px black;
     margin-bottom: 15px;
@@ -197,7 +198,7 @@ body {
     background-color: lightblue;
     padding: 10px 10px;
     border-radius: 5px;
-    width: 50%;
+    width: 70%;
 }
 
 footer {
