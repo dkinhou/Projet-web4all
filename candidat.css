@@ -1,4 +1,3 @@
-
 * {
     box-sizing:border-box;
 }
@@ -57,25 +56,31 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    color: blue;
+    color:  grey;
     font-size: 16px;
 }
 
 .nav-links a:hover {
-    text-decoration: underline;
+    text-decoration: none;
     color: darkblue;
 }
 
+
 .nav-btn {
-    background-color: blue;
+    background-color: grey;
     padding: 8px 15px;
     border-radius: 5px;
     color: white;
 }
 
+.nav-btn:hover {
+    background-color: darkblue;
+}
+
 .nav-btn span {
     color: white;
 }
+
 
 .connexion-section {
     align-items: center;
@@ -228,6 +233,10 @@ footer {
     margin-bottom: 8px;
 }
 
+.footer-links a:hover, .footer-info a:hover {
+    text-decoration: underline;
+}   
+
 .barre {
     width: 100%;
     height: 1px;
@@ -240,11 +249,7 @@ footer {
     color: rgba(255, 255, 255, 0.3);
 }
 
-
 @media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
 
     .first-section {
         padding-top: 100px;
@@ -285,9 +290,6 @@ footer {
 }
 
 @media (max-width: 1024px) {
-    .nav-links {
-        display: none;
-    }
 
     .first-section {
         padding-top: 100px;
