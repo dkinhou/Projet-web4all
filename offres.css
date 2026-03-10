@@ -1,17 +1,46 @@
+
+* {
+    box-sizing:border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    overflow-x: hidden;
+    width: 100%;
+}
+
 .navbar {
     display: flex;
-    padding: 10px 30px;
+    padding: 10px 5%;
     align-items: center;
     justify-content: space-between;
-    text-align: center;
     position: fixed;
-    right: 0;
-    z-index: 1000;
-    left: 0;
+    width: 100%;
     top: 0;
+    left: 0;
+    z-index: 1000;
     background-color: white;
     border-bottom: 2px solid blue;
+}
 
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    color: rgb(1, 191, 255);
+    font-size: 28px;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
 }
 
 .nav-links {
@@ -24,17 +53,15 @@
 .nav-links a {
     text-decoration: none;
     color: blue;
+    font-size: 16px;
 }
 
-.nav-links a span{
-    text-decoration: none;
-    color: white;
-}
 .nav-links a:hover {
     text-decoration: underline;
     color: darkblue;
 }
 
+<<<<<<< HEAD
 .nav-btn{
      background-color: blue; 
      padding: 9px 15px;
@@ -260,19 +287,94 @@ footer {
 .footer-info a:hover {
     text-decoration: underline;
     color: white;
+=======
+.nav-btn {
+    background-color: blue;
+    padding: 8px 15px;
+    border-radius: 5px;
+    color: white;
+}
+
+.nav-btn span {
+    color: white;
+}
+
+
+footer {
+    padding: 50px 5%;
+    background-color: rgb(22, 27, 52);
+    color: white;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.footer-brand, .footer-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-content h2 { font-size: 20px; margin-bottom: 15px; }
+
+.footer-links a, .footer-info a {
+    color: rgb(150, 150, 200);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 8px;
+>>>>>>> origin/Deo-Gracias
 }
 
 .barre {
     width: 100%;
+<<<<<<< HEAD
     height: 2px;
     background-color: rgb(255, 255, 255);
     align-items: center;
     justify-content: center;
+=======
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin: 20px 0;
+>>>>>>> origin/Deo-Gracias
 }
 
 .copyright {
     text-align: center;
+<<<<<<< HEAD
     padding: 20px 0;
     background-color: rgb(22, 27, 52);
     color: rgba(255, 255, 255, 0.257);
+=======
+    color: rgba(255, 255, 255, 0.3);
+}
+
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .first-section {
+        padding-top: 100px;
+        text-align: center;
+    }
+
+    .first-section-buttons {
+        flex-direction: column;
+    }
+
+    .first-section-btn1, .first-section-btn2 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .second-section-item, .third-section-item {
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
+>>>>>>> origin/Deo-Gracias
 }

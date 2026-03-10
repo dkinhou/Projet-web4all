@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .navbar {
     display: flex;
     padding: 10px 30px;
@@ -12,17 +13,73 @@
     background-color: white;
     border-bottom: 2px solid blue;
 
+=======
+* {
+    box-sizing:border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.navbar {
+    display: flex;
+    padding: 10px 5%;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: white;
+    border-bottom: 2px solid blue;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    color: rgb(1, 191, 255);
+    font-size: 28px;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+>>>>>>> origin/Deo-Gracias
 }
 
 .nav-links {
     display: flex;
+<<<<<<< HEAD
     gap: 20px;
     align-items: center;
     font-size: 17px;
+=======
+    gap: 15px;
+    align-items: center;
+}
+
+.nav-icone {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+>>>>>>> origin/Deo-Gracias
 }
 
 .nav-links a {
     text-decoration: none;
+<<<<<<< HEAD
     color: blue;
 }
 
@@ -39,12 +96,30 @@
      background-color: blue; 
      padding: 9px 15px;
      border-radius: 5px ;
+=======
+    color:  grey;
+    font-size: 16px;
+}
+
+.nav-links a:hover {
+    text-decoration: none;
+    color: darkblue;
+}
+
+
+.nav-btn {
+    background-color: grey;
+    padding: 8px 15px;
+    border-radius: 5px;
+    color: white;
+>>>>>>> origin/Deo-Gracias
 }
 
 .nav-btn:hover {
     background-color: darkblue;
 }
 
+<<<<<<< HEAD
 .logo {
     display:flex;
 }
@@ -139,10 +214,125 @@ body {
 .container {
     display: flex;
  
+=======
+.nav-btn span {
+    color: white;
+}
+
+
+.connexion-section {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    gap: 100px;
+    margin-top: 210px;
+    margin-bottom: 100px;
+    margin-left: 20%;
+    margin-right: 10%;
+    
+    
+}
+
+.connexion-content {
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 20px 20px; 
+    box-shadow: 5px 10px 20px black;
+    width: 70%;
+}
+
+.connexion-content h1 {
+    text-align: center;
+    font-family:cursive;
+}
+
+.connexion-content p {
+    width:100%;
+    text-align: center;
+    font-size: 15px;
+    color: rgb(14, 2, 2);
+}
+.connexion-content p span {
+    font-family:cursive;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.connexion-content label {
+    color: rgb(14, 2, 2);
+}
+
+.connexion-content input {
+    border-radius: 5px;
+    width: 95%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px 10px;
+    border-radius: 10px;
+}
+
+.connexion-content button {
+    width:95%;
+    padding: 10px 10px;
+    border-radius: 10px;
+}
+
+.connexion-content-options {
+    display: flex;
+    justify-content: space-between; 
+     align-items: center;
+}
+
+.connexion-content-options a {
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.connexion-content-options a:hover {
+    text-decoration: underline;
+}
+
+.checkbox-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkbox-group input {
+    width: 10px;
+}
+
+.checkbox-group label {
+    font-size: 12px;
+}
+
+.connexion-to-inscription {
+     justify-content: center; 
+     align-items: center;
+     justify-content: center; 
+     align-items: center;
+     text-align: center;
+}
+
+.connexion-to-inscription a {
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.connexion-to-inscription a:hover {
+    text-decoration: underline;
+}
+
+.connexion-to-inscription p {
+    font-size: 12px;
+>>>>>>> origin/Deo-Gracias
 }
 
 
 .connexion-image img {
+<<<<<<< HEAD
     width: 500px; 
     height: 400px;
     margin-left: 100px;
@@ -265,11 +455,146 @@ footer {
     background-color: rgb(255, 255, 255);
     align-items: center;
     justify-content: center;
+=======
+    width: 70%;
+    border-radius: 5px;
+    box-shadow: 5px 10px 15px black;
+    margin-bottom: 15px;
+}
+
+.image-bottom {
+    background-color: lightblue;
+    padding: 10px 10px;
+    border-radius: 5px;
+    width: 70%;
+}
+
+footer {
+    padding: 50px 5%;
+    background-color: rgb(22, 27, 52);
+    color: white;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.footer-brand, .footer-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-content h2 { font-size: 20px; margin-bottom: 15px; }
+
+.footer-links a, .footer-info a {
+    color: rgb(150, 150, 200);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.footer-links a:hover, .footer-info a:hover {
+    text-decoration: underline;
+}   
+
+.barre {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin: 20px 0;
+>>>>>>> origin/Deo-Gracias
 }
 
 .copyright {
     text-align: center;
+<<<<<<< HEAD
     padding: 20px 0;
     background-color: rgb(22, 27, 52);
     color: rgba(255, 255, 255, 0.257);
+=======
+    color: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+
+    .first-section {
+        padding-top: 100px;
+        text-align: center;
+    }
+
+    .first-section-buttons {
+        flex-direction: column;
+    }
+
+    .first-section-btn1, .first-section-btn2 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .second-section-item, .third-section-item {
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .connexion-image {
+        display: none;
+    }
+
+    .connexion-section {
+        margin-top: 100;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .connexion-content {
+        width: 100%;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+@media (max-width: 1024px) {
+
+    .first-section {
+        padding-top: 100px;
+        text-align: center;
+    }
+
+    .first-section-buttons {
+        flex-direction: column;
+    }
+
+    .first-section-btn1, .first-section-btn2 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .second-section-item, .third-section-item {
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .connexion-image {
+        display: none;
+    }
+
+    .connexion-section {
+        margin-top: 100;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .connexion-content {
+        width: 100%;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+>>>>>>> origin/Deo-Gracias
 }
