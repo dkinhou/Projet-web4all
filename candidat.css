@@ -21,7 +21,7 @@ body {
     left: 0;
     z-index: 1000;
     background-color: white;
-    border-bottom: 2px solid blue;
+    border-bottom: 1px solid grey;
 }
 
 .logo {
@@ -30,7 +30,7 @@ body {
 }
 
 .logo-image {
-    color: rgb(1, 191, 255);
+    color: #F59E0B;
     font-size: 28px;
     font-weight: bold;
     margin-right: 15px;
@@ -62,7 +62,7 @@ body {
 
 .nav-links a:hover {
     text-decoration: none;
-    color: darkblue;
+    color: #F59E0B;
 }
 
 
@@ -74,13 +74,12 @@ body {
 }
 
 .nav-btn:hover {
-    background-color: darkblue;
+    background-color: #F59E0B;
 }
 
 .nav-btn span {
     color: white;
 }
-
 
 .connexion-section {
     align-items: center;
@@ -139,6 +138,15 @@ body {
     width:95%;
     padding: 10px 10px;
     border-radius: 10px;
+     background-color: rgb(28, 28, 52);
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.connexion-content button:hover {
+    background-color: #F59E0B;
 }
 
 .connexion-content-options {
@@ -150,10 +158,13 @@ body {
 .connexion-content-options a {
     font-size: 12px;
     text-decoration: none;
+    color: grey;
 }
 
 .connexion-content-options a:hover {
-    text-decoration: underline;
+    text-decoration: none;
+    color: #F59E0B;
+
 }
 
 .checkbox-group {
@@ -170,6 +181,7 @@ body {
     font-size: 12px;
 }
 
+
 .connexion-to-inscription {
      justify-content: center; 
      align-items: center;
@@ -181,10 +193,11 @@ body {
 .connexion-to-inscription a {
     font-size: 12px;
     text-decoration: none;
+    color: grey;
 }
 
 .connexion-to-inscription a:hover {
-    text-decoration: underline;
+    color: #F59E0B;
 }
 
 .connexion-to-inscription p {
