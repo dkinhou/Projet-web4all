@@ -3,154 +3,55 @@
     box-sizing:border-box;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    overflow-x: hidden;
-    width: 100%;
+main {
+    padding: 100px 5% 40px 5%;
+    background-color: #f5f7fa;
 }
 
-.navbar {
+.barre-recherche{
     display: flex;
-    padding: 10px 5%;
-    align-items: center;
-    justify-content: space-between;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    background-color: white;
-    border-bottom: 2px solid blue;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-}
-
-.logo-image {
-    color: rgb(1, 191, 255);
-    font-size: 28px;
-    font-weight: bold;
-    margin-right: 15px;
-}
-
-.logo-text {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-}
-
-.nav-links {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    font-size: 17px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: blue;
-    font-size: 16px;
-}
-
-.nav-links a:hover {
-    text-decoration: underline;
-    color: darkblue;
-}
-
-<<<<<<< HEAD
-.nav-btn{
-     background-color: blue; 
-     padding: 9px 15px;
-     border-radius: 5px ;
-}
-
-.nav-btn:hover {
-    background-color: darkblue;
-}
-
-.logo {
-    display:flex;
-}
-
-.logo-image{
-    color: rgb(1, 191, 255);
-    font-size: 30px;
-    font-weight: bold;
-    margin: 8px 30px;
-}
-.logo-text {
-    font-size: 30px;
-    font-weight: bold;
-    color:#333;
-}
-
-.nav-links a {
-    margin: 0px 10px;
-}
-
-.icone {
-    color:grey;
-    margin-top: 5px;
-}
-
-.nav-icone {
-    display: flex;
-    align-items: center;  
-}
-
-body {
-    margin : 0;
-    padding: 0;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-main{
-    padding: 100px 40px 40px 40px; /*On choisis 100px en haut pour ne pas être sous la navbar fixe*/
-    background-color: #f5f7fa; /*Fond gris clair pour toute la page*/
-}
-
-.barre-recherche {
-    display: flex; /*les champs côte à cotes*/
-    align-items: center;
+    align-items:center;
     gap: 10px;
     background-color: white;
-    border:1px solid #e0e0e0;
-    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius:12px;
     padding: 12px 20px;
     margin-bottom: 30px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08); /*Ombre légère pour faire ressortir la barre de recherche*/
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
 .barre-recherche input,
 .barre-recherche select{
-    border: none; /*Pas de bordure sur les champs*/
-    outline: none; /*Pas de contour bleu au clic*/
+    border: none;
+    outline: none;
     font-size: 15px;
-    padding: 8px 15px;
-    flex: 1; /*Pour que chaque champ prenne l'espace disponible*/
-    border-right: 1px solid #e0e0e0; /*séparateur à droite*/
+    flex: 1;
 }
 
-.barre-recherche input:last-of-type{
-    border-right:none; /*pas de séparateur sur le dernier champ*/
+/*Pour chaque champ individuel de la barre de recherhce*/
+.champ-recherche{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    border-right: 1px solid #e0e0e0; /*Pour le séparateur entre les champs*/
+    padding: 0 15px;
+    color: grey;
 }
+
+.champ-recherche:last-of-type{
+    border-right: none; /*Pas de séparateur après le dernier champ*/
+}
+
 .btn-rechercher{
-    background-color: blue;
+    background-color: grey;
     color: white;
     border: none;
     padding: 10px 25px;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 15px;
-    white-space: nowrap; /*Empêche le texte de se casser sur plusieurs lignes*/
-}
-
-.liste-offres {
-    flex: 1; /*la section prends tout l'espace restant après l'aside*/
+    font-size: 15px; 
+    white-space:nowrap;
 }
 
 .btn-rechercher:hover{
@@ -159,199 +60,94 @@ main{
 
 .liste-header{
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
 }
 
 .compteur{
-    color: grey;
-    font-size: 14px;
-}
-.carte-offre {
-    background-color: white;
-    border: 1px solid #e0e0e0; /*Bordure grise légère*/
-    border-radius: 10px; /*Pour avoir les coins arrondis*/
-    padding: 20px; /*Espace intérieur de la carte*/
-    margin-bottom: 20px; /*Espace entre les cartes*/
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08); /*Ombre légère lorsque le curseur arrive dessus*/
-}
-
-.nom-entreprise{
-    color: blue; 
-    font-weight: bold;
-    margin: 5px 0;
-}
-
-.lieu{
-    color: grey;
+    color:grey;
     font-size: 14px;
 }
 
-span.competences{
-    background-color: #e8f0fe; /*Fond bleu clair*/
-    color: #1a56db; /*Texte bleu foncé*/
-    padding: 4px 10px;
-    border-radius: 20px; /*Pour avoir les bords arrondis*/
-    font-size: 13px;
-    margin-right: 6px;
+.carte-offre{
+    background-color:white;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s; /*Animation de transition pour l'effet de survol*/
 }
 
-.details-btn{
-    background-color: blue;
-    color: white;
-    border: none; 
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin-top: 10px;
+.carte-offre:hover {
+    transform: translateY(-3px); /*légère remontée*/
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
 }
-
-.details-btn:hover {
-    background-color: darkblue;
-    cursor: pointer;
-}
-
 .carte-header{
     display: flex;
-    justify-content: space-between; /*Titre à gauche, tag à droite */
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 5px;
 }
 
 .tag-contrat{
-    background-color: #e8f0fe; /*Fond bleu clair*/
-    color: #1a56db;
+    background-color: rgb(28,28,52); 
+    color: white;
     padding: 4px 12px;
     border-radius: 20px;
     font-size: 13px;
     font-weight: bold;
 }
 
+.nom-entreprise{
+    color: rgb(1,191, 255);
+    font-weight: bold; 
+    margin: 5px 0;
+}
+
 .carte-infos{
-    display: flex;
+    display: flex; 
     gap: 20px;
     color: grey;
     font-size: 14px;
     margin: 8px 0;
 }
 
+span.competences{
+    background-color: rgba(1,191,255,0.15);
+    color: rgb(28,28,52);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size:13px;
+    margin-right: 6px;
+}
+
 .carte-footer{
-    display:flex;
-    justify-content: space-between; /*Candidatures à gauche, bouton à droite*/
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     margin-top: 15px;
     padding-top: 15px;
-    border-top: 1px solid #e0e0e0; /*Ligne de séparation*/
+    border-top: 1px solid #e0e0e0;
 }
 
 .nb-candidatures{
     color: grey;
     font-size: 13px;
 }
-
-footer {
-    padding: 50px 60px;
-    background-color: rgb(22, 27, 52);
-}
-.footer-content {
-    background-color: rgb(22, 27, 52);
-    color: white;
-    align-items: center;
-    justify-content: space-between;
-     padding: 20px 30px;
-    display: flex;
-}
-
-.footer-content p {
-    font-size: 15px;
-    color: rgb(86, 86, 173);
-}
-
-.footer-links a{
-    font-size: 15px;
-    text-decoration: none;
-    color: rgb(86, 86, 173);
-}
-
-.footer-links a:hover {
-    text-decoration: underline;
-    color: white;
-}
-
-.footer-info a {
-    font-size: 15px;
-    text-decoration: none;
-    color: rgb(86, 86, 173);
-}
-
-.footer-info a:hover {
-    text-decoration: underline;
-    color: white;
-=======
-.nav-btn {
-    background-color: blue;
-    padding: 8px 15px;
+.details-btn{
+    background-color:grey;
+    color:white;
+    border:none;
+    padding: 10px 20px;
     border-radius: 5px;
-    color: white;
+    cursor: pointer;
 }
 
-.nav-btn span {
-    color: white;
+.details-btn:hover{
+    background-color:darkblue;
 }
-
-
-footer {
-    padding: 50px 5%;
-    background-color: rgb(22, 27, 52);
-    color: white;
-}
-
-.footer-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 30px;
-}
-
-.footer-brand, .footer-group {
-    flex: 1;
-    min-width: 200px;
-}
-
-.footer-content h2 { font-size: 20px; margin-bottom: 15px; }
-
-.footer-links a, .footer-info a {
-    color: rgb(150, 150, 200);
-    text-decoration: none;
-    display: block;
-    margin-bottom: 8px;
->>>>>>> origin/Deo-Gracias
-}
-
-.barre {
-    width: 100%;
-<<<<<<< HEAD
-    height: 2px;
-    background-color: rgb(255, 255, 255);
-    align-items: center;
-    justify-content: center;
-=======
-    height: 1px;
-    background-color: rgba(255, 255, 255, 0.1);
-    margin: 20px 0;
->>>>>>> origin/Deo-Gracias
-}
-
-.copyright {
-    text-align: center;
-<<<<<<< HEAD
-    padding: 20px 0;
-    background-color: rgb(22, 27, 52);
-    color: rgba(255, 255, 255, 0.257);
-=======
-    color: rgba(255, 255, 255, 0.3);
-}
-
 
 @media (max-width: 768px) {
     .nav-links {
@@ -376,5 +172,4 @@ footer {
         max-width: 100%;
         margin-bottom: 30px;
     }
->>>>>>> origin/Deo-Gracias
 }
