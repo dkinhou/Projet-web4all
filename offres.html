@@ -56,22 +56,9 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                 </svg>
-            <input type="text" placeholder="Intitulé du poste...">
-        </span>
-        <!-- Bouton et popup des filtres -->
-        <div class="filtres-bar">
-            <!-- Bouton qui déclenchera l'ouverture la fenêtre popup -->
-             <!-- L'id va permettre à JavaScipt de retrouver le bouton -->
-            <button class="btn-filtres" id="btn-filtres">
-                <svg xmls="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sliders" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1z"/>
-                </svg>
-                Tous les filtres
-            </button>
-        </div>
-        <!-- Popup des filtres (cachée par le défaut)-->
-         
-        <span class="champ-recherche">
+                <input type="text" placeholder="Intitulé du poste...">
+            </span>
+            <span class="champ-recherche">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suitcase-lg" viewBox="0 0 16 16">
                 <path d="M5 2a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2h3.5A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5H14a.5.5 0 0 1-1 0H3a.5.5 0 0 1-1 0h-.5A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2zm1 0h4a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1M1.5 3a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5H3V3zM15 12.5v-9a.5.5 0 0 0-.5-.5H13v10h1.5a.5.5 0 0 0 .5-.5m-3 .5V3H4v10z"/>
             </svg>
@@ -90,12 +77,66 @@
         </span>
             <button class="btn-rechercher">Rechercher</button>
         </div>
-       
-        <section class="liste-offres">
 
+        <!-- Bouton et popup des filtres -->
+        <div class="filtres-bar">
+            <!-- Bouton qui déclenchera l'ouverture la fenêtre popup -->
+             <!-- L'id va permettre à JavaScipt de retrouver le bouton -->
+            <button class="btn-filtres" id="btn-filtres">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sliders" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1z"/>
+                </svg>
+                Tous les filtres
+            </button>
+        </div>
+
+        <!-- Popup des filtres (cachée par le défaut)-->
+        <div class="popup-overlay" id="popup-overlay">
+            <!-- Pour la fenêtre popup -->
+            <div class="popup-filtres">
+            <!--Entête de la fenêtre-->
+            <div class="popup-header">
+                <h3>Filtres</h3>
+                <!--Pour que Javascript puisse fermer la fenêtre avec le id-->
+                <button class="btn-fermer" id="btn-fermer">x</button>
+            </div>
+            <!--Contenu de la fenêtre-->
+            <div class="popup-contenu">
+                <label> Durée du stage</label>
+                <select>
+                    <option value="">Toutes les durées</option>
+                    <option value="2">2 mois</option>
+                    <option value="3">3 mois </option>
+                    <option value="6">6 mois</option>
+                </select>
+                <!--Filtres pour la rémunération-->
+                <label>Rémunération</label>
+                <select>
+                    <option value="">Toutes les rémunérations</option>
+                    <option value="0">Non rémunéré</option>
+                    <option value="500">0-500€</option>
+                    <option value="1000">500-1000€</option>
+                    <option value="1000+">1000€ et plus</option>
+                </select>
+            </div>
+            <!-- Bouton pour appliquer les filtres si ils sont sélectionnés-->
+            <button class ="btn-appliquer">Appliquer les filtres</button>
+        </div>
+    </div>
+        
+        
+    <section class="liste-offres">
         <div class="liste-header">
             <h2>Offres de stage disponibles</h2>
-            <span class="compteur">2 offres trouvées</span>
+            <div class="liste-controls">
+                <span class="compteur">2 offres trouvées</span>
+                <!-- Menu déroulant pour le tri des offres-->
+                <select class="tri-offres" id="tri-offres">
+                    <option value="recent">Plus récentes</option>
+                    <option value="ancien">Pertinence</option>
+                    <option value="remuneration">Rémunération</option>
+                </select>
+            </div>
         </div>
 
             <article class="carte-offre"> <!-- Carte d'une offre de stage -->
@@ -201,5 +242,8 @@
             <div class="barre"></div>
             <div class="copyright">© 2026 StageAlternance. Tous droits réservés.</div>
     </footer>
+
+    <!--Pour lier le fichier JavaScript vu que le HTML est lu du haut vers le bas-->
+    <script src="offres.js"></script>
 </body>
 </html>

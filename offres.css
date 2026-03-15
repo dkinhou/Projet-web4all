@@ -149,6 +149,127 @@ span.competences{
     background-color:darkblue;
 }
 
+/* Barre contenant le bouton "Tous les filtres"*/
+.filtres-bar{
+    margin-bottom: 20px;
+}
+
+/*Bouton "Tous les filtres"*/
+.btn-filtres{
+    display:flex;
+    align-items: center;
+    gap:8px;
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+    color: rgb(28,28,52);
+}
+
+.btn-filtres:hover{
+    border-color:rgb(28,28,52);
+}
+
+/*Fond semi-transparent derrière la fenêtre popup*/
+.popup-overlay{
+    display: none; /*Elle est cachée par défaut*/
+    position: fixed; /*Elle couvre tout l'écran*/
+    top:0;
+    left: 0;
+    width: 100%;
+    height:100%;
+    background-color:rgba(0,0,0,0.5); /*noir transparent*/
+    z-index: 2000; /*Pour être au dessus de tout le reste*/
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-overlay.active{
+    display: flex; /*Affiche la fenêtre popup*/
+}
+/*La fenêtre blanche poup*/
+.popup-filtres{
+    background-color: white;
+    border-radius:12px;
+    padding: 30px; 
+    width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/*Pour l'entête c'est à dire le titre et le bon fermer (x)*/
+.popup-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/*Pour le bouton "x" qui ferme la fenêtre*/
+.btn-fermer{
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: grey;
+}
+
+/*Pour les filtres dans la fenêtre */
+.popup-contenu{
+    display:flex;
+    flex-direction: column; /*Pour qu'ils soient empilés verticalement*/
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.popup-contenu select{
+    padding: 8px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/*Pour le bouton "Appliquer les filtres*/
+.btn-appliquer {
+    width: 100%;
+    background-color: rgb(28,28,52);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+/*Effet pour lorsque l'on survole le bouton "Appliquer les filtres"*/
+.btn-appliquer:hover{
+    background-color: darkblue;
+}
+
+/*Conteneur compteur + tri côte à côte*/
+.liste-controls{
+    display: flex; 
+    align-items: center; 
+    gap: 15px;
+}
+
+/*Menu déroulant pour le tri des offres*/
+.tri-offres{
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: white;
+    color: rgb(28,28,52);
+    outline: none;
+}
+
+.tri-offres:hover{
+    border-color: rgb(28,28,52);
+}
+
+
 @media (max-width: 768px) {
     .nav-links {
         display: none;
