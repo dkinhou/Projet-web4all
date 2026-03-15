@@ -4,7 +4,7 @@
     <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StageAlternance - trouver votre opportunité</title>
-    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="offres.css"> 
 </head>
 
 <body>
@@ -48,7 +48,68 @@
         </nav>
     </header>
 
-   
+    <main>
+        <div class ="barre-recherche">
+            <input type="text" placeholder="🔍 Intitulé du poste...">
+            <select>
+                <option value="">📄 Type de contrat</option>
+                <option value="stage">Stage</option>
+                <option value="alternance">Alternance</option>
+            </select>
+            <input type="text" placeholder="📍 Ville...">
+            <button class="btn-rechercher">Rechercher</button>
+        </div>
+       
+        <section class="liste-offres">
+
+        <div class="liste-header">
+            <h2>Offres de stage disponibles</h2>
+            <span class="compteur">2 offres trouvées</span>
+        </div>
+
+            <article class="carte-offre"> 
+                <div class="carte-header">
+                    <h3>Développeur Web Fullstack</h3> 
+                    <span class="tag-contrat">Stage</span>
+                </div>
+                <p class ="nom-entreprise">WebAdia</p> 
+                <div class="carte-infos">
+                    <span>📍Lyon, France</span>
+                    <span>🕐 6 mois</span>
+                    <span>💶 800-1000€</span>
+                </div>
+                <div class="competences">   
+                    <span class="competences">PHP</span>
+                    <span class="competences">HTML/CSS</span>
+                </div>
+                <div class="carte-footer">
+                    <span class="nb-candidatures"> 12 candidatures · Publié le 02/03/2026</span>
+                    <button class="details-btn">Voir les détails</button>
+                </div>
+            </article>
+
+            <article class="carte-offre"> 
+                <div class="carte-header">
+                    <h3>Développeur Web Frontend</h3> 
+                    <span class="tag-contrat">Stage</span>
+                </div>
+                <p class ="nom-entreprise">CréaWeb</p>
+                <div class="carte-infos">
+                    <span>📍Paris, France</span>
+                    <span>🕐 6 mois</span>
+                    <span>💶 800-1000€</span>
+                </div>
+                <div class="competences">   
+                    <span class="competences">PHP</span>
+                    <span class="competences">HTML/CSS</span>
+                </div>
+                <div class="carte-footer">
+                    <span class="nb-candidatures"> 5 candidatures · Publié le 04/03/2026</span>
+                    <button class="details-btn">Voir les détails</button> 
+                </div>
+            </article>
+        </section>           
+    </main>
 
     <footer>
         <div class="footer-content">
