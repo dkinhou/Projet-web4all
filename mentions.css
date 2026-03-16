@@ -1,0 +1,67 @@
+.navbar {
+    position: fixed;
+}
+
+.mentions-main {
+    margin-top: 80px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mentions-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+}
+.mentions-section {
+    margin-bottom: 40px;
+}
+
+.mentions-section h2 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e0e0e0;
+}
+.mentions-card {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding-top: 20px;      
+    padding-right: 25px;    
+    padding-bottom: 20px;   
+    padding-left: 25px; 
+    border: 1px solid #e9ecef;   
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06); 
+}
+.mentions-card p {
+    margin: 8px 0;
+    color: #444;
+    line-height: 1.6;
+}
+
+.mentions-card a {
+    color: blue;
+    text-decoration: none;
+}
+
+.mentions-card a:hover {
+    text-decoration: underline;
+    color: darkblue;
+}
+
+.mentions-text {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+
+.mentions-card-contact {
+    background-color: #eff6ff;
+    border-color: #bfdbfe;
+}
