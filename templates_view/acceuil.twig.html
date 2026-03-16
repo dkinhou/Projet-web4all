@@ -1,0 +1,106 @@
+
+    {% extends 'template.twig.html' %}
+    
+    {% block title %}Accueil – StageAlternance{% endblock %}
+
+    {% block stylesheets %}
+    <link rel="stylesheet" href="/css/acceuil.css">
+    {% endblock %}
+        
+        {% block body %}
+        <section class="first-section">
+            <div class="first-section-content">
+                <h1>Trouver votre stage idéal avec StageAlternance</h1>
+                <p>La plateforme qui regroupe toutes les offres de stages pour les étudiants. Simplifiez votre recherche et trouvez l'opportunité parfaite.</p>
+                <div class="first-section-buttons">
+                    <a href="offres.html" class="first-section-btn1">Explorer les offres</a>
+                    <a href="candidat.html" class="first-section-btn2">Se connecter</a>
+                </div>
+            </div>
+            <div class="slider">
+                <div class="first-section-image">
+                    <img src="/images/image-acceuil.jpg" alt="stage 1">
+                    <img src="/images/image-acceuil_1.jpg" alt="stage 2">
+                    <img src="/images/image-acceuil_2.jpg" alt="stage 3">
+                </div>
+            </div>
+        </section>
+
+        <section class="search-bar">
+            <div class="search-bar-content">
+                <h2>Recherchez votre emploi en quelques clics</h2>
+                <form action="#" method="get">
+                    <div class="search-form"> 
+                        <input type="text" name="keyword" placeholder="Mots-clés (ex: marketing, informatique)" required>
+                        <input type="text" name="location" placeholder="Lieu (ex: Paris, Lyon)" >
+                        <button type="submit">Rechercher</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="second-section">
+            <h2>Pourquoi utiliser StageAlternance ?</h2>
+            <div class="second-section-content">
+                <div class="second-section-item">
+                    <div class="second-section-icone">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-database" viewBox="0 0 16 16">
+                        <path d="M4.318 2.687C5.234 2.271 6.536 2 8 2s2.766.27 3.682.687C12.644 3.125 13 3.627 13 4c0 .374-.356.875-1.318 1.313C10.766 5.729 9.464 6 8 6s-2.766-.27-3.682-.687C3.356 4.875 3 4.373 3 4c0-.374.356-.875 1.318-1.313M13 5.698V7c0 .374-.356.875-1.318 1.313C10.766 8.729 9.464 9 8 9s-2.766-.27-3.682-.687C3.356 7.875 3 7.373 3 7V5.698c.271.202.58.378.904.525C4.978 6.711 6.427 7 8 7s3.022-.289 4.096-.777A5 5 0 0 0 13 5.698M14 4c0-1.007-.875-1.755-1.904-2.223C11.022 1.289 9.573 1 8 1s-3.022.289-4.096.777C2.875 2.245 2 2.993 2 4v9c0 1.007.875 1.755 1.904 2.223C4.978 15.71 6.427 16 8 16s3.022-.289 4.096-.777C13.125 14.755 14 14.007 14 13zm-1 4.698V10c0 .374-.356.875-1.318 1.313C10.766 11.729 9.464 12 8 12s-2.766-.27-3.682-.687C3.356 10.875 3 10.373 3 10V8.698c.271.202.58.378.904.525C4.978 9.71 6.427 10 8 10s3.022-.289 4.096-.777A5 5 0 0 0 13 8.698m0 3V13c0 .374-.356.875-1.318 1.313C10.766 14.729 9.464 15 8 15s-2.766-.27-3.682-.687C3.356 13.875 3 13.373 3 13v-1.302c.271.202.58.378.904.525C4.978 12.71 6.427 13 8 13s3.022-.289 4.096-.777c.324-.147.633-.323.904-.525"/>
+                        </svg>
+                    </div>
+                    <h3>Base de données entreprises</h3>
+                    <p>Accédez aux informations et évaluations des entreprises partenaires.</p>
+                </div>
+                <div class="second-section-item">
+                    <div class="second-section-icone1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                        </svg>
+                    </div>    
+                    <h3>Facilité de recherche</h3>
+                    <p>Utilisez nos filtres avancés pour trouver rapidement les offres qui vous correspondent.</p>
+                </div>
+                <div class="second-section-item">
+                    <div class="second-section-icone2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-award" viewBox="0 0 16 16">
+                        <path d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702z"/>
+                        <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1z"/>
+                        </svg>
+                    </div>
+                    <h3>Suivi de candidature</h3>
+                    <p>Gérez vos candidatures et suivez leur évolution en temps réel.</p>
+                </div> 
+            </div> 
+        </section>
+
+        <section class="third-section">
+            <h2>Nos chiffres clés</h2>
+            <div class="third-section-content">
+                <div class="third-section-item">
+                    <h3>500+</h3>
+                    <p>Entreprises partenaires</p>
+                </div>
+                <div class="third-section-item">
+                    <h3>2000+</h3>
+                    <p>Offres de stage disponibles</p>
+                </div>
+                <div class="third-section-item">
+                    <h3>1500+</h3>
+                    <p>Candidatures suivies</p>
+                </div>
+                <div class="third-section-item">
+                    <h3>95%</h3>
+                    <p>Taux de satisfaction</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="fourth-section">
+            <h2>Prêt à trouver votre stage ?</h2>
+            <p>Inscrivez-vous dès maintenant et accédez à toutes les opportunités de la plateforme.</p>
+            <a href="#" class="fourth-section-btn">Commencer maintenant</a>
+        </section>
+
+        {% endblock %}
+
+    

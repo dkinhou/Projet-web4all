@@ -1,0 +1,48 @@
+
+    {% extends 'template.twig.html' %}
+    
+    {% block title %}Espace Candidat – StageAlternance{% endblock %}
+
+    {% block stylesheets %}
+    <link rel="stylesheet" href="/css/candidat.css">
+    {% endblock %}
+        
+        {% block body %}
+        <section class="connexion-section">
+            <div class="connexion-content">
+                <h1>Candidat</h1>
+                <p>Accedez à votre compte <span>StageAlternance</span>.</p>
+                 <form action="#" method="post">
+                            <label for="email">Email:</label>
+                            <br>
+                            <input type="email" id="email" name="email" required>
+                            <br>
+                            <label for="password">Mot de passe:</label>
+                            <br>
+                            <input type="password" id="password" name="password" required>
+                            <br>
+                            <div class="connexion-content-options">
+                                <div class="checkbox-group">
+                                <input type="checkbox" id="souvenir" name="souvenir">
+                                <label for="souvenir">Se souvenir de moi</label>
+                                </div>
+                                <div><a href="#">Mot de passe oublié ?</a></div>
+                            </div>
+                            <button type="submit">Se connecter</button>
+                  </form>
+                  <div class="connexion-to-inscription">
+                    <div><p>Vous n'avez pas encore de compte ?</p></div>
+                    <div><a href="#">inscrivez-vous</a></div>
+                  </div>
+            </div>
+            <div class="connexion-image">
+                <div><img src="connexion-image.jpg" alt="Image de livre pour la connexion"></div>
+                <div class="image-bottom">
+                    <h2>Bienvenue sur StageAlternance</h2>
+                    <p>Connectez-vous pour accéder à toutes les fonctionnalités: recherche d'offres, gestion des candidatures et bien plus encore !</p>
+                </div>
+            </div>
+        </section>
+        {% endblock %}
+
+ 

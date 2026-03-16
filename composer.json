@@ -1,0 +1,17 @@
+{
+    "name": "deogr/projet-web4all",
+    "description": "web-4all-Recherche de stage et alternance",
+    "autoload": {
+        "psr-4": {
+            "Deogr\\ProjetWeb4all\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Deo"
+        }
+    ],
+    "require": {
+        "twig/twig": "^3.23"
+    }
+}

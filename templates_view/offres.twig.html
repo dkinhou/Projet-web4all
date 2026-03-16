@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StageAlternance - trouver votre opportunité</title>
+    <link rel="stylesheet" href="offres.css"> 
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo"> 
+                <div class="logo-image">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-suitcase-lg" viewBox="0 0 16 16">
+                        <path d="M5 2a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2h3.5A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5H14a.5.5 0 0 1-1 0H3a.5.5 0 0 1-1 0h-.5A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2zm1 0h4a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1M1.5 3a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5H3V3zM15 12.5v-9a.5.5 0 0 0-.5-.5H13v10h1.5a.5.5 0 0 0 .5-.5m-3 .5V3H4v10z"/>
+                    </svg>
+                </div>
+                <div class="logo-text">StageAlternance</div>
+            </div>
+            <div class="nav-links">
+                <div class="nav-icone">
+                    <div class="icone">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
+                            <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"/>
+                        </svg>
+                    </div>
+                    <a href="index.html">Accueil</a>
+                </div>
+                <div class="nav-icone">
+                    <div class="icone">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" fill="currentColor" class="bi bi-suitcase-lg" viewBox="0 0 16 16">
+                            <path d="M5 2a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2h3.5A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5H14a.5.5 0 0 1-1 0H3a.5.5 0 0 1-1 0h-.5A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2zm1 0h4a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1M1.5 3a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5H3V3zM15 12.5v-9a.5.5 0 0 0-.5-.5H13v10h1.5a.5.5 0 0 0 .5-.5m-3 .5V3H4v10z"/>
+                        </svg>
+                    </div>
+                    <a href="offres.html">Offres de stage</a>
+                </div>
+                <div class="nav-icone">
+                    <div class="icone">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-buildings" viewBox="0 0 16 16">
+                            <path d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022M6 8.694 1 10.36V15h5zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5z"/>
+                        </svg>
+                    </div>
+                    <a href="entreprises.php">Entreprises</a>
+                </div>
+                <a href="candidat.html" class="nav-btn"><span>Candidat</span></a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class ="barre-recherche">
+            <input type="text" placeholder="🔍 Intitulé du poste...">
+            <select>
+                <option value="">📄 Type de contrat</option>
+                <option value="stage">Stage</option>
+                <option value="alternance">Alternance</option>
+            </select>
+            <input type="text" placeholder="📍 Ville...">
+            <button class="btn-rechercher">Rechercher</button>
+        </div>
+       
+        <section class="liste-offres">
+
+        <div class="liste-header">
+            <h2>Offres de stage disponibles</h2>
+            <span class="compteur">2 offres trouvées</span>
+        </div>
+
+            <article class="carte-offre"> 
+                <div class="carte-header">
+                    <h3>Développeur Web Fullstack</h3> 
+                    <span class="tag-contrat">Stage</span>
+                </div>
+                <p class ="nom-entreprise">WebAdia</p> 
+                <div class="carte-infos">
+                    <span>📍Lyon, France</span>
+                    <span>🕐 6 mois</span>
+                    <span>💶 800-1000€</span>
+                </div>
+                <div class="competences">   
+                    <span class="competences">PHP</span>
+                    <span class="competences">HTML/CSS</span>
+                </div>
+                <div class="carte-footer">
+                    <span class="nb-candidatures"> 12 candidatures · Publié le 02/03/2026</span>
+                    <button class="details-btn">Voir les détails</button>
+                </div>
+            </article>
+
+            <article class="carte-offre"> 
+                <div class="carte-header">
+                    <h3>Développeur Web Frontend</h3> 
+                    <span class="tag-contrat">Stage</span>
+                </div>
+                <p class ="nom-entreprise">CréaWeb</p>
+                <div class="carte-infos">
+                    <span>📍Paris, France</span>
+                    <span>🕐 6 mois</span>
+                    <span>💶 800-1000€</span>
+                </div>
+                <div class="competences">   
+                    <span class="competences">PHP</span>
+                    <span class="competences">HTML/CSS</span>
+                </div>
+                <div class="carte-footer">
+                    <span class="nb-candidatures"> 5 candidatures · Publié le 04/03/2026</span>
+                    <button class="details-btn">Voir les détails</button> 
+                </div>
+            </article>
+        </section>           
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h2>StageAlternance</h2>
+                <p>Plateforme de recherche de stage pour tous les étudiants</p>
+            </div>
+            <div class="footer-group">
+                <h2>Liens rapides</h2>
+                <div class="footer-links"><a href="offres.html">Offres de stage</a></div>
+                <div class="footer-links"><a href="entreprises.html">Entreprises</a></div>
+                <div class="footer-links"><a href="#">Mentions Légales</a></div>
+            </div>
+            <div class="footer-group">
+                <h2>Contact</h2>
+                <div class="footer-info"><a href="mailto:contact@stagealternance.fr">Mail: contact@stagealternance.fr</a></div>
+                <div class="footer-info"><a href="tel:0123456789">Tel: 01 23 45 67 89</a></div>
+                <div class="footer-info"><a href="#" target="_blank">Adresse: Campus CESI France</a></div>
+            </div>
+        </div>
+        <div class="barre"></div>
+        <div class="copyright">© 2026 StageAlternance. Tous droits réservés.</div>
+    </footer>
+</body>
+</html>

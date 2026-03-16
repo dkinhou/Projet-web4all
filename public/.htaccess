@@ -1,0 +1,13 @@
+# Désactiver l'affichage des dossiers
+Options -Indexes
+
+# Activer la réécriture d'URL
+RewriteEngine On
+
+# Si le fichier ou le dossier demandé existe physiquement (ex: /css/style.css)
+# alors on y accède directement sans passer par le routeur.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Sinon, on redirige tout vers index.php en passant l'URL dans la variable 'url'
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
