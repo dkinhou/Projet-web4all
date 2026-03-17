@@ -1,27 +1,17 @@
 <?php
+require_once 'Controller.php'; // On inclut le parent
 
-class controllerAcceuil 
-{
-    private $_twig;
-
-    public function __construct($url)
-    {
-        // 1. Initialiser Twig (indispensable dans chaque contrôleur qui affiche une vue)
-        $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../../templates_view');
-        $this->_twig = new \Twig\Environment($loader, [
-            'cache' => false,
-            'debug' => true
-        ]);
-
-        // 2. Lancer l'affichage
+class controllerAcceuil extends Controller {
+    
+    public function __construct($url) {
+        parent::__construct(); // On appelle le constructeur du parent (pour Twig)
         $this->index();
     }
 
-    public function index()
-    {
-        // Tu peux passer des données à la vue ici
-        echo $this->_twig->render('acceuil.twig.html', [
-            'titre' => 'Bienvenue sur StageAlternance'
+    public function index() {
+        // On utilise la méthode 'render' héritée du parent
+        $this->render('acceuil.twig.html', [
+            'message' => 'Bienvenue !'
         ]);
     }
 }
