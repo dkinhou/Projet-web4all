@@ -1,0 +1,10 @@
+#Dépendance Composer qui sont trop lourdes à commit
+vendor/
+
+#Fichiers système
+.DS_Store
+Thumbs.db
+
+#Fichiers de configuration sensibles
+.env
+config/database.php

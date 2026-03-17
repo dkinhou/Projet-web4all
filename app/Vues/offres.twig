@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StageAlternance - trouver votre opportunité</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="offres.css">
+</head>
+		
+	<header>
+		<nav class="navbar">
+			<div class="logo">
+				<div class="logo-text">StageAlternanc/div>
+			</div>
+			<div class="nav-links">
+				<div class="nav-icone"><a href="/">Accueil</a></div>
+				<div class="nav-icone"><a href="/offres">Offres</a></div>
+				<div class="nav-icone"><a href="/entreprises">Entreprises</a></div>
+				<div><a href="/candidat" class="nav-btn"><span>Candidat</span></a></div>
+			</div>
+		</nav>
+	</header>
+
+	<main>
+	#Pour la barre de recherche 
+	<div class="barre-recherche">
+            <span class="champ-recherche">
+                <input type="text" placeholder="Intitulé du poste...">
+            </span>
+            <span class="champ-recherche">
+                <select>
+                    <option value="">Type de contrat</option>
+                    <option value="stage">Stage</option>
+                    <option value="alternance">Alternance</option>
+                </select>
+            </span>
+            <span class="champ-recherche">
+                <input type="text" placeholder="Ville...">
+            </span>
+            <button class="btn-rechercher">Rechercher</button>
+        </div>
+
+        # Bouton filtres 
+        <div class="filtres-bar">
+            <button class="btn-filtres" id="btn-filtres">Tous les filtres</button>
+        </div>
+
+        <section class="liste-offres">
+            <div class="liste-header">
+                <h2>Offres de stage disponibles</h2>
+                <div class="liste-controls">
+                    {# Twig affiche les variables avec {{ }} #}
+                    <span class="compteur">{{ total_offres }} offres trouvées</span>
+                    <select class="tri-offres">
+                        <option value="recent">Plus récentes</option>
+                        <option value="pertinence">Pertinence</option>
+                        <option value="remuneration">Rémunération</option>
+                    </select>
+                </div>
+            </div>
+
+            # Boucle Twig pour afficher les carte
+            {% for offre in offres %}
+            <article class="carte-offre">
+                <div class="carte-header">
+                    <h3>{{ offre.titre }}</h3>
+                    <span class="tag-contrat">{{ offre.contrat }}</span>
+                </div>
+                <p class="nom-entreprise">{{ offre.entreprise }}</p>
+                <div class="carte-infos">
+                    <span class="info-item">{{ offre.ville }}</span>
+                    <span class="info-item">{{ offre.duree }}</span>
+                    <span class="info-item">{{ offre.remuneration }}</span>
+                </div>
+                <div class="competences">
+                   # Boucle dans la boucle pour les compétences                    {% for competence in offre.competences %}
+                        <span class="competences">{{ competence }}</span>
+                    {% endfor %}
+                </div>
+                <div class="carte-footer">
+                    <span class="nb-candidatures">
+                        {{ offre.candidatures }} candidatures · Publié le {{ offre.date }}
+                    </span>
+                    <button class="details-btn">Voir les détails</button>
+                </div>
+            </article>
+            {% endfor %}
+
+           #Pour la pagination
+            <div class="pagination">
+                {% if page_actuelle > 1 %}
+                    <a href="?page={{ page_actuelle - 1 }}" class="page-btn">← Précédent</a>
+                {% endif %}
+
+                {% for i in 1..total_pages %}
+                    <a href="?page={{ i }}" 
+                       class="page-btn {{ i == page_actuelle ? 'active' : '' }}">
+                        {{ i }}
+                    </a>
+                {% endfor %}
+
+                {% if page_actuelle < total_pages %}
+                    <a href="?page={{ page_actuelle + 1 }}" class="page-btn">Suivant →</a>
+                {% endif %}
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h2>StageAlternance</h2>
+                <p>Plateforme de recherche de stage pour tous les étudiants</p>
+            </div>
+            <div>
+                <h2>Liens rapides</h2>
+                <div class="footer-links"><a href="/offres">Offres de stage</a></div>
+                <div class="footer-links"><a href="/entreprises">Entreprises</a></div>
+            </div>
+            <div>
+                <h2>Contact</h2>
+                <div class="footer-info"><a href="mailto:contact@stagealternance.fr">contact@stagealternance.fr</a></div>
+            </div>
+        </div>
+        <div class="barre"></div>
+        <div class="copyright">© 2026 StageAlternance. Tous droits réservés.</div>
+    </footer>
+
+    <script src="/public/js/offres.js"></script>
+</body>
+</html>

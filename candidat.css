@@ -1,19 +1,3 @@
-<<<<<<< HEAD
-.navbar {
-    display: flex;
-    padding: 10px 30px;
-    align-items: center;
-    justify-content: space-between;
-    text-align: center;
-    position: fixed;
-    right: 0;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    background-color: white;
-    border-bottom: 2px solid blue;
-
-=======
 * {
     box-sizing:border-box;
 }
@@ -56,16 +40,10 @@ body {
     font-size: 24px;
     font-weight: bold;
     color: #333;
->>>>>>> origin/Deo-Gracias
 }
 
 .nav-links {
     display: flex;
-<<<<<<< HEAD
-    gap: 20px;
-    align-items: center;
-    font-size: 17px;
-=======
     gap: 15px;
     align-items: center;
 }
@@ -74,29 +52,10 @@ body {
     display: flex;
     align-items: center;
     gap: 5px;
->>>>>>> origin/Deo-Gracias
 }
 
 .nav-links a {
     text-decoration: none;
-<<<<<<< HEAD
-    color: blue;
-}
-
-.nav-links a span{
-    text-decoration: none;
-    color: white;
-}
-.nav-links a:hover {
-    text-decoration: underline;
-    color: darkblue;
-}
-
-.nav-btn{
-     background-color: blue; 
-     padding: 9px 15px;
-     border-radius: 5px ;
-=======
     color:  grey;
     font-size: 16px;
 }
@@ -112,109 +71,12 @@ body {
     padding: 8px 15px;
     border-radius: 5px;
     color: white;
->>>>>>> origin/Deo-Gracias
 }
 
 .nav-btn:hover {
     background-color: darkblue;
 }
 
-<<<<<<< HEAD
-.logo {
-    display:flex;
-}
-
-.logo-image{
-    color: rgb(1, 191, 255);
-    font-size: 30px;
-    font-weight: bold;
-    margin: 8px 30px;
-}
-.logo-text {
-    font-size: 30px;
-    font-weight: bold;
-    color:#333;
-}
-
-.nav-links a {
-    margin: 0px 10px;
-}
-
-.icone {
-    color:grey;
-    margin-top: 5px;
-}
-
-.nav-icone {
-    display: flex;
-    align-items: center;  
-}
-
-body {
-    margin : 0;
-    padding: 0;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-
-.connexion-border {
-    margin-top: 100px;
-    margin-bottom: 200px;
-    margin-left: 200px;
-    align-items: center;
-    justify-content:center;
-
-}
-
-.connexion-container {
-    width: 400px;
-    height: 300px;
-    border: none;
-    border-radius: 5px;
-    padding: 20px;
-    background-color: white;
-    height: 340px;
-    margin-top: 100px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.connexion-container input {
-    align-items: center;
-    justify-content:center;
-    width: 100%;
-    height: 30px;
-    margin-bottom: 20px;
-}
-.connexion-container h2 {
-       align-items: center;
-       justify-content:center;
-       text-align: center;
-}
-
-.connexion-container h5 {
-       align-items: center;
-       justify-content:center;
-       text-align: center;
-}
-
-.connexion-container a {
-       align-items: center;
-       justify-content:center;
-       text-align: center;
-       text-decoration: none;
-}
-
-.connexion-container a:hover {
-       align-items: center;
-       justify-content:center;
-       text-align: center;
-       text-decoration: underline;
-}
-
-.container {
-    display: flex;
- 
-=======
 .nav-btn span {
     color: white;
 }
@@ -327,135 +189,10 @@ body {
 
 .connexion-to-inscription p {
     font-size: 12px;
->>>>>>> origin/Deo-Gracias
 }
 
 
 .connexion-image img {
-<<<<<<< HEAD
-    width: 500px; 
-    height: 400px;
-    margin-left: 100px;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    text-align: center;
-}
-
-
-.connexion-image-texte {
-    background-color:  lightblue;
-    width: 500px;
-    margin-left: 100px;
-    border: 1px solid #cc1;
-    border-radius: 5px;
-}
-
-.connexion-image h3 {
-    align-items: center;
-    justify-content: center;
-    text-align: left;
-    font-size: 24px;
-    margin-left: 100px;
-}
-
-.connexion-image p {
-    align-items: center;
-    justify-content: center;
-    text-align: left;
-    font-size: 16px;
-    margin-left: 100px;
-    width: 60%;
-    padding-bottom: 20px;
-}
-
-
-.connexion-container p {
-       align-items: center;
-       justify-content:center;
-       text-align: center;
-       font-size: 18px;
-       font-family:cursive;
-}
-
-.connexion-container p span {
-       font-weight: bold;
-}
-.connexion-container label {
-       align-items: center;
-       justify-content:center;
-       font-size : 15px;
-       font-weight: bold;
-       margin-bottom: 50px;
-
-}
-.connexion-container button {
-    align-items: center;
-    justify-content:center;
-    width:50%;
-    margin-left: 100px;
-    background-color: blue;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.connexion-container button:hover {
-    background-color: darkblue;
-    text-decoration: underline ;
-}
-
-
-footer {
-    padding: 50px 60px;
-    background-color: rgb(22, 27, 52);
-}
-.footer-content {
-    background-color: rgb(22, 27, 52);
-    color: white;
-    align-items: center;
-    justify-content: space-between;
-     padding: 20px 30px;
-    display: flex;
-}
-
-.footer-content p {
-    font-size: 15px;
-    color: rgb(86, 86, 173);
-}
-
-.footer-links a{
-    font-size: 15px;
-    text-decoration: none;
-    color: rgb(86, 86, 173);
-}
-
-.footer-links a:hover {
-    text-decoration: underline;
-    color: white;
-}
-
-.footer-info a {
-    font-size: 15px;
-    text-decoration: none;
-    color: rgb(86, 86, 173);
-}
-
-.footer-info a:hover {
-    text-decoration: underline;
-    color: white;
-}
-
-.barre {
-    width: 100%;
-    height: 2px;
-    background-color: rgb(255, 255, 255);
-    align-items: center;
-    justify-content: center;
-=======
     width: 70%;
     border-radius: 5px;
     box-shadow: 5px 10px 15px black;
@@ -505,16 +242,10 @@ footer {
     height: 1px;
     background-color: rgba(255, 255, 255, 0.1);
     margin: 20px 0;
->>>>>>> origin/Deo-Gracias
 }
 
 .copyright {
     text-align: center;
-<<<<<<< HEAD
-    padding: 20px 0;
-    background-color: rgb(22, 27, 52);
-    color: rgba(255, 255, 255, 0.257);
-=======
     color: rgba(255, 255, 255, 0.3);
 }
 
@@ -596,5 +327,4 @@ footer {
         padding-left: 10px;
         padding-right: 10px;
     }
->>>>>>> origin/Deo-Gracias
 }

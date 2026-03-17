@@ -1,13 +1,52 @@
+<?php
+//On va faire un tableau qui va simuler les offres de stage et qui sera remplacée par la BDD
+$offres = [
+    [
+        "titre" => "Développeur Web Fullstack",
+        "entreprise" => "WebAdia",
+        "ville" => "Lyon",
+        "duree"=> "6 mois",
+        "remuneration" => "800 - 1000€",
+        "contrat" => "Stage",
+        "competences" => ["PHP", "HTML/CSS"],
+        "candidatures" => 12,
+        "date" => "02/03/2026"
+    ],
+    [
+        "titre" => "Développeur Web Frontend", 
+        "entreprise" => "WebAdia",
+        "ville" => "Paris",
+        "duree" => "6 mois",
+        "remuneration" => "800 - 1000€", 
+        "contrat" => "Stage",
+        "competences" => ["PHP", "HTML/CSS"],
+        "candidatures" => 5,
+        "date" => "04/03/2026"
+    ],
+];
+
+//Paramètres de la pagination 
+$offresParPage = 2;
+//On Récupére le numéro de la page dans l'URL (si jamais on l'a pas c'est que l'on est sur la page 1)
+$pageActuelle = isset($_GET['page'])?(int)$_GET['page'] : 1;
+//On calcule le nombre total de pages 
+$totalOffres = count($offres);
+$totalPages = ceil($totalOffres / $offres_par_page);
+//On calcule quelles offres afficher sur cette page 
+$debut = ($pageActuelle - 1) * $offresParPage;
+$offresAffichees = array_slice($offres, $debut, $offresParPage);
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StageAlternance - trouver votre opportunité</title>
-    <link rel="stylesheet" href="/public/css/style.css"> 
-    <link rel="stylesheet" href="/public/css/offres.css">
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="offres.css">
 </head>
-
+    <!--Le header et et la navbar sont les mêmes que pour offres.html -->
 <body>
     <header>
         <nav class="navbar">
@@ -78,7 +117,7 @@
             <button class="btn-rechercher">Rechercher</button>
         </div>
 
-        <!-- Bouton et popup des filtres -->
+                <!-- Bouton et popup des filtres -->
         <div class="filtres-bar">
             <!-- Bouton qui déclenchera l'ouverture la fenêtre popup -->
              <!-- L'id va permettre à JavaScipt de retrouver le bouton -->
@@ -90,160 +129,81 @@
             </button>
         </div>
 
-        <!-- Popup des filtres (cachée par le défaut)-->
-        <div class="popup-overlay" id="popup-overlay">
-            <!-- Pour la fenêtre popup -->
-            <div class="popup-filtres">
-            <!--Entête de la fenêtre-->
-            <div class="popup-header">
-                <h3>Filtres</h3>
-                <!--Pour que Javascript puisse fermer la fenêtre avec le id-->
-                <button class="btn-fermer" id="btn-fermer">x</button>
-            </div>
-            <!--Contenu de la fenêtre-->
-            <div class="popup-contenu">
-                <label> Durée du stage</label>
-                <select>
-                    <option value="">Toutes les durées</option>
-                    <option value="2">2 mois</option>
-                    <option value="3">3 mois </option>
-                    <option value="6">6 mois</option>
-                </select>
-                <!--Filtres pour la rémunération-->
-                <label>Rémunération</label>
-                <select>
-                    <option value="">Toutes les rémunérations</option>
-                    <option value="0">Non rémunéré</option>
-                    <option value="500">0-500€</option>
-                    <option value="1000">500-1000€</option>
-                    <option value="1000+">1000€ et plus</option>
-                </select>
-            </div>
-            <!-- Bouton pour appliquer les filtres si ils sont sélectionnés-->
-            <button class ="btn-appliquer">Appliquer les filtres</button>
-        </div>
-    </div>
-        
-        
-    <section class="liste-offres">
-        <div class="liste-header">
-            <h2>Offres de stage disponibles</h2>
-            <div class="liste-controls">
-                <span class="compteur">2 offres trouvées</span>
-                <!-- Menu déroulant pour le tri des offres-->
-                <select class="tri-offres" id="tri-offres">
-                    <option value="recent">Plus récentes</option>
-                    <option value="ancien">Pertinence</option>
-                    <option value="remuneration">Rémunération</option>
-                </select>
-            </div>
-        </div>
-
-            <article class="carte-offre"> <!-- Carte d'une offre de stage -->
-                <div class="carte-header">
-                    <h3>Développeur Web Fullstack</h3> <!-- Titre de l'offre -->
-                    <span class="tag-contrat">Stage</span>
+        <section class="liste-offres">
+            <div class="liste-header">
+                <h2>Offres de stage disponibles</h2>
+                <div class="liste-controls">
+                    <!-- On va incorporer le PHP pour le nombre total d'offres -->
+                    <span class="compteur"><?php echo $totalOffres; ?> offres trouvées</span>
+                    <select class="tri-offres" id="tri-offres">
+                        <option value="recent">Plus récentes</option>
+                        <option value="ancien">Pertinence</option>
+                        <option value="remuneration">Rémunération</option>
+                    </select>
                 </div>
-                <p class ="nom-entreprise">WebAdia</p> <!-- Nom de l'entreprise -->
+            </div>
+
+            <!-- On va faire une boucle qui va générer les cartes automatiquement -->
+            <?php foreach($offresAffichees as $offre): ?>
+            <article class = "carte-offre">
+                <div class="carte-header">
+                    <h3><?php echo $offre['titre']; ?></h3>
+                    <span class="tag-contrat"><?php echo $offre['contrat']; ?></span>
+                </div>
+                <p class="nom-entreprise"><?php echo $offre['entreprise']; ?></p>
                 <div class="carte-infos">
                     <span class="info-item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
                             <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/>
                             <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
                         </svg>
-                        Lyon
+                        <?php echo $offre['ville']; ?>
                     </span>
                     <span class="info-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
-                            <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
-                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
-                        </svg>
-                        6 mois
-                    </span>
+                        <span class="info-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
+                            </svg>
+                            <?php echo $offre['duree']; ?>
+                        </span>
                     <span class="info-item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-cash" viewBox="0 0 16 16">
                             <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
                             <path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2z"/>
                         </svg>
-                        800-1000€
+                        <?php echo $offre['remuneration']; ?>
                     </span>
                 </div>
-                <div class="competences">   <!-- Tag des compétences requises -->
-                    <span class="competences">PHP</span>
-                    <span class="competences">HTML/CSS</span>
+                <div class="competences">  
+                    <?php foreach($offre['competences'] as $competence): ?>
+                        <span class="competences"><?php echo $competence; ?></span>
+                    <?php endforeach; ?>
                 </div>
                 <div class="carte-footer">
-                    <span class="nb-candidatures"> 12 candidatures · Publié le 02/03/2026</span>
-                    <button class="details-btn">Voir les détails</button> <!-- Bouton pour voir les détails d'une offre -->
+                    <span class="nb-candidatures">
+                        <?php echo $offre['candiatures']; ?> candidatures · Publié le <?php echo $offre['date']; ?>
+                    </span>
+                    <button class="details-btn">Voir les détails</button> 
                 </div>
             </article>
+            <?php endforeach; ?>
 
-            <article class="carte-offre"> <!-- Carte d'une offre de stage -->
-                <div class="carte-header">
-                    <h3>Développeur Web Frontend</h3> <!-- Titre de l'offre -->
-                    <span class="tag-contrat">Stage</span>
-                </div>
-                <p class ="nom-entreprise">CréaWeb</p> <!-- Nom de l'entreprise -->
-<div class="carte-infos">
-    <span class="info-item">
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
-            <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/>
-            <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-        </svg>
-        Paris
-    </span>
-    <span class="info-item">
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
-            <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
-            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
-        </svg>
-        6 mois
-    </span>
-    <span class="info-item">
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-cash" viewBox="0 0 16 16">
-            <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
-            <path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2z"/>
-        </svg>
-        800-1000€
-    </span>
-</div>
-                <div class="competences">   <!-- Tag des compétences requises -->
-                    <span class="competences">PHP</span>
-                    <span class="competences">HTML/CSS</span>
-                </div>
-                <div class="carte-footer">
-                    <span class="nb-candidatures"> 5 candidatures · Publié le 04/03/2026</span>
-                    <button class="details-btn">Voir les détails</button> <!-- Bouton pour voir les détails d'une offre -->
-                </div>
-            </article>
-        </section>           
-    </main>
+            <!-- Pour la pagination-->
+            <div class="pagination">
+                <!-- On va créer un bouton "Précédent" qui sera désactivé si l'on est sur la page 1 -->
+                <?php if($pageActuelle > 1):?>
+                    <a href="?page=<?php echo $page_actuelle - 1; ?>" class="page-btn"> Précédent</a>
+                <?php else: ?>
+                
+                <!-- Maintenant occupons nous des numéros de page -->
+                 <?php for($i=1; $i <= $totalPages; $i++):?>
+                    <a href="?page=<?php echo $i; ?>"
+                        class="page-btn <?php echo ($i == $pageActuelle) ? 'active' : ''; ?>">
+                        
 
-     <footer>
-            <div class="footer-content">
-                <div>
-                <div><h2>StageAlternance</h2></div>
-                <div><p>Platforme de recherche de stage pour tous les étudiants</p></div>
-                </div>
-                <div>
-                    <div><h2>Liens rapides</h2></div>
-                    <div class="footer-links"><a href="offres.html">Offres de stage</a></div>
-                    <div class="footer-links"><a href="entreprises.html">Entreprises</a></div>
-                    <div class="footer-links"><a href="candidat.html">Candidat</a></div>
-                </div>
-                <div>
-                <div><h2>Contact</h2></div>
-                <div class="footer-info"><a href="mailto:contact@stagealternance.fr">Mail: contact@stagealternance.fr</a></div>
-                <div class="footer-info"><a href="tel:0123456789">Tel: 01 23 45 67 89</a></div>
-                <div class="footer-info"><a href="https://www.google.com/maps/place/Campus+CESI+France" target="_blank">Addresse: Campus CESI France</a></div>
-                </div>
-            </div>
+
             
-            <div class="barre"></div>
-            <div class="copyright">© 2026 StageAlternance. Tous droits réservés.</div>
-    </footer>
 
-    <!--Pour lier le fichier JavaScript vu que le HTML est lu du haut vers le bas-->
-    <script src="/public/js/offres.js"></script>
-</body>
-</html>
+            
+
