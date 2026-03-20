@@ -15,11 +15,10 @@ class router
             {   
                 $url = explode('/', filter_var($_GET['url'], FILTER_SANITIZE_URL));
                 
-                // On s'assure que le nom correspond à tes fichiers (ex: controllerAcceuil)
                 $controller = ucfirst(strtolower($url[0]));
                 $controllerClass = 'controller' . $controller;
                 
-                // Chemin corrigé vers src/controllers/
+                
                 $controllerFile = __DIR__ . '/../controllers/' . $controllerClass . '.php';
 
                 if (file_exists($controllerFile)) 
@@ -34,7 +33,6 @@ class router
             }
             else
             {   
-                // Page par défaut (Accueil)
                 require_once(__DIR__ . '/../controllers/controllerAcceuil.php');
                 $this->_ctrl = new controllerAcceuil($url);
             }
