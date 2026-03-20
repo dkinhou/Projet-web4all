@@ -5,13 +5,13 @@ class OffresController{
 	private $twig;
 	public function __construct(){
 		//Configuration de Twig pour qu'il cherche les vues dans app/Vues
-		$loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/..'/Views');
+		$loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../Vues');
 		$this->twig = new \Twig\Environment($loader, [
 			'cache' => false, 
 			'debug' => true
 		]);
 	}
-	public funtion index(){
+	public function index(){
 		//Chargement du modèle pour récupérer les données 
 		require_once __DIR__ . '/../Modeles/OffresModel.php';
 		$model = new OffresModel();
@@ -34,4 +34,5 @@ class OffresController{
 			'page_actuelle' => $page_actuelle, 
 			'total_pages' => $total_pages 
 		]);
+	}
 }
