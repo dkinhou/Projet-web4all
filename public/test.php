@@ -6,7 +6,12 @@ $conn = $db->getConnection();
 
 
 if($conn) {
-    echo "Connexion réussie à la base de données !";
+   echo "<script> alert('Connexion réussie à la base de données'); </script>";
+                                                  
 } else {
-    echo "Échec de la connexion à la base de données.";
+   echo "<script> alert('Échec de la connexion à la base de données'); </script>";
+                              
 }
+
+?>
+                        

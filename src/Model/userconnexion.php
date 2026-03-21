@@ -1,4 +1,6 @@
 <?php
+include_once 'connexionDB.php';
+
 
 class UserConnexion {
     private $db;
@@ -8,16 +10,14 @@ class UserConnexion {
     }
 
     public function login($email, $password) {
-        $stmt = $this->db->prepare("SELECT * FROM utilisateurs WHERE email = :email");
+        $stmt = $this->db->prepare("SELECT * FROM Utilisateurs WHERE email = :email");
         $stmt->bindParam(':email', $email);
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($user && password_verify($password, $user['password'])) {
-            
-            return true;
+        if ($user && password_verify($password, $user['mdp'])) {
+            return true; 
         } else {
-     
             return false;
         }
     }

@@ -1,15 +1,14 @@
 <?php
-require_once 'Controller.php'; // On inclut le parent
+require_once 'Controller.php'; 
 
 class controllerAcceuil extends Controller {
     
     public function __construct($url) {
-        parent::__construct(); // On appelle le constructeur du parent (pour Twig)
-        $this->index();
+        parent::__construct(); 
     }
 
     public function index() {
-        // On utilise la méthode 'render' héritée du parent
+        
         $this->render('acceuil.twig.html', [
             'message' => 'Bienvenue !'
         ]);

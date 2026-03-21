@@ -1,17 +1,25 @@
 <?php
-require_once 'Controller.php'; // On inclut le parent
+require_once 'Controller.php'; 
+require_once __DIR__ . '/../Model/userconnexion.php';
 
 class controllerConnexion extends Controller {
     
     public function __construct($url) {
-        parent::__construct(); // On appelle le constructeur du parent (pour Twig)
-        $this->index();
+        parent::__construct(); 
     }
 
     public function index() {
-        // On utilise la méthode 'render' héritée du parent
         $this->render('connexion.twig.html', [
             'message' => 'Bienvenue !'
         ]);
     }
+
+        public function login($email, $password) {
+        $db = new ConnexionDB();
+        $conn = $db->getConnection();
+        $userConnexion = new UserConnexion($conn);
+        $result = $userConnexion->login($email, $password);
+        return $result;
+        }
+
 }
