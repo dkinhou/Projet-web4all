@@ -1,0 +1,54 @@
+{% extends 'template.twig.html' %}
+    
+    {% block title %}Espace Candidat – StageAlternance{% endblock %}
+
+    {% block stylesheets %}
+    <link rel="stylesheet" href="/css/connexion_pilote.css">
+    {% endblock %}
+        
+        {% block body %}
+
+        <h1> Espace Pilote – StageAlternance</h1>
+        <h2>Bienvenue dans votre espace pilote {{ Utilisateur }}</h2>
+        
+        <section class="dashboard-container">
+        
+        <section class="card">
+            <h2>🏢 Gestion des Entreprises</h2>
+            <div class="actions">
+                <a href="/recherche-entreprise" class="btn">Rechercher / Afficher</a>
+                <a href="/creer-entreprise" class="btn btn-primary">Créer une entreprise</a>
+                <a href="/modifier-entreprise" class="btn">Modifier</a>
+                <a href="/evaluer-entreprise" class="btn">Évaluer</a>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>🎓 Offres de Stages</h2>
+            <div class="actions">
+                <a href="/recherche-offre" class="btn">Rechercher / Afficher</a>
+                <a href="/creer-offre" class="btn btn-primary">Créer une offre</a>
+                <a href="/stats-offres" class="btn">Consulter Statistiques</a>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>👨‍🎓 Gestion des Étudiants</h2>
+            <div class="actions">
+                <a href="/recherche-etudiant" class="btn">Rechercher / Afficher</a>
+                <a href="/creer-etudiant" class="btn btn-primary">Créer un compte Étudiant</a>
+                <a href="/modifier-etudiant" class="btn">Modifier / Supprimer</a>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>📩 Candidatures</h2>
+            <div class="actions">
+                <a href="/liste-candidatures-pilote" class="btn btn-special">Candidatures de mes élèves</a>
+            </div>
+        </section>
+
+    </section>
+
+    
+        {%endblock%}

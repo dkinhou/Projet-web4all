@@ -35,11 +35,21 @@ class router
                         $email = $_POST['email'];
                         $password = $_POST['password'];
                         $this->_ctrl->login($email, $password);
-                        if ($this->_ctrl->login($email, $password)) {
-                            echo "<script> alert('Connexion réussie à la base de données'); </script>";
-                                                  
-                        } else {
-                            echo "<script> alert('Échec de la connexion à la base de données'); </script>";
+                        $role = $this->_ctrl->getuserrole($email);
+                        if ($this->_ctrl->login($email, $password) && $role === 'Etudiant') {
+                            echo "<script> alert('Connexion réussie pour l'étudiant'); </script>";
+                            $this->_ctrl->indexetudiant($email);                   
+                        } 
+                        else if ($this->_ctrl->login($email, $password) && $role === 'Administrateur') {
+                            echo "<script> alert('Connexion réussie pour l'administrateur'); </script>";
+                            $this->_ctrl->indexadmin($email);
+                        }
+                        else if ($this->_ctrl->login($email, $password) && $role === 'Pilote') {
+                            echo "<script> alert('Connexion réussie pour le pilote'); </script>";
+                            $this->_ctrl->indexpilote($email);
+                        }
+                        else {
+                            echo "<script> alert('Email ou mot de passe incorrect'); </script>";
                             $this->_ctrl->index();
                         }
                     }
