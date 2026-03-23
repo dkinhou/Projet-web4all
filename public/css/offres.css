@@ -70,6 +70,30 @@ main {
     font-size: 14px;
 }
 
+/*Pour les actions dans l'entête de la carte à savoir le coeur et le tag qui précise si c'est un stage ou une alternance*/
+.carte-actions{
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+}
+
+/*Bouton coeur*/
+.btn-wishlist{
+    background: none; 
+    border: none;
+    cursor: pointer; 
+    color: #ccc; 
+    padding: 0;
+}
+
+.btn-wishlist:hover{
+    color: #e74c3c;
+    transform: scale(1.1); /*Légère augmentation de la taille pour l'effet de survol*/
+}
+/*Coeur plein quand il est actif donc si l'offre est dans la wishlist*/
+.btn-wishlist.active{
+    color: #e74c3c; 
+}
 .carte-offre{
     background-color:white;
     border: 1px solid #e0e0e0;

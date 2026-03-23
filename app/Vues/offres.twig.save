@@ -65,42 +65,11 @@
 		Tous les filtres 
 	    </button>
         </div>
-        <!-- Popup des filtres (cachée par le défaut)-->
-        <div class="popup-overlay" id="popup-overlay">
-            <!-- Pour la fenêtre popup -->
-            <div class="popup-filtres">
-            <!--Entête de la fenêtre-->
-            <div class="popup-header">
-                <h3>Filtres</h3>
-                <!--Pour que Javascript puisse fermer la fenêtre avec le id-->
-                <button class="btn-fermer" id="btn-fermer">x</button>
-            </div>
-            <!--Contenu de la fenêtre-->
-            <div class="popup-contenu">
-                <label> Durée du stage</label>
-                <select>
-                    <option value="">Toutes les durées</option>
-                    <option value="2">2 mois</option>
-                    <option value="3">3 mois </option>
-                    <option value="6">6 mois</option>
-                </select>
-                <!--Filtres pour la rémunération-->
-                <label>Rémunération</label>
-                <select>
-                    <option value="">Toutes les rémunérations</option>
-                    <option value="0">Non rémunéré</option>
-                    <option value="500">0-500€</option>
-                    <option value="1000">500-1000€</option>
-                    <option value="1000+">1000€ et plus</option>
-                </select>
-            </div>
-            <!-- Bouton pour appliquer les filtres si ils sont sélectionnés-->
-            <button class ="btn-appliquer">Appliquer les filtres</button>
-        </div>
-    </div>
-        
-
-
+	
+	{#Pour afficher la fenêtre popup des filtres#}
+	<div class="popup-overlay" id="popup-overlay">
+		<div class="popup-filtres>
+			{#En en-tête on a le titre et le bouton "fermer"
         <section class="liste-offres">
             <div class="liste-header">
                 <h2>Offres de stage disponibles</h2>
@@ -120,16 +89,13 @@
             <article class="carte-offre">
                 <div class="carte-header">
                     <h3>{{ offre.titre }}</h3>
-                    <div class="carte-actions">
-                    <span class="tag-contrat">{{ offre.contrat }}</span>
                     <!-- Bouton pour mettre dans la wish-list ce sera un coeur vide par défaut -->
                     <button class="btn-wishlist" aria-label="Ajouter à la wishlist">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                             <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.281 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
                         </svg>
-                    </button>
+                    <span class="tag-contrat">{{ offre.contrat }}</span>
                 </div>
-            </div>
 		<div class="carte-infos">
     			<span class="info-item">
         			<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
