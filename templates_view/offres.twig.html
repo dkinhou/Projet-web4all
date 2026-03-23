@@ -1,6 +1,6 @@
 {% extends 'template.twig.html' %}
     
-    {% block title %}Accueil – StageAlternance{% endblock %}
+    {% block title %}Offres – StageAlternance{% endblock %}
 
     {% block stylesheets %}
     <link rel="stylesheet" href="/css/offres.css">
@@ -13,10 +13,63 @@
                 <form action="#" method="get">
                     <div class="search-form"> 
                         <input type="text" name="keyword" placeholder="Mots-clés (ex: marketing, informatique)" required>
-                        <input type="text" name="location" placeholder="Lieu (ex: Paris, Lyon)" >
+                        <input type="text" name="location" placeholder="Ville (ex: Paris, Lyon)" >
                         <button type="submit">Rechercher</button>
                     </div>
                 </form>
+                <div class="filter-section">
+                    <button id="openFilter">
+                    <span class="filter-icon">⏳</span> Plus de filtres
+                    </button>
+                </div>
+                <div id="filterModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h3>⏳ Filtres</h3>
+                        <form action="/recherche" method="GET">
+                            <label class="label-form">Nom de l'entreprise :</label>
+                            <input class="form-control" type="text" name="entreprise" placeholder="Ex: Google">
+                            <label class="label-form">Spécialité :</label>
+                            <input class="form-control" type="text" name="specialite" placeholder="Ex: Informatique">
+                            <label class="label-form">Niveau :</label>
+                            <select name="type">
+                                <option value="Bac">Bac</option>
+                                <option value="Bac+1">Bac+1</option>
+                                <option value="Bac+2">Bac+2</option>
+                                <option value="Bac+3">Bac+3</option>
+                                <option value="Bac+4">Bac+4</option>
+                                <option value="Bac+5">Bac+5</option>
+                            </select>
+                            <label class="label-form">Ville :</label>
+                            <input class="form-control" type="text" name="ville" placeholder="Ex: Lyon">
+                            <label class="label-form">Type de contrat:  </label>
+                            <select name="type">
+                                <option value="stage">Stage</option>
+                                <option value="alternance">Alternance</option>
+                            </select>
+                            
+                            <button type="submit" class="submit-filter">Appliquer</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </section>
+
+            <section class="offres">
+                <h2>Offres de stage et d'alternance</h2>
+                <p class="offres-count">{{ compteur }} offres disponibles</p>
+                <div class="offres-list">
+                    {% for offre in offres %}
+                    <div class="offre-card">
+                        <h3>{{ offre.titre }}</h3>
+                        <h4>🏢Entreprise : <span>{{ offre.entreprise }}</span></h4> 
+                        <h4>🏙️Ville : <span>{{ offre.ville }}</span></h4>
+                        <h4>📝Description : <span>{{ offre.description }}</span></h4>
+                        <a href="/offres/{{ offre.id }}" class="details-button">Voir les détails</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+
+           <script src="/js/filtre.js"></script>
         {% endblock %}

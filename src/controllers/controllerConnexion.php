@@ -1,6 +1,10 @@
 <?php
+use App\Model\UserConnexion;
+use App\Model\ConnexionDB;
+
 require_once 'Controller.php'; 
 require_once __DIR__ . '/../Model/userconnexion.php';
+
 
 class controllerConnexion extends Controller {
     

@@ -63,6 +63,7 @@ class router
                 {
                     require_once(__DIR__ . '/../controllers/controllerOffres.php');
                     $this->_ctrl = new controllerOffres($url);
+                    $this->_ctrl->index();
                 }
                 else if ($url[0] === 'entreprises') 
                 {
@@ -73,6 +74,12 @@ class router
                 {
                     require_once(__DIR__ . '/../controllers/controllerContact.php');
                     $this->_ctrl = new controllerContact($url);
+                }
+                else if ($url[0] === 'mentions')
+                {
+                    require_once(__DIR__ . '/../controllers/controllerMentions.php');
+                    $this->_ctrl = new controllerMentions($url);
+                    $this->_ctrl->index();
                 }
                 else 
                 {

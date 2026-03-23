@@ -46,3 +46,177 @@
     background-color: #F59E0B;
     color: white;
 }
+
+.filter-section button {
+    margin-top:10px;
+    border-radius: 20px;
+    padding: 1% 2%;
+    border: 1px solid #ccc;
+    background-color: grey;
+    color: white;
+}
+
+.filter-section button:hover {
+    background-color: #F59E0B;
+    color: white;
+}
+
+.filter-icon {
+    margin-right: 8px; 
+    font-size: 1.1em;  
+    vertical-align: middle; 
+}
+
+
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5); 
+}
+
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+
+.close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.label-form {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #374151;
+    text-align: left;
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.submit-filter {
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px;
+    background-color: #F59E0B;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-filter:hover {
+    background-color: #d97706;
+}
+
+.offres {
+    padding: 60px 10%;
+    background-color: #f9fafb; 
+}
+
+.offres h2 {
+    font-size: 2rem;
+    color: #111827;
+    font-weight: 800;
+    margin-bottom: 40px;
+}
+
+.offres-count {
+    font-size: 1rem;
+    color: #6b7280;
+    margin-bottom: 30px;
+    background-color: #e5e7eb;
+    width: 20%;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.offres-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.offre-card {
+    background-color: white;
+    color: #374151;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.offre-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    border-color: #F59E0B; 
+}
+
+.offre-card h3 {
+    color: #111827;
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+}
+
+
+.offre-card h4 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #6b7280;
+    margin: 10px 0 10px 0;
+}
+
+.offre-card span {
+    color: #1f2937;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.details-button {
+    margin-top: auto; 
+    text-align: center;
+    padding: 12px;
+    background-color: #F59E0B;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.details-button:hover {
+    background-color: #d97706;
+}
