@@ -1,0 +1,22 @@
+{% extends 'template.twig.html' %}
+    
+    {% block title %}Accueil – StageAlternance{% endblock %}
+
+    {% block stylesheets %}
+    <link rel="stylesheet" href="/css/offres.css">
+    {% endblock %}
+        
+        {% block body %}
+        <section class="search-bar">
+            <div class="search-bar-content">
+                <h2>Recherchez votre emploi en quelques clics</h2>
+                <form action="#" method="get">
+                    <div class="search-form"> 
+                        <input type="text" name="keyword" placeholder="Mots-clés (ex: marketing, informatique)" required>
+                        <input type="text" name="location" placeholder="Lieu (ex: Paris, Lyon)" >
+                        <button type="submit">Rechercher</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        {% endblock %}
