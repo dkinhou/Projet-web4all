@@ -65,11 +65,28 @@
                         <h4>🏢Entreprise : <span>{{ offre.entreprise }}</span></h4> 
                         <h4>🏙️Ville : <span>{{ offre.ville }}</span></h4>
                         <h4>📝Description : <span>{{ offre.description }}</span></h4>
-                        <a href="/offres/{{ offre.id }}" class="details-button">Voir les détails</a>
+                        <a href="/detail_offres?id={{ offre.id_offre }}" class="details-button">Voir les détails</a>
                     </div>
                     {% endfor %}
                 </div>
             </section>
+
+           <nav class="pagination-container">
+                <ul class="pagination"> {% if currentPage > 1 %}
+                        <li><a href="/offres?page={{ currentPage - 1 }}">&laquo; Précédent</a></li>
+                    {% endif %}
+
+                    {% for page in 1..totalPages %}
+                        <li class="{{ page == currentPage ? 'active' : '' }}"> 
+                            <a href="/offres?page={{ page }}">{{ page }}</a>
+                        </li>
+                    {% endfor %}
+
+                    {% if currentPage < totalPages %}
+                        <li><a href="/offres?page={{ currentPage + 1 }}">Suivant &raquo;</a></li>
+                    {% endif %}
+                </ul> 
+            </nav>
 
            <script src="/js/filtre.js"></script>
         {% endblock %}

@@ -1,5 +1,6 @@
 <?php
-include_once 'connexionDB.php';
+namespace App\Model;
+require_once 'ConnexionDB.php';
 
 
 class UserConnexion {
@@ -13,7 +14,7 @@ class UserConnexion {
         $stmt = $this->db->prepare("SELECT * FROM Utilisateurs WHERE email = :email");
         $stmt->bindParam(':email', $email);
         $stmt->execute();
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $user = $stmt->fetch(\PDO::FETCH_ASSOC);
 
         if ($user && password_verify($password, $user['mdp'])) {
             return true; 
@@ -27,7 +28,7 @@ class UserConnexion {
         $stmt = $this->db->prepare("SELECT role FROM Utilisateurs WHERE email = :email");
         $stmt->bindParam(':email', $email);
         $stmt->execute();
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $user = $stmt->fetch(\PDO::FETCH_ASSOC);
         return $user ? $user['role'] : null;
     }
 
@@ -35,7 +36,7 @@ class UserConnexion {
         $stmt = $this->db->prepare("SELECT prenom FROM Utilisateurs WHERE email = :email");
         $stmt->bindParam(':email', $email);
         $stmt->execute();
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $user = $stmt->fetch(\PDO::FETCH_ASSOC);
         return $user ? $user['prenom'] : null;
     }
 
@@ -48,5 +49,13 @@ class UserConnexion {
         $stmt->bindParam(':nom', $nom);
         $stmt->bindParam(':prenom', $prenom);
         return $stmt->execute();
+    }
+
+    public function getIdByEmail($email) {
+        $stmt = $this->db->prepare("SELECT id_utilisateur FROM Utilisateurs WHERE email = :email");
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        $user = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $user ? $user['id_utilisateur'] : null;
     }
 }

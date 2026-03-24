@@ -6,6 +6,8 @@ use App\Model\offres;
 
 class controllerOffres extends Controller {
     private $offresModel;
+    private $offresPerPage = 12; 
+    private $currentPage ;
 
     public function __construct($url) {
         parent::__construct();
@@ -13,12 +15,16 @@ class controllerOffres extends Controller {
     }
 
     public function index() {
-
-    $taboffres = $this->offresModel->getAllOffres();
-        $this->render('offres.twig.html', [
-            'offres' => $taboffres,
-            'compteur' => count($taboffres)
-        ]);
+        $taboffres = $this->offresModel->getAllOffres();
+        $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $offset = ($currentPage - 1) * $this->offresPerPage;
+        $paginatedOffres = $this->offresModel->getOffresPaginated($this->offresPerPage, $offset);
+            $this->render('offres.twig.html', [
+                'offres' => $paginatedOffres,
+                'compteur' => count($taboffres),
+                'currentPage' => $currentPage,
+                'totalPages' => ceil(count($taboffres) / $this->offresPerPage)
+            ]);
     }
 
 }

@@ -3,13 +3,17 @@ use App\Model\UserConnexion;
 use App\Model\ConnexionDB;
 
 require_once 'Controller.php'; 
-require_once __DIR__ . '/../Model/userconnexion.php';
+require_once __DIR__ . '/../Model/UserConnexion.php';
 
 
 class controllerConnexion extends Controller {
+    private $user;
     
     public function __construct($url) {
         parent::__construct(); 
+        $db = new ConnexionDB();
+        $conn = $db->getConnection();
+        $this->user = new UserConnexion($conn);
     }
 
     public function index() {
@@ -32,32 +36,23 @@ class controllerConnexion extends Controller {
 
     public function indexpilote(&$email) {
         $this->render('connexion_pilote.twig.html', [
-           'Utilisateur' => $this->getuserprenom($email),
+           'Utilisateur' => $this->user->getuserprenom($email),
         ]);
     }
 
-    public function getuserprenom($email) {
-        $db = new ConnexionDB();
-        $conn = $db->getConnection();
-        $userConnexion = new UserConnexion($conn);
-        $prenom = $userConnexion->getuserprenom($email);
-        return $prenom;
-        }
-
         public function login($email, $password) {
-        $db = new ConnexionDB();
-        $conn = $db->getConnection();
-        $userConnexion = new UserConnexion($conn);
-        $result = $userConnexion->login($email, $password);
+        $result = $this->user->login($email, $password);
         return $result;
         }
 
         public function getuserrole($email) {
-        $db = new ConnexionDB();
-        $conn = $db->getConnection();
-        $userConnexion = new UserConnexion($conn);
-        $role = $userConnexion->getuserrole($email);
+        $role = $this->user->getuserrole($email);
         return $role;
+        }
+
+        public function getId($email) {
+        $id = $this->user->getIdByEmail($email);
+        return $id; 
         }
 
 }

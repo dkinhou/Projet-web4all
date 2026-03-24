@@ -41,13 +41,13 @@
 }
 
 .mentions-card a {
-    color: blue;
+    color: grey;
     text-decoration: none;
 }
 
 .mentions-card a:hover {
     text-decoration: underline;
-    color: darkblue;
+    color: #F59E0B;
 }
 
 .mentions-text {

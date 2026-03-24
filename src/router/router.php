@@ -1,9 +1,16 @@
 <?php 
+session_start();
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 class router 
 {
     private $_ctrl;
+
+
+    private function isConnected() {
+    return isset($_SESSION['id']);
+    }
+
 
     public function routeReq()
     {
@@ -34,17 +41,21 @@ class router
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $email = $_POST['email'];
                         $password = $_POST['password'];
-                        $this->_ctrl->login($email, $password);
-                        $role = $this->_ctrl->getuserrole($email);
-                        if ($this->_ctrl->login($email, $password) && $role === 'Etudiant') {
+                        $loginResult = $this->_ctrl->login($email, $password);
+                        if ($loginResult) {
+                        $_SESSION['email'] = $email;
+                        $_SESSION['id'] = $this->_ctrl->getId($email);
+                        $_SESSION['role'] = $this->_ctrl->getuserrole($email);
+                        }
+                        if ($loginResult && $_SESSION['role'] === 'Etudiant') {
                             echo "<script> alert('Connexion réussie pour l'étudiant'); </script>";
                             $this->_ctrl->indexetudiant($email);                   
                         } 
-                        else if ($this->_ctrl->login($email, $password) && $role === 'Administrateur') {
+                        else if ($loginResult && $_SESSION['role'] === 'Administrateur') {
                             echo "<script> alert('Connexion réussie pour l'administrateur'); </script>";
                             $this->_ctrl->indexadmin($email);
                         }
-                        else if ($this->_ctrl->login($email, $password) && $role === 'Pilote') {
+                        else if ($loginResult && $_SESSION['role'] === 'Pilote') {
                             echo "<script> alert('Connexion réussie pour le pilote'); </script>";
                             $this->_ctrl->indexpilote($email);
                         }
@@ -53,6 +64,12 @@ class router
                             $this->_ctrl->index();
                         }
                     }
+                }
+                else if ($url[0] === 'detail_offres') 
+                {
+                    require_once(__DIR__ . '/../controllers/controllerDetailOffres.php');
+                    $this->_ctrl = new controllerDetailOffres($url);
+                    $this->_ctrl->index();
                 }
                 else if ($url[0] === 'inscription')
                 {

@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '/../Model/connexionDB.php';
+
 
 abstract class Controller {
     protected $_twig;

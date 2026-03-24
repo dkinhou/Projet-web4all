@@ -1,0 +1,58 @@
+{% extends 'template.twig.html' %}
+    
+    {% block title %}Détails Offres – StageAlternance{% endblock %}
+
+    {% block stylesheets %}
+    <link rel="stylesheet" href="/css/detail.css">
+    {% endblock %}
+        
+        {% block body %}
+        
+                <div class="container">
+                    <header class="offer-header">
+                        <h1>{{ offre.titre }}</h1>
+                        <p class="company-name">🏢 {{ offre.entreprise }}</p>
+                    </header>
+
+                    <div class="offer-grid">
+                        <aside class="offer-sidebar">
+                            <div class="info-card">
+                                <p><h3>📍 Ville :</h3> {{ offre.ville }}</p>
+                                <p><h3>📅 Publié le :</h3> {{ offre.date_publication }}</p>
+                                <p><h3>📄 Contrat :</h3> {{ offre.type_contrat }}</p>
+                                <p><h3>⏳ Durée :</h3> {{ offre.duree }}</p>
+                                <p><h3>💰 Salaire :</h3> {{ offre.remuneration|default('Non précisé') }}</p>
+                                
+                                {% if session.id is defined %}
+                                    <button class="btn-apply">Postuler maintenant</button>
+                                {% else %}
+                                    <a href="/connexion" class="btn-login">Connectez-vous pour postuler</a>
+                                {% endif %}
+                            </div>
+                        </aside>
+
+                        <section class="offer-content">
+                            <div class="content-section">
+                                <h3>📝 Description du poste</h3>
+                                <p>{{ offre.description }}</p>
+                            </div>
+
+                            <div class="content-section">
+                                <h3>🚀 Missions</h3>
+                                <p>{{ offre.missions }}</p>
+                            </div>
+
+                            <div class="content-section">
+                                <h3>🎓 Profil recherché</h3>
+                                <p>{{ offre.profil_recherche }}</p>
+                            </div>
+
+                            <div class="content-section">
+                                <h3>🎁 Avantages</h3>
+                                <p>{{ offre.avantages }}</p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+        {%endblock%}
