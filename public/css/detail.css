@@ -17,11 +17,11 @@
 
 .offer-grid {
     display: grid;
-    grid-template-columns: 1fr 2fr; /* Sidebar à gauche, contenu à droite */
+    grid-template-columns: 1fr 2fr; 
     gap: 40px;
 }
 
-/* Sidebar stylisée */
+
 .info-card {
     background: #f9f9f9;
     padding: 20px;
@@ -32,16 +32,16 @@
 
 .info-card p { margin: 15px 0; border-bottom: 1px solid #eee; padding-bottom: 10px; }
 
-/* Sections de texte */
+
 .content-section { margin-bottom: 30px; }
 .content-section h3 { 
-    color: #2980b9; 
-    border-left: 5px solid #2980b9; 
+    color: orange; 
+    border-left: 5px solid grey; 
     padding-left: 10px; 
     margin-bottom: 15px;
 }
 
-/* Boutons */
+
 .btn-apply, .btn-login {
     display: block;
     width: 100%;
@@ -58,7 +58,7 @@
 .btn-apply { background: #27ae60; color: white; }
 .btn-login { background: #34495e; color: white; }
 
-/* Responsive mobile */
+
 @media (max-width: 768px) {
     .offer-grid { grid-template-columns: 1fr; }
 }

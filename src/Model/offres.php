@@ -22,8 +22,8 @@ class offres {
     }
 
     public function getOffresPaginated($limit, $offset) {
-        $srql = 'SELECT * FROM offres LIMIT :limit OFFSET :offset';
-        $stmt = $this->db->prepare($srql);
+        $sql = 'SELECT offres.*, entreprises.nom_societe AS entreprises FROM offres JOIN entreprises ON offres.id_entreprise = entreprises.id_entreprise LIMIT :limit OFFSET :offset';
+        $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':limit', (int)$limit, \PDO::PARAM_INT);
         $stmt->bindValue(':offset', (int)$offset, \PDO::PARAM_INT);
         $stmt->execute();
