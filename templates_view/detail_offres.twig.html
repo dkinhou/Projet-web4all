@@ -7,52 +7,113 @@
     {% endblock %}
         
         {% block body %}
-        
-                <div class="container">
-                    <header class="offer-header">
-                        <h1>{{ offre.titre }}</h1>
-                        <p class="company-name">🏢 {{ offre.entreprises }}</p>
-                    </header>
-
-                    <div class="offer-grid">
-                        <aside class="offer-sidebar">
-                            <div class="info-card">
-                                <p><h3>📍 Ville :</h3> {{ offre.ville }}</p>
-                                <p><h3>📅 Publié le :</h3> {{ offre.date_publication }}</p>
-                                <p><h3>📄 Contrat :</h3> {{ offre.type_contrat }}</p>
-                                <p><h3>⏳ Durée :</h3> {{ offre.duree }}</p>
-                                <p><h3>💰 Salaire :</h3> {{ offre.remuneration|default('Non précisé') }}</p>
-                                
-                                {% if session.id is defined %}
-                                    <button class="btn-apply">Postuler maintenant</button>
-                                {% else %}
-                                    <a href="/connexion" class="btn-login">Connectez-vous pour postuler</a>
-                                {% endif %}
-                            </div>
-                        </aside>
-
-                        <section class="offer-content">
-                            <div class="content-section">
-                                <h3>📝 Description du poste</h3>
-                                <p>{{ offre.description }}</p>
-                            </div>
-
-                            <div class="content-section">
-                                <h3>🚀 Missions</h3>
-                                <p>{{ offre.missions }}</p>
-                            </div>
-
-                            <div class="content-section">
-                                <h3>🎓 Profil recherché</h3>
-                                <p>{{ offre.profil_recherche }}</p>
-                            </div>
-
-                            <div class="content-section">
-                                <h3>🎁 Avantages</h3>
-                                <p>{{ offre.avantages }}</p>
-                            </div>
-                        </section>
-                    </div>
+        <div class="offer-page">
+            <section class="offer-hero">
+                <p class="hero-company">{{ offre.entreprises }}</p>
+                <h1>{{ offre.titre }}</h1>
+                <div class="hero-tags">
+                    <span>{{ offre.type_contrat|default('Contrat non precise') }}</span>
+                    <span>{{ offre.ville|default('Ville non precisee') }}</span>
+                    <span>Publie le {{ offre.date_publication|default('Date inconnue') }}</span>
                 </div>
+            </section>
+
+            <div class="offer-layout">
+                <aside class="offer-sidebar">
+                    <div class="info-card">
+                        <h2>Informations clefs</h2>
+                        <div class="info-list">
+                            <div class="info-item">
+                                <span class="label">Ville</span>
+                                <strong>{{ offre.ville|default('Non precisee') }}</strong>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Date de publication</span>
+                                <strong>{{ offre.date_publication|default('Non precisee') }}</strong>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Type de contrat</span>
+                                <strong>{{ offre.type_contrat|default('Non precise') }}</strong>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Duree</span>
+                                <strong>{{ offre.duree|default('Non precisee') }}</strong>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Remuneration</span>
+                                <strong>{{ offre.remuneration|default('Non precisee') }}</strong>
+                            </div>
+                        </div>
+
+                        {% if postulationMessage is defined and postulationMessage %}
+                            <p class="application-message">{{ postulationMessage }}</p>
+                        {% endif %}
+
+                        {% if session.id is defined and session.role is defined and session.role == 'Etudiant' %}
+                            {% if hasApplied %}
+                                <button class="btn-apply" type="button" disabled>Deja postule</button>
+                            {% else %}
+                                <form action="/postuler" method="post">
+                                    <input type="hidden" name="id_offre" value="{{ offre.id_offre }}">
+                                    <button class="btn-apply" type="submit">Postuler maintenant</button>
+                                </form>
+                            {% endif %}
+                        {% elseif session.id is defined %}
+                            <p class="application-message">La candidature est reservee aux etudiants.</p>
+                        {% else %}
+                            <a href="/connexion" class="btn-login">Connectez-vous pour postuler</a>
+                        {% endif %}
+                    </div>
+
+                    <div class="stats-card">
+                        <h2>Statistiques de l'offre</h2>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <p class="stat-value">{{ stats.daysOnline is not null ? stats.daysOnline : '-' }}</p>   
+                                <p class="stat-label">Jours en ligne</p>
+                            </div>
+                            <div class="stat-item">
+                                <p class="stat-value">{{ stats.readingMinutes }} min</p>
+                                <p class="stat-label">Temps de lecture</p>
+                            </div>
+                            <div class="stat-item">
+                                <p class="stat-value">{{ stats.completionRate }}%</p>
+                                <p class="stat-label">Niveau de detail</p>
+                            </div>
+                            <div class="stat-item">
+                                <p class="stat-value">{{ stats.salaryProvided ? 'Oui' : 'Non' }}</p>
+                                <p class="stat-label">Salaire renseigne</p>
+                            </div>
+                            <div class="stat-item">
+                                <p class="stat-value">{{ stats.postulantsCount }}</p>
+                                <p class="stat-label">Nombre de postulants</p>  
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <section class="offer-content">
+                    <article class="content-section">
+                        <h3>Description du poste</h3>
+                        <p>{{ offre.description|default('Aucune description fournie pour cette offre.') }}</p>
+                    </article>
+
+                    <article class="content-section">
+                        <h3>Missions</h3>
+                        <p>{{ offre.missions|default('Aucune mission specifiee.') }}</p>
+                    </article>
+
+                    <article class="content-section">
+                        <h3>Profil recherche</h3>
+                        <p>{{ offre.profil_recherche|default('Profil non renseigne.') }}</p>
+                    </article>
+
+                    <article class="content-section">
+                        <h3>Avantages</h3>
+                        <p>{{ offre.avantages|default('Aucun avantage specifie.') }}</p>
+                    </article>
+                </section>
+            </div>
+        </div>
 
         {%endblock%}

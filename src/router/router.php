@@ -11,6 +11,21 @@ class router
     return isset($_SESSION['id']);
     }
 
+    private function getDashboardByRole($role)
+    {
+        if ($role === 'Etudiant') {
+            return '/dashboard-etudiant';
+        }
+        if ($role === 'Pilote') {
+            return '/dashboard-pilote';
+        }
+        if ($role === 'Administrateur') {
+            return '/dashboard-admin';
+        }
+
+        return '/connexion';
+    }
+
 
     public function routeReq()
     {
@@ -30,6 +45,10 @@ class router
                 }
                 else if ($url[0] === 'connexion') 
                 {
+                    if ($this->isConnected() && isset($_SESSION['role'])) {
+                        header('Location: ' . $this->getDashboardByRole($_SESSION['role']));
+                        exit();
+                    }
                     require_once(__DIR__ . '/../controllers/controllerConnexion.php');
                     $this->_ctrl = new controllerConnexion($url);
                     $this->_ctrl->index();
@@ -46,24 +65,87 @@ class router
                         $_SESSION['email'] = $email;
                         $_SESSION['id'] = $this->_ctrl->getId($email);
                         $_SESSION['role'] = $this->_ctrl->getuserrole($email);
-                        }
-                        if ($loginResult && $_SESSION['role'] === 'Etudiant') {
-                            echo "<script> alert('Connexion réussie pour l'étudiant'); </script>";
-                            $this->_ctrl->indexetudiant($email);                   
-                        } 
-                        else if ($loginResult && $_SESSION['role'] === 'Administrateur') {
-                            echo "<script> alert('Connexion réussie pour l'administrateur'); </script>";
-                            $this->_ctrl->indexadmin($email);
-                        }
-                        else if ($loginResult && $_SESSION['role'] === 'Pilote') {
-                            echo "<script> alert('Connexion réussie pour le pilote'); </script>";
-                            $this->_ctrl->indexpilote($email);
+                        header('Location: ' . $this->getDashboardByRole($_SESSION['role']));
+                        exit();
                         }
                         else {
                             echo "<script> alert('Email ou mot de passe incorrect'); </script>";
                             $this->_ctrl->index();
                         }
                     }
+                }
+                else if ($url[0] === 'dashboard-etudiant')
+                {
+                    if (!$this->isConnected() || !isset($_SESSION['role']) || $_SESSION['role'] !== 'Etudiant') {
+                        header('Location: /connexion');
+                        exit();
+                    }
+
+                    require_once(__DIR__ . '/../controllers/controllerConnexion.php');
+                    $this->_ctrl = new controllerConnexion($url);
+                    $email = $_SESSION['email'];
+                    $this->_ctrl->indexetudiant($email);
+                }
+                else if ($url[0] === 'dashboard-pilote')
+                {
+                    if (!$this->isConnected() || !isset($_SESSION['role']) || $_SESSION['role'] !== 'Pilote') {
+                        header('Location: /connexion');
+                        exit();
+                    }
+
+                    require_once(__DIR__ . '/../controllers/controllerConnexion.php');
+                    $this->_ctrl = new controllerConnexion($url);
+                    $email = $_SESSION['email'];
+                    $this->_ctrl->indexpilote($email);
+                }
+                else if ($url[0] === 'dashboard-admin')
+                {
+                    if (!$this->isConnected() || !isset($_SESSION['role']) || $_SESSION['role'] !== 'Administrateur') {
+                        header('Location: /connexion');
+                        exit();
+                    }
+
+                    require_once(__DIR__ . '/../controllers/controllerConnexion.php');
+                    $this->_ctrl = new controllerConnexion($url);
+                    $email = $_SESSION['email'];
+                    $this->_ctrl->indexadmin($email);
+                }
+                else if ($url[0] === 'postuler')
+                {
+                    if (!$this->isConnected() || !isset($_SESSION['role']) || $_SESSION['role'] !== 'Etudiant') {
+                        header('Location: /connexion');
+                        exit();
+                    }
+
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                        $offreId = isset($_POST['id_offre']) ? (int)$_POST['id_offre'] : 0;
+                        if ($offreId > 0) {
+                            if (!isset($_SESSION['applied_offers'])) {
+                                $_SESSION['applied_offers'] = [];
+                            }
+                            if (!in_array($offreId, $_SESSION['applied_offers'], true)) {
+                                $_SESSION['applied_offers'][] = $offreId;
+                                header('Location: /detail_offres?id=' . $offreId . '&postulation=success');
+                                exit();
+                            }
+                            header('Location: /detail_offres?id=' . $offreId . '&postulation=already');
+                            exit();
+                        }
+                    }
+
+                    header('Location: /offres');
+                    exit();
+                }
+                else if ($url[0] === 'logout')
+                {
+                    $_SESSION = [];
+                    if (ini_get('session.use_cookies')) {
+                        $params = session_get_cookie_params();
+                        setcookie(session_name(), '', time() - 42000, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+                    }
+                    session_destroy();
+                    header('Location: /connexion');
+                    exit();
                 }
                 else if ($url[0] === 'detail_offres') 
                 {

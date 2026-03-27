@@ -29,6 +29,12 @@
     max-width: 600px;
 }
 
+.first-section-content span {
+   color: var(--color-primary);
+    font-weight: bold;
+}
+
+
 .first-section-content h1 {
     font-size: clamp(28px, 5vw, 36px); 
     margin-bottom: 20px;
@@ -150,6 +156,11 @@
     flex-wrap: wrap; 
     justify-content: center;
     gap: 20px;
+}
+
+.second-section span {
+    color: var(--color-primary);
+    font-weight: bold;
 }
 
 .second-section-item, .third-section-item {

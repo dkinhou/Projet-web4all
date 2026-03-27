@@ -7,44 +7,52 @@
     {% endblock %}
         
         {% block body %}
-
-        <h1> Espace Pilote – StageAlternance</h1>
-        <h2>Bienvenue dans votre espace pilote {{ Utilisateur }}</h2>
-        
+        <div class="pilot-space">
+            <div class="pilot-hero-card">
+                <p class="pilot-role">Role: Pilote</p>
+                <h1>Espace Pilote - StageAlternance</h1>
+                <h2>Bienvenue dans votre espace pilote {{ Utilisateur }}</h2>
+                <p class="pilot-subtitle">Pilotez les entreprises, les offres, les etudiants et les candidatures depuis un tableau de bord unique.</p>
+            </div>
+        </div>
         <section class="dashboard-container">
         
-        <section class="card">
+        <section class="card card-entreprises">
             <h2>🏢 Gestion des Entreprises</h2>
             <div class="actions">
-                <a href="/recherche-entreprise" class="btn">Rechercher / Afficher</a>
+                <a href="/entreprises" class="btn">Rechercher / Afficher</a>
                 <a href="/creer-entreprise" class="btn btn-primary">Créer une entreprise</a>
                 <a href="/modifier-entreprise" class="btn">Modifier</a>
+                <a href="/supprimer-entreprise" class="btn">Supprimer</a>
                 <a href="/evaluer-entreprise" class="btn">Évaluer</a>
             </div>
         </section>
 
-        <section class="card">
+        <section class="card card-offres">
             <h2>🎓 Offres de Stages</h2>
             <div class="actions">
-                <a href="/recherche-offre" class="btn">Rechercher / Afficher</a>
+                <a href="/offres" class="btn">Rechercher / Afficher</a>
                 <a href="/creer-offre" class="btn btn-primary">Créer une offre</a>
-                <a href="/stats-offres" class="btn">Consulter Statistiques</a>
+                <a href="/modifier-offre" class="btn">Modifier</a>
+                <a href="/supprimer-offre" class="btn">Supprimer</a>
+                <a href="/offres" class="btn">Consulter Statistiques</a>
             </div>
         </section>
 
-        <section class="card">
+        <section class="card card-etudiants">
             <h2>👨‍🎓 Gestion des Étudiants</h2>
             <div class="actions">
-                <a href="/recherche-etudiant" class="btn">Rechercher / Afficher</a>
+                <a href="/etudiants" class="btn">Rechercher / Afficher</a>
                 <a href="/creer-etudiant" class="btn btn-primary">Créer un compte Étudiant</a>
-                <a href="/modifier-etudiant" class="btn">Modifier / Supprimer</a>
+                <a href="/modifier-etudiant" class="btn">Modifier</a>
+                <a href="/supprimer-etudiant" class="btn">Supprimer</a>
             </div>
         </section>
 
-        <section class="card">
+        <section class="card card-candidatures">
             <h2>📩 Candidatures</h2>
             <div class="actions">
-                <a href="/liste-candidatures-pilote" class="btn btn-special">Candidatures de mes élèves</a>
+                <a href="/liste-candidatures-pilote" class="btn-special">Candidatures de mes élèves</a>
             </div>
         </section>
 

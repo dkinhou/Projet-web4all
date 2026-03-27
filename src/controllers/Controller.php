@@ -16,6 +16,8 @@ abstract class Controller {
 
     
     protected function render($view, $data = []) {
+        // Expose current PHP session to all Twig views.
+        $data['session'] = $_SESSION ?? [];
         echo $this->_twig->render($view, $data);
     }
 }

@@ -43,7 +43,18 @@
                     </div>
                     <a href="entreprises">Entreprises</a>
                 </div>
-                <a href="connexion" class="nav-btn"><span>Connexion</span></a>
+                {% if session.id is defined %}
+                    {% if session.role is defined and session.role == 'Etudiant' %}
+                        <a href="/dashboard-etudiant" class="nav-btn"><span>Mon espace</span></a>
+                    {% elseif session.role is defined and session.role == 'Pilote' %}
+                        <a href="/dashboard-pilote" class="nav-btn"><span>Mon espace</span></a>
+                    {% elseif session.role is defined and session.role == 'Administrateur' %}
+                        <a href="/dashboard-admin" class="nav-btn"><span>Mon espace</span></a>
+                    {% endif %}
+                    <a href="/logout" class="nav-btn"><span>Deconnexion</span></a>
+                {% else %}
+                    <a href="connexion" class="nav-btn"><span>Connexion</span></a>
+                {% endif %}
             </div>
         </nav>
     </header>

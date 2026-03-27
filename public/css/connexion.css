@@ -45,6 +45,7 @@
     font-family:cursive;
     font-size: 20px;
     font-weight: bold;
+    color: var(--color-primary);
 }
 
 .connexion-content label {
@@ -143,6 +144,11 @@
     padding: 10px 10px;
     border-radius: 5px;
     width: 70%;
+}
+
+.image-bottom span {
+    color: var(--color-primary);
+    font-weight: bold;
 }
 
 @media (max-width: 768px) {

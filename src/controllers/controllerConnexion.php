@@ -24,7 +24,8 @@ class controllerConnexion extends Controller {
 
     public function indexetudiant(&$email) {
         $this->render('connexion_etudiant.twig.html', [
-            'message' => 'Bienvenue !'
+            'message' => 'Bienvenue !',
+            'Utilisateur' => $this->user->getuserprenom($email),
         ]);
     }
 

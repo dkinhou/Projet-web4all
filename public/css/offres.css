@@ -198,17 +198,32 @@ select {
 }
 
 
-.entreprise-icon h4 {
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    color: grey;
-    margin: 10px 0 10px 0;
+.entreprise-icon svg {
+    color: #F59E0B;
+    font-size: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
 }
 
-.entreprise-icon span {
-    color: #1f2937;
-    font-weight: 600;
+.entreprise-text h4 {
     font-size: 1rem;
+    color: #374151;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.entreprise-text h4 span {
+    font-weight: bold;
+    color: grey;
+}
+
+.entreprise {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
 }
 
 .details-button {

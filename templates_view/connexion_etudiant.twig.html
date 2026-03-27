@@ -1,0 +1,75 @@
+{% extends 'template.twig.html' %}
+
+{% block title %}Espace Etudiant - StageAlternance{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="/css/connexion_etudiant.css">
+{% endblock %}
+
+{% block body %}
+<section class="student-space">
+    <header class="student-header">
+        <p class="student-role">Etudiant</p>
+        <h1>Bienvenue sur votre compte etudiant, {{ Utilisateur|default('Etudiant') }}</h1>
+        <p class="student-subtitle">Personnalisez votre profil et selectionnez directement les fonctionnalites que vous voulez utiliser.</p>
+    </header>
+
+    <div class="student-layout">
+        <article class="profile-card">
+            <h2>Mon profil</h2>
+            <form class="profile-form" action="#" method="post" enctype="multipart/form-data">
+                <div class="avatar-block">
+                    <div class="avatar-placeholder" aria-hidden="true">{{ (Utilisateur|default('E'))|slice(0, 1)|upper }}</div>
+                    <label for="photo" class="upload-label">Ajouter ma photo</label>
+                    <input type="file" id="photo" name="photo" accept="image/*">
+                </div>
+
+                <div class="cv-block">
+                    <label for="cv" class="upload-label">Charger mon CV</label>
+                    <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx">
+                    <p class="hint">Formats acceptes: PDF, DOC, DOCX</p>
+                </div>
+
+                <button type="submit" class="profile-btn">Enregistrer mon profil</button>
+            </form>
+        </article>
+
+        <article class="feature-card">
+            <h2>Mes fonctionnalites</h2>
+            <form class="feature-form" action="#" method="post">
+                <div class="feature-grid">
+                    <label class="feature-item">
+                        <h2>Rechercher une entreprise</h2>
+                        <a href="/entreprises">Acceder</a>
+                    </label>
+
+                    <label class="feature-item">
+                        <h2>Rechercher une offre</h2>
+                        <a href="/offres">Acceder</a>
+                    </label>
+
+                    <label class="feature-item">
+                        <h2>Consulter les statistiques</h2>
+                        <a href="/offres">Acceder</a>
+                    </label>
+
+                    <label class="feature-item">
+                        <h2>Postuler a une offre</h2>
+                        <a href="/offres">Acceder</a>
+                    </label>
+
+                    <label class="feature-item">
+                        <h2>Mes candidatures</h2>
+                        <a href="#">Acceder</a>
+                    </label>
+
+                    <label class="feature-item">
+                        <h2>Gestion de ma wish-list</h2>
+                        <a href="#">Acceder</a>
+                    </label>
+                </div>
+            </form>
+        </article>
+    </div>
+</section>
+{% endblock %}
