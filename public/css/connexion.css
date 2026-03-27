@@ -1,3 +1,12 @@
+:root {
+    --color-primary: #F59E0B;
+    --color-white: #fff;
+    --color-grey: grey;
+    --color-dark-blue: rgb(28, 28, 52);
+    --color-black: black;
+    --color-form-text: rgb(14, 2, 2);
+}
+
 .connexion-section {
     align-items: center;
     justify-content: center;
@@ -14,10 +23,10 @@
 .connexion-content {
     align-items: center;
     justify-content: center;
-    border: 1px solid black;
+    border: 1px solid var(--color-black);
     border-radius: 10px;
     padding: 20px 20px; 
-    box-shadow: 5px 10px 20px black;
+    box-shadow: 5px 10px 20px var(--color-black);
     width: 70%;
 }
 
@@ -30,7 +39,7 @@
     width:100%;
     text-align: center;
     font-size: 15px;
-    color: rgb(14, 2, 2);
+    color: var(--color-form-text);
 }
 .connexion-content p span {
     font-family:cursive;
@@ -39,7 +48,7 @@
 }
 
 .connexion-content label {
-    color: rgb(14, 2, 2);
+    color: var(--color-form-text);
 }
 
 .connexion-content input {
@@ -55,15 +64,15 @@
     width:95%;
     padding: 10px 10px;
     border-radius: 10px;
-     background-color: rgb(28, 28, 52);
-    color: white;
+    background-color: var(--color-dark-blue);
+    color: var(--color-white);
     border: none;
     font-size: 16px;
     cursor: pointer;
 }
 
 .connexion-content button:hover {
-    background-color: #F59E0B;
+    background-color: var(--color-primary);
 }
 
 .connexion-content-options {
@@ -75,12 +84,12 @@
 .connexion-content-options a {
     font-size: 12px;
     text-decoration: none;
-    color: grey;
+    color: var(--color-grey);
 }
 
 .connexion-content-options a:hover {
     text-decoration: none;
-    color: #F59E0B;
+    color: var(--color-primary);
 
 }
 
@@ -110,11 +119,11 @@
 .connexion-to-inscription a {
     font-size: 12px;
     text-decoration: none;
-    color: grey;
+    color: var(--color-grey);
 }
 
 .connexion-to-inscription a:hover {
-    color: #F59E0B;
+    color: var(--color-primary);
 }
 
 .connexion-to-inscription p {
@@ -125,7 +134,7 @@
 .connexion-image img {
     width: 70%;
     border-radius: 5px;
-    box-shadow: 5px 10px 15px black;
+    box-shadow: 5px 10px 15px var(--color-black);
     margin-bottom: 15px;
 }
 

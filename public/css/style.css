@@ -25,6 +25,15 @@ body {
     border-bottom: 1px solid grey;
 }
 
+:root {
+    --color-primary: #F59E0B;
+    --color-white: #fff;
+    --color-grey: grey;
+    --color-text-dark: #333;
+    --color-footer-bg: rgb(22, 27, 52);
+    --color-footer-link: rgb(150, 150, 200);
+}
+
 .logo {
     display: flex;
     align-items: center;
@@ -43,11 +52,18 @@ body {
     color: #333;
 }
 
+.logo-text span{
+  color: var(--color-primary);
+    font-size: 28px;
+    font-weight: bold;
+}
+
 .nav-links {
     display: flex;
     gap: 15px;
     align-items: center;
-}
+    background-color: var(--color-white);
+    }
 
 .nav-icone {
     display: flex;
@@ -57,16 +73,16 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    color:  grey;
+    color: var(--color-grey);
     font-size: 16px;
 }
 
 .nav-links a:hover {
     text-decoration: none;
-    color: #F59E0B;
+    color: var(--color-primary);
 }
 
-
+   
 .nav-btn {
     background-color: grey;
     padding: 8px 15px;
@@ -83,34 +99,37 @@ body {
 }
 
 
-
+   
 
 
 footer {
     padding: 50px 5%;
-    background-color: rgb(22, 27, 52);
-    color: white;
+    background-color: var(--color-footer-bg);
 }
 
 .footer-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 30px;
+    color: var(--color-white);
 }
 
 .footer-brand, .footer-group {
-    flex: 1;
     min-width: 200px;
 }
 
-.footer-content h2 { font-size: 20px; margin-bottom: 15px; }
+.footer-brand span {
+    color: var(--color-primary);
+    font-size: 28px;
+    font-weight: bold;
+}
+
+   
 
 .footer-links a, .footer-info a {
-    color: rgb(150, 150, 200);
+    color: var(--color-footer-link);
     text-decoration: none;
-    display: block;
-    margin-bottom: 8px;
+    background-color: var(--color-footer-bg);
 }
 
 .footer-links a:hover, .footer-info a:hover {
@@ -127,5 +146,7 @@ footer {
 .copyright {
     text-align: center;
     color: rgba(255, 255, 255, 0.3);
+     color: var(--color-footer-link);
 }
+   
 

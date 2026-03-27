@@ -1,4 +1,17 @@
 
+:root {
+    --color-primary: #F59E0B;
+    --color-white: #fff;
+    --color-grey: grey;
+    --color-text-dark: #333;
+    --color-dark-blue: rgb(28, 28, 52);
+    --color-footer-bg: rgb(22, 27, 52);
+    --color-footer-link: rgb(150, 150, 200);
+    --color-light-border: rgb(220, 220, 220);
+    --color-panel-bg: rgb(184, 184, 184);
+    --color-input-border: #ccc;
+}
+
 * {
     box-sizing:border-box;
 }
@@ -21,7 +34,7 @@ body {
     top: 0;
     left: 0;
     z-index: 1000;
-    background-color: white;
+    background-color: var(--color-white);
     border-bottom: 1px solid grey;
 }
 
@@ -31,7 +44,7 @@ body {
 }
 
 .logo-image {
-    color: #F59E0B;
+    color: var(--color-primary);
     font-size: 28px;
     font-weight: bold;
     margin-right: 15px;
@@ -40,7 +53,7 @@ body {
 .logo-text {
     font-size: 24px;
     font-weight: bold;
-    color: #333;
+    color: var(--color-text-dark);
 }
 
 .nav-links {
@@ -57,29 +70,29 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    color:  grey;
+    color: var(--color-grey);
     font-size: 16px;
 }
 
 .nav-links a:hover {
     text-decoration: none;
-    color: #F59E0B;
+    color: var(--color-primary);
 }
 
 
 .nav-btn {
-    background-color: grey;
+    background-color: var(--color-grey);
     padding: 8px 15px;
     border-radius: 5px;
-    color: white;
+    color: var(--color-white);
 }
 
 .nav-btn:hover {
-    background-color: #F59E0B;
+    background-color: var(--color-primary);
 }
 
 .nav-btn span {
-    color: white;
+    color: var(--color-white);
 }
 
 .search-bar {
@@ -87,14 +100,14 @@ body {
     text-align: center;
     justify-content: center;
     align-items: center;
-    border: 1px solid rgb(220, 220, 220);
+    border: 1px solid var(--color-light-border);
     border-radius: 5px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    background-color: rgb(184, 184, 184);
+    background-color: var(--color-panel-bg);
 }
 
 .search-bar-content {
-    background-color: white;
+    background-color: var(--color-white);
     box-shadow: 0 4px 15px rgba(5, 5, 5, 0.565);
     border-radius: 10px;
     padding: 2% 1%;
@@ -121,14 +134,14 @@ body {
 .search-form button {
     border-radius: 20px;
     padding: 1% 2%;
-    border: 1px solid #ccc;
-    background-color: grey;
-    color: white;
+    border: 1px solid var(--color-input-border);
+    background-color: var(--color-grey);
+    color: var(--color-white);
 }
 
 .search-form button:hover {
-    background-color: #F59E0B;
-    color: white;
+    background-color: var(--color-primary);
+    color: var(--color-white);
 }
 
 .join-group-class {
@@ -138,7 +151,7 @@ body {
 
 .join-group-class p {
     font-size: 16px;
-    color: #333;
+    color: var(--color-text-dark);
 }
 
 .join-btn {
@@ -146,13 +159,13 @@ body {
     margin-top: 10px;
     padding: 8px 15px;
     background-color: grey;
-    color: white;
+    color: var(--color-white);
     border-radius: 5px;
     text-decoration: none;
 }
 
 .join-btn:hover {
-    background-color: #F59E0B;
+    background-color: var(--color-primary);
 
 }
 
@@ -169,7 +182,7 @@ body {
 
 .entreprise-card {
     
-    color: white;
+    color: var(--color-white);
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 20px;
@@ -178,7 +191,7 @@ body {
     text-align: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     margin-bottom: 15px;
-     background-color: rgb(28, 28, 52);
+    background-color: var(--color-dark-blue);
 }
 
 .entreprise-card:hover {
@@ -199,7 +212,7 @@ body {
 
 .card-body p {
     text-decoration: none;
-    color: white;
+    color: var(--color-white);
 }   
 
 .card-body a:hover {
@@ -215,7 +228,7 @@ body {
 
 .card-footer a {
     text-decoration: none;
-    color: white;
+    color: var(--color-white);
 }
 
 ;.card-footer a:hover {
@@ -228,13 +241,13 @@ body {
     margin-top: 10px;
     padding: 8px 15px;
     background-color: grey;
-    color: white;
+    color: var(--color-white);
     border-radius: 5px;
     text-decoration: none;
 }
 
 .btn-details:hover {
-    background-color: #F59E0B;
+    background-color: var(--color-primary);
 }
 
 
@@ -291,8 +304,8 @@ body {
 
 footer {
     padding: 50px 5%;
-    background-color: rgb(22, 27, 52);
-    color: white;
+    background-color: var(--color-footer-bg);
+    color: var(--color-white);
 }
 
 .footer-content {
@@ -310,7 +323,7 @@ footer {
 .footer-content h2 { font-size: 20px; margin-bottom: 15px; }
 
 .footer-links a, .footer-info a {
-    color: rgb(150, 150, 200);
+    color: var(--color-footer-link);
     text-decoration: none;
     display: block;
     margin-bottom: 8px;

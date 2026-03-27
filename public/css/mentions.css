@@ -1,3 +1,12 @@
+:root {
+    --color-primary: #F59E0B;
+    --color-grey: grey;
+    --color-text-dark: #333;
+    --color-card-text: #444;
+    --color-text-muted: #555;
+    --color-border-soft: #e0e0e0;
+}
+
 .mentions-main {
     margin-top: 80px;
     max-width: 900px;
@@ -9,7 +18,7 @@
     display: flex;
     align-items: center;
     gap: 15px;
-    border-bottom: 2px solid #e0e0e0;
+    border-bottom: 2px solid var(--color-border-soft);
     padding-bottom: 20px;
     margin-bottom: 40px;
 }
@@ -19,10 +28,10 @@
 
 .mentions-section h2 {
     font-size: 22px;
-    color: #333;
+    color: var(--color-text-dark);
     margin-bottom: 15px;
     padding-bottom: 8px;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid var(--color-border-soft);
 }
 .mentions-card {
     background-color: #f8f9fa;
@@ -36,22 +45,22 @@
 }
 .mentions-card p {
     margin: 8px 0;
-    color: #444;
+    color: var(--color-card-text);
     line-height: 1.6;
 }
 
 .mentions-card a {
-    color: grey;
+    color: var(--color-grey);
     text-decoration: none;
 }
 
 .mentions-card a:hover {
     text-decoration: underline;
-    color: #F59E0B;
+    color: var(--color-primary);
 }
 
 .mentions-text {
-    color: #555;
+    color: var(--color-text-muted);
     line-height: 1.7;
     margin-bottom: 12px;
 }

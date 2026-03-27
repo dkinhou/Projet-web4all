@@ -1,5 +1,15 @@
 
 
+:root {
+    --color-primary: #F59E0B;
+    --color-white: #fff;
+    --color-grey: grey;
+    --color-dark-blue: rgb(28, 28, 52);
+    --color-light-border: rgb(220, 220, 220);
+    --color-panel-bg: rgb(184, 184, 184);
+    --color-input-border: #ccc;
+}
+
 .first-section {
     width: 100%;
     display: flex;
@@ -7,8 +17,8 @@
     align-items: center;
     justify-content: center;
     padding: 120px 5% 60px 5%;
-    background-color: rgb(28, 28, 52);
-    color: white;
+    background-color: var(--color-dark-blue);
+    color: var(--color-white);
 }
 
 
@@ -37,11 +47,11 @@
     font-weight: bold;
 }
 
-.first-section-btn1 { background-color: white; color: #F59E0B; }
-.first-section-btn2 { background-color: transparent; color: white; border: 1px solid rgba(255, 255, 255, 0.469); }
+.first-section-btn1 { background-color: var(--color-white); color: var(--color-primary); }
+.first-section-btn2 { background-color: transparent; color: var(--color-white); border: 1px solid rgba(255, 255, 255, 0.469); }
 
-.first-section-btn1:hover { background-color: grey; color: white; }
-.first-section-btn2:hover { background-color: white; color: rgb(28, 28, 52); border-color: white; }
+.first-section-btn1:hover { background-color: var(--color-grey); color: var(--color-white); }
+.first-section-btn2:hover { background-color: var(--color-white); color: var(--color-dark-blue); border-color: var(--color-white); }
 
 .slider {
     width: 400px;
@@ -85,14 +95,14 @@
     text-align: center;
     justify-content: center;
     align-items: center;
-    border: 1px solid rgb(220, 220, 220);
+    border: 1px solid var(--color-light-border);
     border-radius: 5px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    background-color: rgb(184, 184, 184);
+    background-color: var(--color-panel-bg);
 }
 
 .search-bar-content {
-    background-color: white;
+    background-color: var(--color-white);
     box-shadow: 0 4px 15px rgba(5, 5, 5, 0.565);
     border-radius: 10px;
     padding: 2% 1%;
@@ -119,14 +129,14 @@
 .search-form button {
     border-radius: 20px;
     padding: 1% 2%;
-    border: 1px solid #ccc;
-    background-color: grey;
-    color: white;
+    border: 1px solid var(--color-input-border);
+    background-color: var(--color-grey);
+    color: var(--color-white);
 }
 
 .search-form button:hover {
-    background-color: #F59E0B;
-    color: white;
+    background-color: var(--color-primary);
+    color: var(--color-white);
 }
 
 .second-section, .third-section, .fourth-section {
@@ -157,8 +167,8 @@
 
 
 .third-section {
-    background-color:  rgb(28, 28, 52);
-    color: white;
+    background-color: var(--color-dark-blue);
+    color: var(--color-white);
 }
 
 .third-section-item:hover {
@@ -197,8 +207,8 @@
 
 
 .fourth-section-btn {
-    background: grey;
-    color: #ffffff;
+    background: var(--color-grey);
+    color: var(--color-white);
     padding: 12px 25px;
     text-decoration: none;
     border-radius: 7px;
@@ -206,8 +216,8 @@
 }
 
 .fourth-section-btn:hover {
-    background-color: #F59E0B;
-    color: #ffff;
+    background-color: var(--color-primary);
+    color: var(--color-white);
 }
 
 

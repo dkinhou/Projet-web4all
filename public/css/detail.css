@@ -1,9 +1,17 @@
+:root {
+    --color-white: #fff;
+    --color-text-dark: #333;
+    --color-heading: #2c3e50;
+    --color-btn-apply: #27ae60;
+    --color-btn-login: #34495e;
+}
+
 .container {
     max-width: 1000px;
     margin: 20px auto;
     padding: 20px;
     font-family: 'Segoe UI', sans-serif;
-    color: #333;
+    color: var(--color-text-dark);
 }
 
 .offer-header {
@@ -12,7 +20,7 @@
     margin-bottom: 30px;
 }
 
-.offer-header h1 { color: #2c3e50; margin-bottom: 5px; }
+.offer-header h1 { color: var(--color-heading); margin-bottom: 5px; }
 .company-name { font-size: 1.2rem; color: #7f8c8d; }
 
 .offer-grid {
@@ -55,8 +63,8 @@
     cursor: pointer;
 }
 
-.btn-apply { background: #27ae60; color: white; }
-.btn-login { background: #34495e; color: white; }
+.btn-apply { background: var(--color-btn-apply); color: var(--color-white); }
+.btn-login { background: var(--color-btn-login); color: var(--color-white); }
 
 
 @media (max-width: 768px) {
