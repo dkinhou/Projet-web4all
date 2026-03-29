@@ -242,6 +242,99 @@ select {
     background-color: #d97706;
 }
 
+.manage-feedback {
+    margin: 18px 10% 0;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    background-color: #fffbeb;
+    color: #92400e;
+    font-weight: 600;
+}
+
+.pilot-edit-panel {
+    margin: 18px 10% 0;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.pilot-edit-panel h3 {
+    margin-top: 0;
+    color: #111827;
+}
+
+.pilot-edit-form {
+    display: grid;
+    gap: 10px;
+}
+
+.pilot-edit-form input,
+.pilot-edit-form select,
+.pilot-edit-form textarea {
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 9px;
+    font-family: inherit;
+}
+
+.pilot-edit-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.pilot-edit-actions button,
+.pilot-edit-actions a {
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.pilot-edit-actions button {
+    background-color: #F59E0B;
+    color: #fff;
+}
+
+.pilot-edit-actions a {
+    background-color: #e5e7eb;
+    color: #111827;
+}
+
+.pilot-offer-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 8px;
+}
+
+.pilot-offer-actions form {
+    margin: 0;
+}
+
+.offer-action-btn {
+    border: none;
+    border-radius: 8px;
+    padding: 8px 10px;
+    text-decoration: none;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.88rem;
+}
+
+.offer-action-edit {
+    background-color: #1d4ed8;
+    color: #fff;
+}
+
+.offer-action-delete {
+    background-color: #dc2626;
+    color: #fff;
+}
+
 .pagination {
     list-style-type: none; 
     display: flex;         
@@ -284,5 +377,10 @@ select {
 
     .offres-list {
         grid-template-columns: 1fr;
+    }
+
+    .pilot-offer-actions {
+        flex-direction: column;
+        align-items: stretch;
     }
 }

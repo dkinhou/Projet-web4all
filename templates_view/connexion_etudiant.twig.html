@@ -17,9 +17,17 @@
     <div class="student-layout">
         <article class="profile-card">
             <h2>Mon profil</h2>
-            <form class="profile-form" action="#" method="post" enctype="multipart/form-data">
+            {% if profileMessage is defined and profileMessage %}
+                <p class="profile-message">{{ profileMessage }}</p>
+            {% endif %}
+            <form class="profile-form" action="/dashboard-etudiant" method="post" enctype="multipart/form-data">
                 <div class="avatar-block">
-                    <div class="avatar-placeholder" aria-hidden="true">{{ (Utilisateur|default('E'))|slice(0, 1)|upper }}</div>
+                    {% if profilePhoto is defined and profilePhoto %}
+                        <img src="{{ profilePhoto }}" alt="Photo de profil" class="avatar-image">
+                        <button type="submit" name="profile_action" value="remove_photo" class="profile-btn-secondary">Retirer ma photo</button>
+                    {% else %}
+                        <div class="avatar-placeholder" aria-hidden="true">{{ (Utilisateur|default('E'))|slice(0, 1)|upper }}</div>
+                    {% endif %}
                     <label for="photo" class="upload-label">Ajouter ma photo</label>
                     <input type="file" id="photo" name="photo" accept="image/*">
                 </div>
@@ -28,9 +36,13 @@
                     <label for="cv" class="upload-label">Charger mon CV</label>
                     <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx">
                     <p class="hint">Formats acceptes: PDF, DOC, DOCX</p>
+                    {% if profileCv is defined and profileCv %}
+                        <a class="profile-link" href="{{ profileCv }}" target="_blank" rel="noopener">Voir mon CV actuel</a>
+                        <button type="submit" name="profile_action" value="remove_cv" class="profile-btn-secondary">Retirer mon CV</button>
+                    {% endif %}
                 </div>
 
-                <button type="submit" class="profile-btn">Enregistrer mon profil</button>
+                <button type="submit" name="profile_action" value="upload" class="profile-btn">Enregistrer mon profil</button>
             </form>
         </article>
 
@@ -60,16 +72,70 @@
 
                     <label class="feature-item">
                         <h2>Mes candidatures</h2>
-                        <a href="#">Acceder</a>
+                        <a href="/dashboard-etudiant?view=candidatures">Acceder</a>
                     </label>
 
                     <label class="feature-item">
                         <h2>Gestion de ma wish-list</h2>
-                        <a href="#">Acceder</a>
+                        <a href="/dashboard-etudiant?view=wishlist">Acceder</a>
                     </label>
                 </div>
             </form>
+            {% if selectedView is defined and selectedView != 'all' %}
+                <p class="hint">Vue active: {{ selectedView == 'candidatures' ? 'Mes candidatures' : 'Ma wishlist' }} - <a href="/dashboard-etudiant?view=all">Afficher tout</a></p>
+            {% endif %}
         </article>
     </div>
+
+    {% set currentView = selectedView|default('all') %}
+
+    <section class="student-tracker-grid">
+        {% if currentView == 'all' or currentView == 'candidatures' %}
+            <article class="tracker-card" id="mes-candidatures">
+                <h2>Mes candidatures</h2>
+                {% if applicationsWithStatus is defined and applicationsWithStatus|length > 0 %}
+                    <ul class="tracker-list">
+                        {% for offre in applicationsWithStatus %}
+                            <li>
+                                <div>
+                                    <strong>{{ offre.titre|default('Offre') }}</strong>
+                                    <p>{{ offre.entreprises|default('Entreprise non renseignee') }}</p>
+                                    <p>
+                                        <span class="status-pill {% if offre.statut == 'Acceptee' %}status-accepted{% elseif offre.statut == 'Refusee' %}status-rejected{% else %}status-pending{% endif %}">
+                                            {{ offre.statut|default('En attente') }}
+                                        </span>
+                                    </p>
+                                </div>
+                                <a href="/detail_offres?id={{ offre.id_offre }}">Voir</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="empty-state">Vous n'avez pas encore postule a une offre.</p>
+                {% endif %}
+            </article>
+        {% endif %}
+
+        {% if currentView == 'all' or currentView == 'wishlist' %}
+            <article class="tracker-card" id="ma-wishlist">
+                <h2>Ma wishlist</h2>
+                {% if wishlistOffers is defined and wishlistOffers|length > 0 %}
+                    <ul class="tracker-list">
+                        {% for offre in wishlistOffers %}
+                            <li>
+                                <div>
+                                    <strong>{{ offre.titre|default('Offre') }}</strong>
+                                    <p>{{ offre.entreprises|default('Entreprise non renseignee') }}</p>
+                                </div>
+                                <a href="/detail_offres?id={{ offre.id_offre }}">Voir</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="empty-state">Votre wishlist est vide pour le moment.</p>
+                {% endif %}
+            </article>
+        {% endif %}
+    </section>
 </section>
 {% endblock %}

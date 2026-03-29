@@ -55,6 +55,46 @@
             </div>
         </section>
 
+            {% if manageMessage is defined and manageMessage %}
+                <section class="manage-feedback">{{ manageMessage }}</section>
+            {% endif %}
+
+            {% if session.role is defined and session.role == 'Pilote' and editOffer is defined and editOffer %}
+                <section class="pilot-edit-panel">
+                    <h3>Modifier l'offre: {{ editOffer.titre }}</h3>
+                    <form action="/offres" method="post" class="pilot-edit-form">
+                        <input type="hidden" name="action_type" value="update">
+                        <input type="hidden" name="id_offre" value="{{ editOffer.id_offre }}">
+
+                        <label>Titre</label>
+                        <input type="text" name="titre" value="{{ editOffer.titre }}" required>
+
+                        <label>Ville</label>
+                        <input type="text" name="ville" value="{{ editOffer.ville }}" required>
+
+                        <label>Type de contrat</label>
+                        <select name="type_contrat">
+                            <option value="Stage" {{ editOffer.type_contrat == 'Stage' ? 'selected' : '' }}>Stage</option>
+                            <option value="Alternance" {{ editOffer.type_contrat == 'Alternance' ? 'selected' : '' }}>Alternance</option>
+                        </select>
+
+                        <label>Duree</label>
+                        <input type="text" name="duree" value="{{ editOffer.duree|default('') }}">
+
+                        <label>Remuneration</label>
+                        <input type="text" name="remuneration" value="{{ editOffer.remuneration|default('') }}">
+
+                        <label>Description</label>
+                        <textarea name="description" rows="5" required>{{ editOffer.description }}</textarea>
+
+                        <div class="pilot-edit-actions">
+                            <button type="submit">Enregistrer</button>
+                            <a href="/offres">Annuler</a>
+                        </div>
+                    </form>
+                </section>
+            {% endif %}
+
             <section class="offres">
                 <h2>Offres de stage et d'alternance</h2>
                 <p class="offres-count">{{ compteur }} offres disponibles</p>
@@ -95,6 +135,16 @@
                             </div>
                         </div>
                         <a href="/detail_offres?id={{ offre.id_offre }}" class="details-button">Voir les détails</a>
+                        {% if session.role is defined and session.role == 'Pilote' %}
+                            <div class="pilot-offer-actions">
+                                <a href="/offres?edit={{ offre.id_offre }}" class="offer-action-btn offer-action-edit">Modifier</a>
+                                <form action="/offres" method="post" onsubmit="return confirm('Supprimer cette offre ?');">
+                                    <input type="hidden" name="action_type" value="delete">
+                                    <input type="hidden" name="id_offre" value="{{ offre.id_offre }}">
+                                    <button type="submit" class="offer-action-btn offer-action-delete">Supprimer</button>
+                                </form>
+                            </div>
+                        {% endif %}
                     </div>
                     {% endfor %}
                 </div>

@@ -2,8 +2,10 @@
 require_once 'Controller.php';
 require_once __DIR__ . '/../Model/DetailOffre.php';
 require_once __DIR__ . '/../Model/offres.php';
+require_once __DIR__ . '/../Model/EtudiantActions.php';
 use App\Model\offres;
 use App\Model\DetailOffre;
+use App\Model\EtudiantActions;
 class controllerDetailOffres extends controller
 {
     public function __construct($url)
@@ -15,14 +17,18 @@ class controllerDetailOffres extends controller
     {
         $detailOffreModel = new DetailOffre();
         $offresModel = new offres();
+        $etudiantActions = new EtudiantActions();
         $offresId = $offresModel->getOffresId();
         $id_offre = isset($_GET['id']) ? (int)$_GET['id'] : null;
         if ($id_offre) {
             $offreDetails = $detailOffreModel->getOffreDetails($id_offre);
             if ($offreDetails) {
+            $offreDetails['postulants_count'] = $etudiantActions->countOfferApplicants($id_offre);
                 $stats = $this->buildOfferStats($offreDetails);
-                $appliedOffers = $_SESSION['applied_offers'] ?? [];
-                $hasApplied = in_array((int) $id_offre, $appliedOffers, true);
+            $userId = $_SESSION['id'] ?? 0;
+            $isStudent = isset($_SESSION['role']) && $_SESSION['role'] === 'Etudiant';
+            $hasApplied = $isStudent ? $etudiantActions->hasApplied($userId, $id_offre) : false;
+            $hasWishlisted = $isStudent ? $etudiantActions->isInWishlist($userId, $id_offre) : false;
 
                 $postulationMessage = '';
                 if (isset($_GET['postulation']) && $_GET['postulation'] === 'success') {
@@ -31,11 +37,24 @@ class controllerDetailOffres extends controller
                     $postulationMessage = 'Vous avez deja postule a cette offre.';
                 }
 
+                $wishlistMessage = '';
+                if (isset($_GET['wishlist']) && $_GET['wishlist'] === 'added') {
+                    $wishlistMessage = 'Offre ajoutee a votre wishlist.';
+                } elseif (isset($_GET['wishlist']) && $_GET['wishlist'] === 'removed') {
+                    $wishlistMessage = 'Offre retiree de votre wishlist.';
+                } elseif (isset($_GET['wishlist']) && $_GET['wishlist'] === 'already') {
+                    $wishlistMessage = 'Cette offre est deja dans votre wishlist.';
+                } elseif (isset($_GET['wishlist']) && $_GET['wishlist'] === 'profile_missing') {
+                    $wishlistMessage = 'Impossible d\'ajouter cette offre : votre profil etudiant est introuvable.';
+                }
+
                 $this->render('detail_offres.twig.html', [
                     'offre' => $offreDetails,
                     'stats' => $stats,
                     'hasApplied' => $hasApplied,
-                    'postulationMessage' => $postulationMessage
+                    'postulationMessage' => $postulationMessage,
+                    'hasWishlisted' => $hasWishlisted,
+                    'wishlistMessage' => $wishlistMessage
                 ]);
             } else {
                 echo "Offre non trouvée.";

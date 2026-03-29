@@ -71,6 +71,16 @@
     font-size: 1.15rem;
 }
 
+.profile-message {
+    margin: 0 0 12px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #fff3cd;
+    color: #7c5f00;
+    border: 1px solid #f5d58b;
+    font-size: 0.9rem;
+}
+
 .profile-form {
     display: grid;
     gap: 14px;
@@ -98,6 +108,16 @@
     font-weight: 700;
 }
 
+.avatar-image {
+    width: 86px;
+    height: 86px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 10px;
+    border: 2px solid #d7dfeb;
+}
+
 .upload-label {
     display: block;
     margin-bottom: 6px;
@@ -119,6 +139,18 @@ input[type="file"] {
     font-size: 0.82rem;
 }
 
+.profile-link {
+    display: inline-block;
+    margin-top: 8px;
+    color: var(--student-primary);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.profile-link:hover {
+    text-decoration: underline;
+}
+
 .profile-btn,
 .feature-btn {
     border: none;
@@ -133,6 +165,21 @@ input[type="file"] {
 .profile-btn:hover,
 .feature-btn:hover {
     background: linear-gradient(135deg, #0b3c66, #254a6b);
+}
+
+.profile-btn-secondary {
+    margin-top: 8px;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 10px;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    background-color: #b91c1c;
+}
+
+.profile-btn-secondary:hover {
+    background-color: #991b1b;
 }
 
 .feature-form {
@@ -197,6 +244,102 @@ input[type="file"] {
     color: var(--student-panel);
 }
 
+.student-tracker-grid {
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+}
+
+.tracker-card {
+    background-color: var(--student-panel);
+    border: 1px solid var(--student-border);
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: 0 10px 24px rgba(17, 24, 39, 0.06);
+}
+
+.tracker-card h2 {
+    margin: 0 0 14px;
+    color: var(--student-text);
+    font-size: 1.1rem;
+}
+
+.tracker-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+}
+
+.tracker-list li {
+    border: 1px solid var(--student-border);
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    background-color: #f8fafc;
+}
+
+.tracker-list strong {
+    color: var(--student-text);
+    font-size: 0.95rem;
+}
+
+.tracker-list p {
+    margin: 4px 0 0;
+    color: var(--student-muted);
+    font-size: 0.85rem;
+}
+
+.status-pill {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.status-pending {
+    background-color: #fff3cd;
+    color: #7c5f00;
+}
+
+.status-accepted {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.status-rejected {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.tracker-list a {
+    text-decoration: none;
+    color: #fff;
+    background-color: var(--student-primary);
+    padding: 7px 11px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.tracker-list a:hover {
+    background-color: #0b3c66;
+}
+
+.empty-state {
+    margin: 0;
+    color: var(--student-muted);
+    font-size: 0.9rem;
+}
+
 @media (max-width: 1024px) {
     .student-layout {
         grid-template-columns: 1fr;
@@ -217,5 +360,10 @@ input[type="file"] {
 
     .feature-grid {
         grid-template-columns: 1fr;
+    }
+
+    .tracker-list li {
+        align-items: flex-start;
+        flex-direction: column;
     }
 }

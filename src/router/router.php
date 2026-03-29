@@ -120,15 +120,54 @@ class router
                     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $offreId = isset($_POST['id_offre']) ? (int)$_POST['id_offre'] : 0;
                         if ($offreId > 0) {
-                            if (!isset($_SESSION['applied_offers'])) {
-                                $_SESSION['applied_offers'] = [];
-                            }
-                            if (!in_array($offreId, $_SESSION['applied_offers'], true)) {
-                                $_SESSION['applied_offers'][] = $offreId;
+                            require_once(__DIR__ . '/../Model/EtudiantActions.php');
+                            $etudiantActions = new \App\Model\EtudiantActions();
+                            $userId = (int) $_SESSION['id'];
+                            if ($etudiantActions->applyToOffer($userId, $offreId)) {
                                 header('Location: /detail_offres?id=' . $offreId . '&postulation=success');
                                 exit();
                             }
                             header('Location: /detail_offres?id=' . $offreId . '&postulation=already');
+                            exit();
+                        }
+                    }
+
+                    header('Location: /offres');
+                    exit();
+                }
+                else if ($url[0] === 'wishlist')
+                {
+                    if (!$this->isConnected() || !isset($_SESSION['role']) || $_SESSION['role'] !== 'Etudiant') {
+                        header('Location: /connexion');
+                        exit();
+                    }
+
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                        $offreId = isset($_POST['id_offre']) ? (int) $_POST['id_offre'] : 0;
+                        $action = isset($_POST['action']) ? $_POST['action'] : 'add';
+
+                        if ($offreId > 0) {
+                            require_once(__DIR__ . '/../Model/EtudiantActions.php');
+                            $etudiantActions = new \App\Model\EtudiantActions();
+                            $userId = (int) $_SESSION['id'];
+
+                            if (!$etudiantActions->hasEtudiantProfile($userId)) {
+                                header('Location: /detail_offres?id=' . $offreId . '&wishlist=profile_missing');
+                                exit();
+                            }
+
+                            if ($action === 'remove') {
+                                $etudiantActions->removeFromWishlist($userId, $offreId);
+                                header('Location: /detail_offres?id=' . $offreId . '&wishlist=removed');
+                                exit();
+                            }
+
+                            if ($etudiantActions->addToWishlist($userId, $offreId)) {
+                                header('Location: /detail_offres?id=' . $offreId . '&wishlist=added');
+                                exit();
+                            }
+
+                            header('Location: /detail_offres?id=' . $offreId . '&wishlist=already');
                             exit();
                         }
                     }

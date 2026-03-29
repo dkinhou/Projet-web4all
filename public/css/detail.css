@@ -21,7 +21,7 @@
 }
 
 .offer-hero {
-    background: linear-gradient(120deg, #0f4c81 0%, #2563eb 100%);
+    background: #f59f0bb6;
     color: var(--color-white);
     border-radius: 18px;
     padding: 24px;
@@ -210,6 +210,10 @@
 .btn-apply[disabled] {
     opacity: 0.72;
     cursor: not-allowed;
+}
+
+.wishlist-form {
+    margin-top: 10px;
 }
 
 .btn-login:hover {

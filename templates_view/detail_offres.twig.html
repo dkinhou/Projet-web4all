@@ -49,6 +49,10 @@
                             <p class="application-message">{{ postulationMessage }}</p>
                         {% endif %}
 
+                        {% if wishlistMessage is defined and wishlistMessage %}
+                            <p class="application-message">{{ wishlistMessage }}</p>
+                        {% endif %}
+
                         {% if session.id is defined and session.role is defined and session.role == 'Etudiant' %}
                             {% if hasApplied %}
                                 <button class="btn-apply" type="button" disabled>Deja postule</button>
@@ -58,6 +62,17 @@
                                     <button class="btn-apply" type="submit">Postuler maintenant</button>
                                 </form>
                             {% endif %}
+
+                            <form action="/wishlist" method="post" class="wishlist-form">
+                                <input type="hidden" name="id_offre" value="{{ offre.id_offre }}">
+                                {% if hasWishlisted %}
+                                    <input type="hidden" name="action" value="remove">
+                                    <button class="btn-login" type="submit">Retirer de ma wishlist</button>
+                                {% else %}
+                                    <input type="hidden" name="action" value="add">
+                                    <button class="btn-login" type="submit">Ajouter a ma wishlist</button>
+                                {% endif %}
+                            </form>
                         {% elseif session.id is defined %}
                             <p class="application-message">La candidature est reservee aux etudiants.</p>
                         {% else %}
