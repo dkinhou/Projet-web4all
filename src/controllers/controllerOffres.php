@@ -52,10 +52,37 @@ class controllerOffres extends Controller {
             }
         }
 
-        $taboffres = $this->offresModel->getAllOffres();
+        $filters = [
+            'keyword' => trim((string) ($_GET['keyword'] ?? '')),
+            'location' => trim((string) ($_GET['location'] ?? '')),
+            'entreprise' => trim((string) ($_GET['entreprise'] ?? '')),
+            'specialite' => trim((string) ($_GET['specialite'] ?? '')),
+            'niveau' => trim((string) ($_GET['niveau'] ?? '')),
+            'type_contrat' => trim((string) ($_GET['type_contrat'] ?? $_GET['type'] ?? '')),
+        ];
+
+        $hasFilters = false;
+        foreach ($filters as $value) {
+            if ($value !== '') {
+                $hasFilters = true;
+                break;
+            }
+        }
+
         $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        if ($currentPage < 1) {
+            $currentPage = 1;
+        }
         $offset = ($currentPage - 1) * $this->offresPerPage;
-        $paginatedOffres = $this->offresModel->getOffresPaginated($this->offresPerPage, $offset);
+
+        if ($hasFilters) {
+            $totalCount = $this->offresModel->countOffresFiltered($filters);
+            $paginatedOffres = $this->offresModel->getOffresFilteredPaginated($filters, $this->offresPerPage, $offset);
+        } else {
+            $taboffres = $this->offresModel->getAllOffres();
+            $totalCount = count($taboffres);
+            $paginatedOffres = $this->offresModel->getOffresPaginated($this->offresPerPage, $offset);
+        }
 
         $editOffer = null;
         if ($isPilot && isset($_GET['edit'])) {
@@ -74,13 +101,23 @@ class controllerOffres extends Controller {
             $manageMessage = 'Une erreur est survenue pendant la mise a jour.';
         }
 
+        $queryParams = [];
+        foreach ($filters as $key => $value) {
+            if ($value !== '') {
+                $queryParams[$key] = $value;
+            }
+        }
+        $querySuffix = empty($queryParams) ? '' : '&' . http_build_query($queryParams);
+
             $this->render('offres.twig.html', [
                 'offres' => $paginatedOffres,
-                'compteur' => count($taboffres),
+                'compteur' => $totalCount,
                 'currentPage' => $currentPage,
-                'totalPages' => ceil(count($taboffres) / $this->offresPerPage),
+                'totalPages' => max(1, (int) ceil($totalCount / $this->offresPerPage)),
                 'editOffer' => $editOffer,
-                'manageMessage' => $manageMessage
+                'manageMessage' => $manageMessage,
+                'filters' => $filters,
+                'querySuffix' => $querySuffix
             ]);
     }
 

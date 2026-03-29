@@ -10,10 +10,10 @@
         <section class="search-bar">
             <div class="search-bar-content">
                 <h2>Recherchez votre emploi en quelques clics</h2>
-                <form action="#" method="get">
+                <form action="/offres" method="get">
                     <div class="search-form"> 
-                        <input type="text" name="keyword" placeholder="Mots-clés (ex: marketing, informatique)" required>
-                        <input type="text" name="location" placeholder="Ville (ex: Paris, Lyon)" >
+                        <input type="text" name="keyword" placeholder="Mots-clés (ex: marketing, informatique)" value="{{ filters.keyword|default('') }}">
+                        <input type="text" name="location" placeholder="Ville (ex: Paris, Lyon)" value="{{ filters.location|default('') }}">
                         <button type="submit">Rechercher</button>
                     </div>
                 </form>
@@ -26,26 +26,28 @@
                     <div class="modal-content">
                         <span class="close">&times;</span>
                         <h3>⏳ Filtres</h3>
-                        <form action="/recherche" method="GET">
+                        <form action="/offres" method="GET">
                             <label class="label-form">Nom de l'entreprise :</label>
-                            <input class="form-control" type="text" name="entreprise" placeholder="Ex: Google">
+                            <input class="form-control" type="text" name="entreprise" placeholder="Ex: Google" value="{{ filters.entreprise|default('') }}">
                             <label class="label-form">Spécialité :</label>
-                            <input class="form-control" type="text" name="specialite" placeholder="Ex: Informatique">
+                            <input class="form-control" type="text" name="specialite" placeholder="Ex: Informatique" value="{{ filters.specialite|default('') }}">
                             <label class="label-form">Niveau :</label>
-                            <select name="type">
-                                <option value="Bac">Bac</option>
-                                <option value="Bac+1">Bac+1</option>
-                                <option value="Bac+2">Bac+2</option>
-                                <option value="Bac+3">Bac+3</option>
-                                <option value="Bac+4">Bac+4</option>
-                                <option value="Bac+5">Bac+5</option>
+                            <select name="niveau">
+                                <option value="" {{ filters.niveau|default('') == '' ? 'selected' : '' }}>Tous</option>
+                                <option value="Bac" {{ filters.niveau|default('') == 'Bac' ? 'selected' : '' }}>Bac</option>
+                                <option value="Bac+1" {{ filters.niveau|default('') == 'Bac+1' ? 'selected' : '' }}>Bac+1</option>
+                                <option value="Bac+2" {{ filters.niveau|default('') == 'Bac+2' ? 'selected' : '' }}>Bac+2</option>
+                                <option value="Bac+3" {{ filters.niveau|default('') == 'Bac+3' ? 'selected' : '' }}>Bac+3</option>
+                                <option value="Bac+4" {{ filters.niveau|default('') == 'Bac+4' ? 'selected' : '' }}>Bac+4</option>
+                                <option value="Bac+5" {{ filters.niveau|default('') == 'Bac+5' ? 'selected' : '' }}>Bac+5</option>
                             </select>
                             <label class="label-form">Ville :</label>
-                            <input class="form-control" type="text" name="ville" placeholder="Ex: Lyon">
+                            <input class="form-control" type="text" name="location" placeholder="Ex: Lyon" value="{{ filters.location|default('') }}">
                             <label class="label-form">Type de contrat:  </label>
-                            <select name="type">
-                                <option value="stage">Stage</option>
-                                <option value="alternance">Alternance</option>
+                            <select name="type_contrat">
+                                <option value="" {{ filters.type_contrat|default('') == '' ? 'selected' : '' }}>Tous</option>
+                                <option value="Stage" {{ filters.type_contrat|default('') == 'Stage' ? 'selected' : '' }}>Stage</option>
+                                <option value="Alternance" {{ filters.type_contrat|default('') == 'Alternance' ? 'selected' : '' }}>Alternance</option>
                             </select>
                             
                             <button type="submit" class="submit-filter">Appliquer</button>
@@ -152,17 +154,17 @@
 
            <nav class="pagination-container">
                 <ul class="pagination"> {% if currentPage > 1 %}
-                        <li><a href="/offres?page={{ currentPage - 1 }}">&laquo; Précédent</a></li>
+                        <li><a href="/offres?page={{ currentPage - 1 }}{{ querySuffix|default('') }}">&laquo; Précédent</a></li>
                     {% endif %}
 
                     {% for page in 1..totalPages %}
                         <li class="{{ page == currentPage ? 'active' : '' }}"> 
-                            <a href="/offres?page={{ page }}">{{ page }}</a>
+                            <a href="/offres?page={{ page }}{{ querySuffix|default('') }}">{{ page }}</a>
                         </li>
                     {% endfor %}
 
                     {% if currentPage < totalPages %}
-                        <li><a href="/offres?page={{ currentPage + 1 }}">Suivant &raquo;</a></li>
+                        <li><a href="/offres?page={{ currentPage + 1 }}{{ querySuffix|default('') }}">Suivant &raquo;</a></li>
                     {% endif %}
                 </ul> 
             </nav>
