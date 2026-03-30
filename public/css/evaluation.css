@@ -1,0 +1,144 @@
+/* Évaluation Entreprise - Espace Pilote */
+
+.eval-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.eval-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 30px;
+}
+
+.eval-card h2 {
+    margin-top: 0;
+}
+
+.eval-stats {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 30px;
+}
+
+.eval-stats p {
+    margin: 0;
+    font-weight: bold;
+    color: #166534;
+}
+
+.eval-stats p:last-child {
+    margin-top: 10px;
+    color: #166534;
+}
+
+.eval-form {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.eval-form-group {
+    margin-bottom: 20px;
+}
+
+.eval-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.eval-stars {
+    display: flex;
+    gap: 10px;
+}
+
+.eval-star-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.eval-star-label input {
+    margin-right: 8px;
+}
+
+.eval-star-label span {
+    font-size: 24px;
+}
+
+.eval-hint {
+    margin: 10px 0 0 0;
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+.eval-textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-family: inherit;
+    resize: vertical;
+}
+
+.eval-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.eval-button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.eval-button-submit {
+    background-color: #F59E0B;
+    color: white;
+}
+
+.eval-button-submit:hover {
+    background-color: #d97706;
+}
+
+.eval-button-cancel {
+    background-color: #e5e7eb;
+    color: #111827;
+}
+
+.eval-button-cancel:hover {
+    background-color: #d1d5db;
+}
+
+.eval-time {
+    margin-top: 15px;
+    font-size: 0.85rem;
+    color: #6b7280;
+    text-align: center;
+}
+
+.eval-footer {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.eval-footer a {
+    display: inline-block;
+}
+
+/* Styles pour le message de feedback */
+.eval-feedback-message {
+    margin-bottom: 20px;
+}

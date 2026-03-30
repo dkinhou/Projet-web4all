@@ -1,0 +1,91 @@
+{% extends 'template.twig.html' %}
+
+{% block title %}Évaluer Entreprise - Espace Pilote{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="/css/connexion_pilote.css">
+<link rel="stylesheet" href="/css/offres.css">
+<link rel="stylesheet" href="/css/evaluation.css">
+{% endblock %}
+
+{% block body %}
+<div class="pilot-space">
+    <div class="pilot-hero-card">
+        <h1>Évaluer une entreprise</h1>
+        <p class="pilot-subtitle">Partagez votre évaluation de {{ entreprise.nom_societe }}</p>
+    </div>
+</div>
+
+{% if message %}
+<section class="manage-feedback eval-feedback-message">{{ message }}</section>
+{% endif %}
+
+<section class="offres">
+    <div class="eval-container">
+        <div class="eval-card">
+            <h2>{{ entreprise.nom_societe }}</h2>
+            <p><strong>Secteur :</strong> {{ entreprise.secteur|default('Non renseigné') }}</p>
+            <p><strong>Description :</strong> {{ entreprise.description|default('Non renseignée') }}</p>
+            <p><strong>Contact :</strong> {{ entreprise.contact|default('Non renseigné') }}</p>
+        </div>
+
+        {% if avgRating.total_evals > 0 %}
+        <div class="eval-stats">
+            <p>Évaluations existantes</p>
+            <p>
+                Note moyenne : <strong>{{ (avgRating.avg_note|number_format(1))|default('0') }}/5</strong>
+                ({{ avgRating.total_evals }} évaluation{% if avgRating.total_evals > 1 %}s{% endif %})
+            </p>
+        </div>
+        {% endif %}
+
+        <form method="post" class="eval-form">
+            <input type="hidden" name="id_entreprise" value="{{ entreprise.id_entreprise }}">
+
+            <div class="eval-form-group">
+                <label for="rating">Votre note (1-5 étoiles) *</label>
+                <div class="eval-stars">
+                    {% for i in 1..5 %}
+                    <label class="eval-star-label">
+                        <input type="radio" name="note" value="{{ i }}" 
+                            {% if evaluation and evaluation.note == i %}checked{% endif %}
+                            required>
+                        <span>
+                            {% if evaluation and i <= evaluation.note %}⭐{% else %}☆{% endif %}
+                        </span>
+                    </label>
+                    {% endfor %}
+                </div>
+                <p class="eval-hint">
+                    5 = Excellent | 4 = Très bien | 3 = Bien | 2 = Acceptable | 1 = Mauvais
+                </p>
+            </div>
+
+            <div class="eval-form-group">
+                <label for="commentaire">Votre commentaire</label>
+                <textarea id="commentaire" name="commentaire" rows="6" class="eval-textarea">{% if evaluation %}{{ evaluation.commentaire }}{% endif %}</textarea>
+            </div>
+
+            <div class="eval-buttons">
+                <button type="submit" class="eval-button eval-button-submit">
+                    {% if evaluation %}Mettre à jour l'évaluation{% else %}Enregistrer l'évaluation{% endif %}
+                </button>
+                <a href="/entreprises" class="eval-button eval-button-cancel">
+                    Annuler
+                </a>
+            </div>
+
+            {% if evaluation %}
+            <p class="eval-time">
+                Dernière évaluation le : {{ evaluation.date_evaluation|default('-') }}
+            </p>
+            {% endif %}
+        </form>
+
+        <div class="eval-footer">
+            <a href="/dashboard-pilote" class="btn btn-primary">Retour au tableau de bord</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

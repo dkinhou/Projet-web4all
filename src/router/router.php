@@ -207,6 +207,7 @@ class router
                 {
                     require_once(__DIR__ . '/../controllers/controllerEntreprises.php');
                     $this->_ctrl = new controllerEntreprises($url);
+                    $this->_ctrl->index();
                 }
                 else if ($url[0] === 'contact')
                 {
@@ -218,6 +219,48 @@ class router
                     require_once(__DIR__ . '/../controllers/controllerMentions.php');
                     $this->_ctrl = new controllerMentions($url);
                     $this->_ctrl->index();
+                }
+                else if ($url[0] === 'liste-candidatures-pilote')
+                {
+                    if (!$this->isConnected() || !isset($_SESSION['role']) || $_SESSION['role'] !== 'Pilote') {
+                        header('Location: /connexion');
+                        exit();
+                    }
+
+                    require_once(__DIR__ . '/../controllers/controllerConnexion.php');
+                    $this->_ctrl = new controllerConnexion($url);
+                    $idPilote = (int) $_SESSION['id'];
+                    $this->_ctrl->listeCandidaturesPilote($idPilote);
+                }
+                else if ($url[0] === 'evaluer-entreprise')
+                {
+                    if (!$this->isConnected() || !isset($_SESSION['role']) || $_SESSION['role'] !== 'Pilote') {
+                        header('Location: /connexion');
+                        exit();
+                    }
+
+                    require_once(__DIR__ . '/../controllers/controllerConnexion.php');
+                    $this->_ctrl = new controllerConnexion($url);
+                    $idPilote = (int) $_SESSION['id'];
+                    $this->_ctrl->evaluerEntreprise($idPilote);
+                }
+                else if ($url[0] === 'creer-entreprise' || $url[0] === 'modifier-entreprise' || $url[0] === 'supprimer-entreprise')
+                {
+                    // Redirection vers la page entreprises
+                    header('Location: /entreprises');
+                    exit();
+                }
+                else if ($url[0] === 'creer-offre' || $url[0] === 'modifier-offre' || $url[0] === 'supprimer-offre')
+                {
+                    // Redirection vers la page offres
+                    header('Location: /offres');
+                    exit();
+                }
+                else if ($url[0] === 'etudiants' || $url[0] === 'creer-etudiant' || $url[0] === 'modifier-etudiant' || $url[0] === 'supprimer-etudiant')
+                {
+                    // Redirection vers la page d'accueil (à implémenter plus tard si nécessaire)
+                    header('Location: /dashboard-pilote');
+                    exit();
                 }
                 else 
                 {

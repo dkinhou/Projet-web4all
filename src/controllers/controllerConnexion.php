@@ -3,11 +3,17 @@ use App\Model\UserConnexion;
 use App\Model\ConnexionDB;
 use App\Model\offres;
 use App\Model\EtudiantActions;
+use App\Model\Evaluation;
+use App\Model\CandidaturesPilote;
+use App\Model\entreprises;
 
 require_once 'Controller.php'; 
 require_once __DIR__ . '/../Model/UserConnexion.php';
 require_once __DIR__ . '/../Model/offres.php';
 require_once __DIR__ . '/../Model/EtudiantActions.php';
+require_once __DIR__ . '/../Model/Evaluation.php';
+require_once __DIR__ . '/../Model/CandidaturesPilote.php';
+require_once __DIR__ . '/../Model/entreprises.php';
 
 
 class controllerConnexion extends Controller {
@@ -194,19 +200,113 @@ class controllerConnexion extends Controller {
         ]);
     }
 
-        public function login($email, $password) {
+    public function listeCandidaturesPilote($idPilote) {
+        $candidaturesModel = new CandidaturesPilote();
+        $itemsPerPage = 15;
+        $currentPage = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+        if ($currentPage < 1) $currentPage = 1;
+
+        $offset = ($currentPage - 1) * $itemsPerPage;
+        $totalCount = $candidaturesModel->countCandidaturesByPilote($idPilote);
+        $candidatures = $candidaturesModel->getCandidaturesByPilote($idPilote, $itemsPerPage, $offset);
+
+        // Traiter les mises à jour de statut
+        $message = '';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_statut'])) {
+            $idCandidature = (int) $_POST['id_candidature'] ?? 0;
+            $statut = trim((string) ($_POST['statut'] ?? ''));
+            if ($idCandidature > 0 && $statut) {
+                if ($candidaturesModel->updateStatutCandidature($idCandidature, $statut)) {
+                    $message = 'Statut de candidature mis a jour avec succes.';
+                    $candidatures = $candidaturesModel->getCandidaturesByPilote($idPilote, $itemsPerPage, $offset);
+                } else {
+                    $message = 'Impossible de mettre a jour le statut.';
+                }
+            }
+        }
+
+        $stats = $candidaturesModel->getStatsPilote($idPilote);
+
+        $this->render('candidatures_pilote.twig.html', [
+            'candidatures' => $candidatures,
+            'stats' => $stats,
+            'compteur' => $totalCount,
+            'currentPage' => $currentPage,
+            'totalPages' => max(1, (int) ceil($totalCount / $itemsPerPage)),
+            'message' => $message,
+        ]);
+    }
+
+    public function evaluerEntreprise($idPilote) {
+        $evaluationModel = new Evaluation();
+        $entrepriseModel = new entreprises();
+
+        $idEntreprise = (int) ($_GET['id'] ?? $_POST['id_entreprise'] ?? 0);
+        if ($idEntreprise <= 0) {
+            header('Location: /entreprises');
+            exit();
+        }
+
+        $entreprise = $entrepriseModel->getEntrepriseById($idEntreprise);
+        if (!$entreprise) {
+            header('Location: /entreprises');
+            exit();
+        }
+
+        $evaluation = $evaluationModel->getEvaluation($idPilote, $idEntreprise);
+        $avgRating = $evaluationModel->getAverageRatingByEntreprise($idEntreprise);
+
+        $message = '';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $note = (int) ($_POST['note'] ?? 0);
+            $commentaire = trim((string) ($_POST['commentaire'] ?? ''));
+
+            if ($note < 1 || $note > 5) {
+                $message = 'La note doit etre entre 1 et 5.';
+            } else {
+                if ($evaluation) {
+                    // Mise a jour
+                    if ($evaluationModel->updateEvaluation($evaluation['id_evaluation'], $note, $commentaire)) {
+                        $message = 'Evaluation mise a jour avec succes.';
+                        $evaluation = $evaluationModel->getEvaluation($idPilote, $idEntreprise);
+                        $avgRating = $evaluationModel->getAverageRatingByEntreprise($idEntreprise);
+                    } else {
+                        $message = 'Erreur lors de la mise a jour.';
+                    }
+                } else {
+                    // Creation
+                    if ($evaluationModel->addEvaluation($idPilote, $idEntreprise, $note, $commentaire)) {
+                        $message = 'Evaluation enregistree avec succes.';
+                        $evaluation = $evaluationModel->getEvaluation($idPilote, $idEntreprise);
+                        $avgRating = $evaluationModel->getAverageRatingByEntreprise($idEntreprise);
+                    } else {
+                        $message = 'Erreur lors de l enregistrement.';
+                    }
+                }
+            }
+        }
+
+        $this->render('evaluation_entreprise.twig.html', [
+            'entreprise' => $entreprise,
+            'evaluation' => $evaluation,
+            'avgRating' => $avgRating,
+            'message' => $message,
+        ]);
+    }
+
+    public function login($email, $password) {
         $result = $this->user->login($email, $password);
         return $result;
-        }
+    }
 
-        public function getuserrole($email) {
+    public function getuserrole($email) {
         $role = $this->user->getuserrole($email);
         return $role;
-        }
+    }
 
-        public function getId($email) {
+    public function getId($email) {
         $id = $this->user->getIdByEmail($email);
         return $id; 
-        }
+    }
 
 }
