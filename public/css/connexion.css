@@ -215,3 +215,11 @@
         padding-right: 10px;
     }
 }
+.erreur-message {
+    background: #FCEBEB;
+    color: #791F1F;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    font-size: 14px;
+}

@@ -4,7 +4,8 @@
     <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StageAlternance - trouver votre opportunité</title>
-    <link rel="stylesheet" href="/css/style.css"> {% block stylesheets %}{% endblock %}
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"> {% block stylesheets %}{% endblock %}
 </head>
 
 <body>
@@ -43,7 +44,13 @@
                     </div>
                     <a href="entreprises">Entreprises</a>
                 </div>
-                <a href="connexion" class="nav-btn"><span>Connexion</span></a>
+{% if session.user_id is defined %}
+    <span class="nav-btn-user">Bonjour {{ session.user_prenom }} !</span>
+    <a href="/deconnexion" class="nav-btn"><span>Déconnexion</span></a>
+{% else %}
+    <a href="/connexion" class="nav-btn"><span>Connexion</span></a>
+{% endif %}
+                
             </div>
         </nav>
     </header>

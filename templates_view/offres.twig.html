@@ -1,22 +1,163 @@
 {% extends 'template.twig.html' %}
-    
-    {% block title %}Accueil – StageAlternance{% endblock %}
 
-    {% block stylesheets %}
-    <link rel="stylesheet" href="/css/offres.css">
-    {% endblock %}
-        
-        {% block body %}
-        <section class="search-bar">
-            <div class="search-bar-content">
-                <h2>Recherchez votre emploi en quelques clics</h2>
-                <form action="#" method="get">
-                    <div class="search-form"> 
-                        <input type="text" name="keyword" placeholder="Mots-clés (ex: marketing, informatique)" required>
-                        <input type="text" name="location" placeholder="Lieu (ex: Paris, Lyon)" >
-                        <button type="submit">Rechercher</button>
-                    </div>
-                </form>
+{% block title %}Offres de stage – StageAlternance{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="/css/offres.css">
+{% endblock %}
+
+{% block body %}
+
+<section class="search-bar">
+    <div class="search-bar-content">
+        <h2>Trouvez votre stage idéal</h2>
+        <form action="/offres" method="get">
+            <div class="search-form">
+                <input type="text" name="keyword"
+                       value="{{ keyword }}"
+                       placeholder="Titre, compétence, entreprise...">
+                <button type="submit">
+                    <i class="bi bi-search"></i> Rechercher
+                </button>
             </div>
-        </section>
-        {% endblock %}
+        </form>
+    </div>
+</section>
+
+<section class="offres-section">
+
+    <aside class="offres-sidebar">
+        <h3>Filtres</h3>
+        <form action="/offres" method="get">
+            <input type="hidden" name="keyword" value="{{ keyword }}">
+
+            <div class="filter-group">
+                <label>Rémunération min (€)</label>
+                <input type="number" name="remuneration_min"
+                       value="{{ remuneration_min ?? '' }}"
+                       placeholder="Ex: 500" min="0">
+            </div>
+
+            <div class="filter-group">
+                <label>Date minimum</label>
+                <input type="date" name="date_min"
+                       value="{{ date_min ?? '' }}">
+            </div>
+
+            <button type="submit" class="filter-btn">
+                <i class="bi bi-funnel"></i> Appliquer les filtres
+            </button>
+        </form>
+    </aside>
+
+    <div class="offres-liste">
+        <div class="offres-header">
+            <h2>
+                {% if keyword %}
+                    <strong>{{ pagination.getTotalElements() }}</strong> offre(s) pour "{{ keyword }}"
+                {% else %}
+                    <strong>{{ pagination.getTotalElements() }}</strong> offres disponibles
+                {% endif %}
+            </h2>
+
+            {% if session.user_role == 'admin' or session.user_role == 'pilote' %}
+                <a href="/offres/creer" class="btn-creer">
+                    <i class="bi bi-plus-lg"></i> Nouvelle offre
+                </a>
+            {% endif %}
+        </div>
+
+        {% if offres is empty %}
+            <div class="empty-message">
+                <i class="bi bi-search" style="font-size:2rem;color:#ccc"></i>
+                <p>Aucune offre ne correspond à votre recherche.</p>
+                <a href="/offres">Voir toutes les offres</a>
+            </div>
+        {% else %}
+
+            {% for offre in offres %}
+                <div class="offre-card">
+                    <div class="offre-card-top">
+                        <div>
+                            <h3>
+                                <a href="/offres/{{ offre.id }}" style="text-decoration:none;color:inherit">
+                                    {{ offre.titre }}
+                                </a>
+                            </h3>
+                            <span class="offre-entreprise">
+                                <i class="bi bi-building"></i> {{ offre.entreprise_nom }}
+                            </span>
+                        </div>
+                        <span class="offre-date">
+                            <i class="bi bi-calendar3"></i> {{ offre.date_offre }}
+                        </span>
+                    </div>
+
+                    <p class="offre-description">
+                        {{ offre.description|slice(0, 180) }}...
+                    </p>
+
+                    <div class="offre-tags">
+                        <span class="offre-tag offre-tag-remuneration">
+                            <i class="bi bi-cash-coin"></i> {{ offre.remuneration }}€/mois
+                        </span>
+                    </div>
+
+                    <div class="offre-card-footer">
+                        <a href="/offres/{{ offre.id }}" class="btn-voir">
+                            Voir l'offre <i class="bi bi-arrow-right"></i>
+                        </a>
+                        <div class="offre-card-actions">
+                            {% if session.user_role == 'admin' or session.user_role == 'pilote' %}
+                                <a href="/offres/modifier/{{ offre.id }}" class="btn-modifier">
+                                    <i class="bi bi-pencil"></i> Modifier
+                                </a>
+                                <a href="/offres/supprimer/{{ offre.id }}"
+                                   class="btn-supprimer"
+                                   onclick="return confirm('Supprimer cette offre ?')">
+                                    <i class="bi bi-trash3"></i> Supprimer
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+            {% if pagination.getTotalPages() > 1 %}
+                <div class="pagination">
+                    {% if pagination.hasPrecedent() %}
+                        <a href="?page={{ pagination.getPagePrecedente() }}{% if keyword %}&keyword={{ keyword }}{% endif %}"
+                           class="pagination-btn">
+                            <i class="bi bi-chevron-left"></i> Précédent
+                        </a>
+                    {% else %}
+                        <span class="pagination-btn disabled">
+                            <i class="bi bi-chevron-left"></i> Précédent
+                        </span>
+                    {% endif %}
+
+                    {% for i in 1..pagination.getTotalPages() %}
+                        <a href="?page={{ i }}{% if keyword %}&keyword={{ keyword }}{% endif %}"
+                           class="pagination-num {% if i == pagination.getPageActuelle() %}active{% endif %}">
+                            {{ i }}
+                        </a>
+                    {% endfor %}
+
+                    {% if pagination.hasSuivant() %}
+                        <a href="?page={{ pagination.getPageSuivante() }}{% if keyword %}&keyword={{ keyword }}{% endif %}"
+                           class="pagination-btn">
+                            Suivant <i class="bi bi-chevron-right"></i>
+                        </a>
+                    {% else %}
+                        <span class="pagination-btn disabled">
+                            Suivant <i class="bi bi-chevron-right"></i>
+                        </span>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+        {% endif %}
+    </div>
+
+</section>
+{% endblock %}

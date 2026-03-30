@@ -1,48 +1,53 @@
+{% extends 'template.twig.html' %}
 
-    {% extends 'template.twig.html' %}
-    
-    {% block title %}Espace Candidat – StageAlternance{% endblock %}
+{% block title %}Connexion – StageAlternance{% endblock %}
 
-    {% block stylesheets %}
-    <link rel="stylesheet" href="/css/connexion.css">
-    {% endblock %}
-        
-        {% block body %}
-        <section class="connexion-section">
-            <div class="connexion-content">
-                <h1>Bienvenue !</h1>
-                <p>Accedez à votre compte <span>StageAlternance</span>.</p>
-                 <form action="#" method="post">
-                            <label for="email">Email:</label>
-                            <br>
-                            <input type="email" id="email" name="email" required>
-                            <br>
-                            <label for="password">Mot de passe:</label>
-                            <br>
-                            <input type="password" id="password" name="password" required>
-                            <br>
-                            <div class="connexion-content-options">
-                                <div class="checkbox-group">
-                                <input type="checkbox" id="souvenir" name="souvenir">
-                                <label for="souvenir">Se souvenir de moi</label>
-                                </div>
-                                <div><a href="#">Mot de passe oublié ?</a></div>
-                            </div>
-                            <button type="submit">Se connecter</button>
-                  </form>
-                  <div class="connexion-to-inscription">
-                    <div><p>Vous n'avez pas encore de compte ?</p></div>
-                    <div><a href="mailto:contact@stagealternance.fr">Cliquez ici pour contacter nos pilotes et vous inscrire</a></div>
-                  </div>
+{% block stylesheets %}
+<link rel="stylesheet" href="/css/connexion.css">
+{% endblock %}
+
+{% block body %}
+<section class="connexion-section">
+    <div class="connexion-content">
+        <h1>Bienvenue !</h1>
+        <p>Accédez à votre compte <span>StageAlternance</span>.</p>
+
+        {% if erreur %}
+            <div class="erreur-message">
+                {{ erreur }}
             </div>
-            <div class="connexion-image">
-                <div><img src="/images/connexion-image.jpg" alt="Image de livre pour la connexion"></div>
-                <div class="image-bottom">
-                    <h2>Bienvenue sur StageAlternance</h2>
-                    <p>Connectez-vous pour accéder à toutes les fonctionnalités: recherche d'offres, gestion des candidatures et bien plus encore !</p>
+        {% endif %}
+
+        <form action="/connexion" method="post">
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" name="password" required>
+
+            <div class="connexion-content-options">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="souvenir" name="souvenir">
+                    <label for="souvenir">Se souvenir de moi</label>
                 </div>
+                <div><a href="#">Mot de passe oublié ?</a></div>
             </div>
-        </section>
-        {% endblock %}
 
- 
+            <button type="submit">Se connecter</button>
+        </form>
+
+        <div class="connexion-to-inscription">
+            <p>Vous n'avez pas encore de compte ?</p>
+            <a href="mailto:contact@stagealternance.fr">Contactez nos pilotes pour vous inscrire</a>
+        </div>
+    </div>
+
+    <div class="connexion-image">
+        <div><img src="/images/connexion-image.jpg" alt="Image de connexion"></div>
+        <div class="image-bottom">
+            <h2>Bienvenue sur StageAlternance</h2>
+            <p>Connectez-vous pour accéder à toutes les fonctionnalités.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

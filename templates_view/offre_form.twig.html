@@ -1,0 +1,91 @@
+{% extends 'template.twig.html' %}
+
+{% block title %}
+    {% if offre %}Modifier l'offre{% else %}Créer une offre{% endif %} – StageAlternance
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="/css/offres.css">
+{% endblock %}
+
+{% block body %}
+<section class="form-section">
+
+    {# Le titre change selon si c'est création ou modification #}
+    <h1>
+        {% if offre %}
+            Modifier l'offre : {{ offre.titre }}
+        {% else %}
+            Créer une nouvelle offre
+        {% endif %}
+    </h1>
+
+    {# L'action du formulaire change aussi #}
+    {# Création → envoie vers /offres/creer #}
+    {# Modification → envoie vers /offres/modifier/1 #}
+    <form action="{% if offre %}/offres/modifier/{{ offre.id }}{% else %}/offres/creer{% endif %}" 
+          method="post" class="form-card">
+
+        <div class="form-group">
+            <label for="titre">Titre de l'offre *</label>
+            <input type="text" 
+                   id="titre" 
+                   name="titre" 
+                   value="{{ offre.titre ?? '' }}"
+                   placeholder="Ex: Développeur Web PHP"
+                   required>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description *</label>
+            <textarea id="description" 
+                      name="description" 
+                      rows="6"
+                      placeholder="Décrivez le poste, les missions..."
+                      required>{{ offre.description ?? '' }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="remuneration">Rémunération (€/mois)</label>
+            <input type="number" 
+                   id="remuneration" 
+                   name="remuneration" 
+                   value="{{ offre.remuneration ?? '' }}"
+                   placeholder="Ex: 600"
+                   min="0">
+        </div>
+
+        <div class="form-group">
+            <label for="date_offre">Date de l'offre *</label>
+            <input type="date" 
+                   id="date_offre" 
+                   name="date_offre" 
+                   value="{{ offre.date_offre ?? '' }}"
+                   required>
+        </div>
+
+        <div class="form-group">
+            <label for="entreprise_id">Entreprise *</label>
+            <select id="entreprise_id" name="entreprise_id" required>
+                <option value="">-- Choisir une entreprise --</option>
+                {% for entreprise in entreprises %}
+                    <option value="{{ entreprise.id }}"
+                        {% if offre and offre.entreprise_id == entreprise.id %}
+                            selected
+                        {% endif %}>
+                        {{ entreprise.nom }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-buttons">
+            <a href="/offres" class="btn-annuler">Annuler</a>
+            <button type="submit" class="btn-valider">
+                {% if offre %}Enregistrer les modifications{% else %}Créer l'offre{% endif %}
+            </button>
+        </div>
+
+    </form>
+</section>
+{% endblock %}

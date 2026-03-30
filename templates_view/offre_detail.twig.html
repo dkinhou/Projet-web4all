@@ -1,0 +1,73 @@
+{% extends 'template.twig.html' %}
+
+{% block title %}{{ offre.titre }} – StageAlternance{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="/css/offres.css">
+{% endblock %}
+
+{% block body %}
+<section class="detail-section">
+    <div class="detail-header">
+        <div class="detail-header-content">
+            <h1>{{ offre.titre }}</h1>
+            <span class="detail-entreprise">{{ offre.entreprise_nom }}</span>
+        </div>
+
+        {% if session.user_role == 'admin' or session.user_role == 'pilote' %}
+            <div class="detail-actions">
+                <a href="/offres/modifier/{{ offre.id }}" class="btn-modifier">Modifier</a>
+                <a href="/offres/supprimer/{{ offre.id }}" class="btn-supprimer"
+                   onclick="return confirm('Supprimer cette offre ?')">Supprimer</a>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="detail-body">
+        <div class="detail-infos">
+            <div class="detail-info-item">
+                <span class="detail-info-label">💰 Rémunération</span>
+                <span>{{ offre.remuneration }}€/mois</span>
+            </div>
+            <div class="detail-info-item">
+                <span class="detail-info-label">📅 Date de l'offre</span>
+                <span>{{ offre.date_offre }}</span>
+            </div>
+            <div class="detail-info-item">
+                <span class="detail-info-label">🏢 Entreprise</span>
+                <a href="/entreprises/{{ offre.entreprise_id }}">{{ offre.entreprise_nom }}</a>
+            </div>
+        </div>
+
+        <div class="detail-description">
+            <h2>Description du poste</h2>
+            <p>{{ offre.description }}</p>
+        </div>
+
+        {% if session.user_role == 'etudiant' %}
+            <div class="detail-postuler">
+                <h2>Intéressé par cette offre ?</h2>
+                <div class="detail-postuler-buttons">
+                    <a href="/candidatures/postuler/{{ offre.id }}" class="btn-postuler">
+                        Postuler maintenant
+                    </a>
+                    <a href="/wishlist/ajouter/{{ offre.id }}" class="btn-wishlist">
+                        ❤️ Ajouter à ma wishlist
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if session.user_id is not defined %}
+            <div class="detail-postuler">
+                <p>Connectez-vous pour postuler à cette offre.</p>
+                <a href="/connexion" class="btn-postuler">Se connecter</a>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="detail-retour">
+        <a href="/offres">← Retour aux offres</a>
+    </div>
+</section>
+{% endblock %}
