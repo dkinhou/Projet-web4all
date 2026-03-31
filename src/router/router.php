@@ -234,33 +234,189 @@ class router
                 }
                 else if ($url[0] === 'evaluer-entreprise')
                 {
-                    if (!$this->isConnected() || !isset($_SESSION['role']) || $_SESSION['role'] !== 'Pilote') {
+                    if (!$this->isConnected() || !isset($_SESSION['role']) || !in_array($_SESSION['role'], ['Pilote', 'Administrateur'], true)) {
                         header('Location: /connexion');
                         exit();
                     }
 
                     require_once(__DIR__ . '/../controllers/controllerConnexion.php');
                     $this->_ctrl = new controllerConnexion($url);
-                    $idPilote = (int) $_SESSION['id'];
-                    $this->_ctrl->evaluerEntreprise($idPilote);
+                    $idUtilisateur = (int) $_SESSION['id'];
+                    $this->_ctrl->evaluerEntreprise($idUtilisateur);
+                }
+                else if ($url[0] === 'admin-pilotes')
+                {
+                    if (!$this->isConnected() || !isset($_SESSION['role']) || $_SESSION['role'] !== 'Administrateur') {
+                        header('Location: /connexion');
+                        exit();
+                    }
+
+                    require_once(__DIR__ . '/../controllers/controllerAdmin.php');
+                    $this->_ctrl = new controllerAdmin();
+                    $this->_ctrl->listePilotes();
+                }
+                else if ($url[0] === 'admin-creer-pilote')
+                {
+                    if (!$this->isConnected() || !isset($_SESSION['role']) || $_SESSION['role'] !== 'Administrateur') {
+                        header('Location: /connexion');
+                        exit();
+                    }
+
+                    require_once(__DIR__ . '/../controllers/controllerAdmin.php');
+                    $this->_ctrl = new controllerAdmin();
+                    $this->_ctrl->creerPilote();
+                }
+                else if ($url[0] === 'admin-modifier-pilote')
+                {
+                    if (!$this->isConnected() || !isset($_SESSION['role']) || $_SESSION['role'] !== 'Administrateur') {
+                        header('Location: /connexion');
+                        exit();
+                    }
+
+                    require_once(__DIR__ . '/../controllers/controllerAdmin.php');
+                    $this->_ctrl = new controllerAdmin();
+                    $this->_ctrl->modifierPilote();
+                }
+                else if ($url[0] === 'admin-supprimer-pilote')
+                {
+                    if (!$this->isConnected() || !isset($_SESSION['role']) || $_SESSION['role'] !== 'Administrateur') {
+                        header('Location: /connexion');
+                        exit();
+                    }
+
+                    require_once(__DIR__ . '/../controllers/controllerAdmin.php');
+                    $this->_ctrl = new controllerAdmin();
+                    $this->_ctrl->supprimerPilote();
+                }
+                else if ($url[0] === 'admin-etudiants')
+                {
+                    if (!$this->isConnected() || !isset($_SESSION['role']) || $_SESSION['role'] !== 'Administrateur') {
+                        header('Location: /connexion');
+                        exit();
+                    }
+
+                    require_once(__DIR__ . '/../controllers/controllerAdmin.php');
+                    $this->_ctrl = new controllerAdmin();
+                    $this->_ctrl->listeEtudiants();
+                }
+                else if ($url[0] === 'admin-creer-etudiant')
+                {
+                    if (!$this->isConnected() || !isset($_SESSION['role']) || $_SESSION['role'] !== 'Administrateur') {
+                        header('Location: /connexion');
+                        exit();
+                    }
+
+                    require_once(__DIR__ . '/../controllers/controllerAdmin.php');
+                    $this->_ctrl = new controllerAdmin();
+                    $this->_ctrl->creerEtudiant();
+                }
+                else if ($url[0] === 'admin-modifier-etudiant')
+                {
+                    if (!$this->isConnected() || !isset($_SESSION['role']) || $_SESSION['role'] !== 'Administrateur') {
+                        header('Location: /connexion');
+                        exit();
+                    }
+
+                    require_once(__DIR__ . '/../controllers/controllerAdmin.php');
+                    $this->_ctrl = new controllerAdmin();
+                    $this->_ctrl->modifierEtudiant();
+                }
+                else if ($url[0] === 'admin-supprimer-etudiant')
+                {
+                    if (!$this->isConnected() || !isset($_SESSION['role']) || $_SESSION['role'] !== 'Administrateur') {
+                        header('Location: /connexion');
+                        exit();
+                    }
+
+                    require_once(__DIR__ . '/../controllers/controllerAdmin.php');
+                    $this->_ctrl = new controllerAdmin();
+                    $this->_ctrl->supprimerEtudiant();
                 }
                 else if ($url[0] === 'creer-entreprise' || $url[0] === 'modifier-entreprise' || $url[0] === 'supprimer-entreprise')
                 {
-                    // Redirection vers la page entreprises
-                    header('Location: /entreprises');
-                    exit();
+                    if (!$this->isConnected() || !isset($_SESSION['role']) || !in_array($_SESSION['role'], ['Pilote', 'Administrateur'], true)) {
+                        header('Location: /connexion');
+                        exit();
+                    }
+
+                    require_once(__DIR__ . '/../controllers/controllerEntreprises.php');
+                    $this->_ctrl = new controllerEntreprises($url);
+
+                    if ($url[0] === 'creer-entreprise') {
+                        $this->_ctrl->create();
+                    } else if ($url[0] === 'modifier-entreprise') {
+                        $this->_ctrl->edit();
+                    } else {
+                        $this->_ctrl->delete();
+                    }
                 }
                 else if ($url[0] === 'creer-offre' || $url[0] === 'modifier-offre' || $url[0] === 'supprimer-offre')
                 {
-                    // Redirection vers la page offres
-                    header('Location: /offres');
+                    if (!$this->isConnected() || !isset($_SESSION['role']) || !in_array($_SESSION['role'], ['Pilote', 'Administrateur'], true)) {
+                        header('Location: /connexion');
+                        exit();
+                    }
+
+                    if ($url[0] === 'creer-offre') {
+                        header('Location: /offres?create=1');
+                        exit();
+                    }
+
+                    if ($url[0] === 'modifier-offre') {
+                        header('Location: /offres?mode=edit');
+                        exit();
+                    }
+
+                    header('Location: /offres?mode=delete');
                     exit();
                 }
-                else if ($url[0] === 'etudiants' || $url[0] === 'creer-etudiant' || $url[0] === 'modifier-etudiant' || $url[0] === 'supprimer-etudiant')
+                else if ($url[0] === 'etudiants')
                 {
-                    // Redirection vers la page d'accueil (à implémenter plus tard si nécessaire)
-                    header('Location: /dashboard-pilote');
-                    exit();
+                    if (!$this->isConnected() || !isset($_SESSION['role']) || $_SESSION['role'] !== 'Pilote') {
+                        header('Location: /connexion');
+                        exit();
+                    }
+
+                    require_once(__DIR__ . '/../controllers/controllerPilote.php');
+                    $this->_ctrl = new controllerPilote();
+                    $idPilote = (int) $_SESSION['id'];
+                    $this->_ctrl->listeEtudiants($idPilote);
+                }
+                else if ($url[0] === 'creer-etudiant')
+                {
+                    if (!$this->isConnected() || !isset($_SESSION['role']) || $_SESSION['role'] !== 'Pilote') {
+                        header('Location: /connexion');
+                        exit();
+                    }
+
+                    require_once(__DIR__ . '/../controllers/controllerPilote.php');
+                    $this->_ctrl = new controllerPilote();
+                    $idPilote = (int) $_SESSION['id'];
+                    $this->_ctrl->creerEtudiant($idPilote);
+                }
+                else if ($url[0] === 'modifier-etudiant')
+                {
+                    if (!$this->isConnected() || !isset($_SESSION['role']) || $_SESSION['role'] !== 'Pilote') {
+                        header('Location: /connexion');
+                        exit();
+                    }
+
+                    require_once(__DIR__ . '/../controllers/controllerPilote.php');
+                    $this->_ctrl = new controllerPilote();
+                    $idPilote = (int) $_SESSION['id'];
+                    $this->_ctrl->modifierEtudiant($idPilote);
+                }
+                else if ($url[0] === 'supprimer-etudiant')
+                {
+                    if (!$this->isConnected() || !isset($_SESSION['role']) || $_SESSION['role'] !== 'Pilote') {
+                        header('Location: /connexion');
+                        exit();
+                    }
+
+                    require_once(__DIR__ . '/../controllers/controllerPilote.php');
+                    $this->_ctrl = new controllerPilote();
+                    $idPilote = (int) $_SESSION['id'];
+                    $this->_ctrl->supprimerEtudiant($idPilote);
                 }
                 else 
                 {

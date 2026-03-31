@@ -83,7 +83,7 @@
         </form>
 
         <div class="eval-footer">
-            <a href="/dashboard-pilote" class="btn btn-primary">Retour au tableau de bord</a>
+            <a href="{% if session.role is defined and session.role == 'Administrateur' %}/dashboard-admin{% else %}/dashboard-pilote{% endif %}" class="btn btn-primary">Retour au tableau de bord</a>
         </div>
     </div>
 </section>

@@ -5,6 +5,7 @@ use App\Model\offres;
 use App\Model\EtudiantActions;
 use App\Model\Evaluation;
 use App\Model\CandidaturesPilote;
+use App\Model\AdminActions;
 use App\Model\entreprises;
 
 require_once 'Controller.php'; 
@@ -13,6 +14,7 @@ require_once __DIR__ . '/../Model/offres.php';
 require_once __DIR__ . '/../Model/EtudiantActions.php';
 require_once __DIR__ . '/../Model/Evaluation.php';
 require_once __DIR__ . '/../Model/CandidaturesPilote.php';
+require_once __DIR__ . '/../Model/AdminActions.php';
 require_once __DIR__ . '/../Model/entreprises.php';
 
 
@@ -189,8 +191,13 @@ class controllerConnexion extends Controller {
     }
 
     public function indexadmin(&$email) {
+        $adminActions = new AdminActions();
+        $statistiques = $adminActions->getStatistiques();
+        
         $this->render('connexion_admin.twig.html', [
-            'message' => 'Bienvenue Admin !'
+            'message' => 'Bienvenue Admin !',
+            'Utilisateur' => $this->user->getuserprenom($email),
+            'statistiques' => $statistiques,
         ]);
     }
 

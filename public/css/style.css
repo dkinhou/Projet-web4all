@@ -65,6 +65,23 @@ body {
     background-color: var(--color-white);
     }
 
+.hamburger {
+    display: none;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: 6px;
+}
+
+.hamburger span {
+    display: block;
+    width: 24px;
+    height: 3px;
+    margin: 5px 0;
+    background-color: #333;
+    border-radius: 2px;
+}
+
 
 .nav-icone {
     display: flex;
@@ -148,6 +165,31 @@ footer {
     text-align: center;
     color: rgba(255, 255, 255, 0.3);
      color: var(--color-footer-link);
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 5%;
+        width: 260px;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background: #fff;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .nav-links.is-open {
+        display: flex;
+    }
 }
    
 

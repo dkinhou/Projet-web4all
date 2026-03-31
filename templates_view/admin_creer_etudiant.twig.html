@@ -1,0 +1,58 @@
+{% extends 'template.twig.html' %}
+    
+{% block title %}Creer un Etudiant – StageAlternance{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="/css/connexion_admin.css">
+{% endblock %}
+
+{% block body %}
+<div class="admin-section">
+    <div class="admin-header">
+        <h1>➕ Creer un Nouvel Etudiant</h1>
+    </div>
+
+    {% if message %}
+        <div class="alert alert-{{ message|length > 50 ? 'error' : 'warning' }}">{{ message }}</div>
+    {% endif %}
+
+    <form method="POST" class="admin-form">
+        <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" value="{{ formData.email }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="nom">Nom *</label>
+            <input type="text" id="nom" name="nom" value="{{ formData.nom }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="prenom">Prenom *</label>
+            <input type="text" id="prenom" name="prenom" value="{{ formData.prenom }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Mot de Passe (min 6 caracteres) *</label>
+            <input type="password" id="password" name="password" minlength="6" required>
+        </div>
+
+        <div class="form-group">
+            <label for="id_pilote">Pilote Attribue *</label>
+            <select id="id_pilote" name="id_pilote">
+                <option value="">-- Selectionner un pilote --</option>
+                {% for pilote in pilotes %}
+                    <option value="{{ pilote.id_pilote }}" {% if formData.id_pilote == pilote.id_pilote %}selected{% endif %}>
+                        {{ pilote.prenom }} {{ pilote.nom }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-buttons">
+            <button type="submit" class="btn btn-primary">Creer l'Etudiant</button>
+            <a href="/admin-etudiants" class="btn">Annuler</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

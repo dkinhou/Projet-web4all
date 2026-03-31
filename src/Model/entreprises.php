@@ -119,4 +119,90 @@ class entreprises
 
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
+
+    public function createEntreprise($nomSociete, $secteur, $description, $contact)
+    {
+        $sql = 'INSERT INTO entreprises (nom_societe, secteur, description, contact)
+                VALUES (:nom_societe, :secteur, :description, :contact)';
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':nom_societe', trim((string) $nomSociete));
+        $stmt->bindValue(':secteur', trim((string) $secteur));
+        $stmt->bindValue(':description', trim((string) $description));
+        $stmt->bindValue(':contact', trim((string) $contact));
+
+        return $stmt->execute();
+    }
+
+    public function updateEntreprise($idEntreprise, $nomSociete, $secteur, $description, $contact)
+    {
+        $sql = 'UPDATE entreprises
+                SET nom_societe = :nom_societe,
+                    secteur = :secteur,
+                    description = :description,
+                    contact = :contact
+                WHERE id_entreprise = :id_entreprise';
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_entreprise', (int) $idEntreprise, \PDO::PARAM_INT);
+        $stmt->bindValue(':nom_societe', trim((string) $nomSociete));
+        $stmt->bindValue(':secteur', trim((string) $secteur));
+        $stmt->bindValue(':description', trim((string) $description));
+        $stmt->bindValue(':contact', trim((string) $contact));
+
+        return $stmt->execute();
+    }
+
+    public function deleteEntreprise($idEntreprise)
+    {
+        $sql = 'DELETE FROM entreprises WHERE id_entreprise = :id_entreprise';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_entreprise', (int) $idEntreprise, \PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }
+
+    public function getRecentEvaluationsByEntrepriseIds(array $entrepriseIds, $limitPerEntreprise = 3)
+    {
+        $entrepriseIds = array_values(array_unique(array_map('intval', $entrepriseIds)));
+        if (empty($entrepriseIds)) {
+            return [];
+        }
+
+        $placeholders = implode(',', array_fill(0, count($entrepriseIds), '?'));
+        $sql = "SELECT ev.id_evaluation, ev.id_entreprise, ev.note, ev.commentaire, ev.date_evaluation,
+                       u.nom, u.prenom, u.role
+                FROM evaluation ev
+                INNER JOIN Utilisateurs u ON u.id_utilisateur = ev.id_utilisateur
+                WHERE ev.id_entreprise IN ($placeholders)
+                ORDER BY ev.id_entreprise ASC, ev.date_evaluation DESC, ev.id_evaluation DESC";
+
+        $stmt = $this->db->prepare($sql);
+        foreach ($entrepriseIds as $index => $idEntreprise) {
+            $stmt->bindValue($index + 1, $idEntreprise, \PDO::PARAM_INT);
+        }
+        $stmt->execute();
+
+        $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $grouped = [];
+
+        foreach ($rows as $row) {
+            $idEntreprise = (int) ($row['id_entreprise'] ?? 0);
+            if ($idEntreprise <= 0) {
+                continue;
+            }
+
+            if (!isset($grouped[$idEntreprise])) {
+                $grouped[$idEntreprise] = [];
+            }
+
+            if (count($grouped[$idEntreprise]) >= (int) $limitPerEntreprise) {
+                continue;
+            }
+
+            $grouped[$idEntreprise][] = $row;
+        }
+
+        return $grouped;
+    }
 }

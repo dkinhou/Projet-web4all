@@ -231,6 +231,49 @@ body {
     margin-bottom: 14px;
 }
 
+.entreprise-comments {
+    margin-bottom: 14px;
+    padding: 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #f9fafb;
+}
+
+.entreprise-comments-title {
+    margin: 0 0 8px;
+    color: #1f2937;
+}
+
+.entreprise-comment-item {
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed #d1d5db;
+}
+
+.entreprise-comment-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.entreprise-comment-meta {
+    margin: 0 0 4px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #374151;
+}
+
+.entreprise-comment-text {
+    margin: 0;
+    color: #4b5563;
+}
+
+.entreprise-comment-empty {
+    margin: 0;
+    color: #6b7280;
+    font-style: italic;
+}
+
 .offre-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
@@ -251,6 +294,114 @@ body {
 
 .entreprise-eval-btn:hover {
     background-color: #d97706;
+}
+
+.entreprise-list-actions {
+    margin: 0 0 18px;
+}
+
+.entreprise-card-actions {
+    margin-top: auto;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.entreprise-action-btn {
+    display: inline-block;
+    text-align: center;
+    padding: 10px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    background-color: #e5e7eb;
+    color: #111827;
+}
+
+.entreprise-action-btn:hover {
+    background-color: #d1d5db;
+}
+
+.entreprise-action-btn-primary {
+    background-color: var(--color-primary);
+    color: #fff;
+}
+
+.entreprise-action-btn-primary:hover {
+    background-color: var(--color-grey);
+}
+
+.entreprise-action-btn-danger {
+    background-color: #dc2626;
+    color: #fff;
+}
+
+.entreprise-action-btn-danger:hover {
+    background-color: #b91c1c;
+}
+
+.manage-feedback {
+    margin: 12px 0 16px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background-color: #dbeafe;
+    color: #1e3a8a;
+    font-weight: 700;
+}
+
+.manage-feedback-warn {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.entreprise-manage-card {
+    max-width: 760px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+.entreprise-delete-card {
+    border-color: #fecaca;
+}
+
+.entreprise-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.entreprise-form input,
+.entreprise-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+}
+
+.entreprise-form-actions {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.entreprise-delete-summary {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+}
+
+.entreprise-return-link {
+    margin-top: 14px;
+    display: inline-block;
+    color: #1d4ed8;
+    text-decoration: none;
+    font-weight: 700;
 }
 
 .pagination-container {

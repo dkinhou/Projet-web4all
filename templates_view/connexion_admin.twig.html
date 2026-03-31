@@ -1,12 +1,64 @@
 {% extends 'template.twig.html' %}
     
-    {% block title %}Espace Candidat – StageAlternance{% endblock %}
+{% block title %}Espace Administrateur – StageAlternance{% endblock %}
 
-    {% block stylesheets %}
-    <link rel="stylesheet" href="/css/connexion_admin.css">
-    {% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="/css/connexion_admin.css">
+{% endblock %}
         
-        {% block body %}
+{% block body %}
+<div class="admin-space">
+    <div class="admin-hero-card">
+        <p class="admin-role">Role: Administrateur</p>
+        <h1>Espace Administrateur - StageAlternance</h1>
+        <h2>Bienvenue dans l'espace administrateur {{ Utilisateur }}</h2>
+        <p class="admin-subtitle">Gerez les entreprises, les offres, les pilotes et les etudiants depuis un tableau de bord unique.</p>
+    </div>
+</div>
 
+<section class="dashboard-container">
 
-        {%endblock%}
+    <section class="card card-entreprises">
+        <h2>🏢 Gestion des Entreprises</h2>
+        <div class="actions">
+            <a href="/entreprises" class="btn">Rechercher / Afficher</a>
+            <a href="/creer-entreprise" class="btn btn-primary">Creer une entreprise</a>
+            <a href="/modifier-entreprise" class="btn btn-primary">Modifier une entreprise</a>
+            <a href="/supprimer-entreprise" class="btn btn-danger">Supprimer une entreprise</a>
+            <a href="/entreprises" class="btn">Evaluer une entreprise</a>
+        </div>
+    </section>
+
+    <section class="card card-offres">
+        <h2>🎓 Offres de Stages</h2>
+        <div class="actions">
+            <a href="/offres" class="btn">Rechercher / Afficher</a>
+            <a href="/creer-offre" class="btn btn-primary">Creer une offre</a>
+            <a href="/modifier-offre" class="btn btn-primary">Modifier une offre</a>
+            <a href="/supprimer-offre" class="btn btn-danger">Supprimer une offre</a>
+            <a href="/offres" class="btn">Consulter Statistiques</a>
+        </div>
+    </section>
+
+    <section class="card card-pilotes">
+        <h2>👔 Gestion des Pilotes</h2>
+        <div class="actions">
+            <a href="/admin-pilotes" class="btn">Afficher la liste</a>
+            <a href="/admin-creer-pilote" class="btn btn-primary">Creer un pilote</a>
+            <a href="/admin-pilotes" class="btn btn-primary">Modifier un pilote</a>
+            <a href="/admin-pilotes" class="btn btn-danger">Supprimer un pilote</a>
+        </div>
+    </section>
+
+    <section class="card card-etudiants">
+        <h2>👨‍🎓 Gestion des Etudiants</h2>
+        <div class="actions">
+            <a href="/admin-etudiants" class="btn">Afficher la liste</a>
+            <a href="/admin-creer-etudiant" class="btn btn-primary">Creer un etudiant</a>
+            <a href="/admin-etudiants" class="btn btn-primary">Modifier un etudiant</a>
+            <a href="/admin-etudiants" class="btn btn-danger">Supprimer un etudiant</a>
+        </div>
+    </section>
+
+</section>
+{% endblock %}

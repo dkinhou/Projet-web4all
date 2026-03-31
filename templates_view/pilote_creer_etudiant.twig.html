@@ -1,0 +1,50 @@
+{% extends 'template.twig.html' %}
+    
+{% block title %}Créer un Étudiant – StageAlternance{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="/css/connexion_admin.css">
+{% endblock %}
+        
+{% block body %}
+<div class="admin-space">
+    <div class="admin-hero-card">
+        <h1>Créer un Nouvel Étudiant</h1>
+        <p class="admin-subtitle">Remplissez le formulaire pour ajouter un étudiant à votre suivi</p>
+    </div>
+</div>
+
+{% if message %}
+    <section class="manage-feedback" style="margin: 20px;">{{ message }}</section>
+{% endif %}
+
+<section class="offres">
+    <form method="post" style="max-width: 600px; margin: 30px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label for="email" style="display: block; margin-bottom: 5px; font-weight: bold;">Email *</label>
+            <input type="email" id="email" name="email" value="{{ formData.email }}" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label for="nom" style="display: block; margin-bottom: 5px; font-weight: bold;">Nom *</label>
+            <input type="text" id="nom" name="nom" value="{{ formData.nom }}" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label for="prenom" style="display: block; margin-bottom: 5px; font-weight: bold;">Prénom *</label>
+            <input type="text" id="prenom" name="prenom" value="{{ formData.prenom }}" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label for="password" style="display: block; margin-bottom: 5px; font-weight: bold;">Mot de passe (min. 6 caractères) *</label>
+            <input type="password" id="password" name="password" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+        </div>
+
+        <div class="form-actions" style="display: flex; gap: 10px; margin-top: 20px;">
+            <button type="submit" class="btn btn-primary" style="flex: 1; padding: 12px;">Créer l'étudiant</button>
+            <a href="/etudiants" class="btn" style="flex: 1; text-align: center; padding: 12px;">Annuler</a>
+        </div>
+    </form>
+</section>
+
+{% endblock %}

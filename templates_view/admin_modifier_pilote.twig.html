@@ -1,0 +1,43 @@
+{% extends 'template.twig.html' %}
+    
+{% block title %}Modifier un Pilote – StageAlternance{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="/css/connexion_admin.css">
+{% endblock %}
+
+{% block body %}
+<div class="admin-section">
+    <div class="admin-header">
+        <h1>✏️ Modifier le Pilote</h1>
+    </div>
+
+    {% if message %}
+        <div class="alert alert-{{ message|length > 50 ? 'error' : 'warning' }}">{{ message }}</div>
+    {% endif %}
+
+    <form method="POST" class="admin-form">
+        <input type="hidden" name="id" value="{{ pilote.id_utilisateur }}">
+
+        <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" value="{{ pilote.email }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="nom">Nom *</label>
+            <input type="text" id="nom" name="nom" value="{{ pilote.nom }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="prenom">Prenom *</label>
+            <input type="text" id="prenom" name="prenom" value="{{ pilote.prenom }}" required>
+        </div>
+
+        <div class="form-buttons">
+            <button type="submit" class="btn btn-primary">Mettre a Jour</button>
+            <a href="/admin-pilotes" class="btn">Annuler</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

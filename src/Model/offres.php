@@ -16,8 +16,16 @@ class offres {
 
 
     public function getAllOffres() {
-        $sql = 'SELECT * FROM offres';
+        $sql = 'SELECT * FROM offres ORDER BY date_publication DESC';
         $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function getEntreprisesOptions()
+    {
+        $sql = 'SELECT id_entreprise, nom_societe FROM entreprises ORDER BY nom_societe ASC';
+        $stmt = $this->db->query($sql);
+
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
@@ -69,7 +77,7 @@ class offres {
     }
 
     public function getOffresPaginated($limit, $offset) {
-        $sql = 'SELECT offres.*, entreprises.nom_societe AS entreprises FROM offres JOIN entreprises ON offres.id_entreprise = entreprises.id_entreprise LIMIT :limit OFFSET :offset';
+        $sql = 'SELECT offres.*, entreprises.nom_societe AS entreprises FROM offres JOIN entreprises ON offres.id_entreprise = entreprises.id_entreprise ORDER BY offres.date_publication DESC LIMIT :limit OFFSET :offset';
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':limit', (int)$limit, \PDO::PARAM_INT);
         $stmt->bindValue(':offset', (int)$offset, \PDO::PARAM_INT);
@@ -118,7 +126,7 @@ class offres {
 
     public function getOffresId()
     {
-        $sql = 'SELECT id_offre FROM offres';
+        $sql = 'SELECT id_offre FROM offres ORDER BY date_publication DESC';
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
@@ -172,9 +180,12 @@ class offres {
             'UPDATE offres
              SET titre = :titre,
                  description = :description,
+                 id_entreprise = :id_entreprise,
                  ville = :ville,
                  type_contrat = :typeContrat,
                  duree = :duree,
+                 missions = :missions,
+                 profil_recherche = :profil_recherche,
                  remuneration = :remuneration
              WHERE id_offre = :offreId'
         );
@@ -182,10 +193,57 @@ class offres {
         $stmt->bindValue(':offreId', (int) $offreId, \PDO::PARAM_INT);
         $stmt->bindValue(':titre', (string) ($data['titre'] ?? ''));
         $stmt->bindValue(':description', (string) ($data['description'] ?? ''));
+        $stmt->bindValue(':id_entreprise', (int) ($data['id_entreprise'] ?? 0), \PDO::PARAM_INT);
         $stmt->bindValue(':ville', (string) ($data['ville'] ?? ''));
         $stmt->bindValue(':typeContrat', (string) ($data['type_contrat'] ?? 'Stage'));
         $stmt->bindValue(':duree', (string) ($data['duree'] ?? ''));
+        $stmt->bindValue(':missions', (string) ($data['missions'] ?? ''));
+        $stmt->bindValue(':profil_recherche', (string) ($data['profil_recherche'] ?? ''));
         $stmt->bindValue(':remuneration', (string) ($data['remuneration'] ?? ''));
+
+        return $stmt->execute();
+    }
+
+    public function createOffre(array $data)
+    {
+        $stmt = $this->db->prepare(
+            'INSERT INTO offres (
+                titre,
+                description,
+                ville,
+                date_publication,
+                id_entreprise,
+                type_contrat,
+                duree,
+                missions,
+                profil_recherche,
+                remuneration,
+                avantages
+            ) VALUES (
+                :titre,
+                :description,
+                :ville,
+                CURDATE(),
+                :id_entreprise,
+                :type_contrat,
+                :duree,
+                :missions,
+                :profil_recherche,
+                :remuneration,
+                :avantages
+            )'
+        );
+
+        $stmt->bindValue(':titre', (string) ($data['titre'] ?? ''));
+        $stmt->bindValue(':description', (string) ($data['description'] ?? ''));
+        $stmt->bindValue(':ville', (string) ($data['ville'] ?? ''));
+        $stmt->bindValue(':id_entreprise', (int) ($data['id_entreprise'] ?? 0), \PDO::PARAM_INT);
+        $stmt->bindValue(':type_contrat', (string) ($data['type_contrat'] ?? 'Stage'));
+        $stmt->bindValue(':duree', (string) ($data['duree'] ?? ''));
+        $stmt->bindValue(':missions', (string) ($data['missions'] ?? ''));
+        $stmt->bindValue(':profil_recherche', (string) ($data['profil_recherche'] ?? ''));
+        $stmt->bindValue(':remuneration', (string) ($data['remuneration'] ?? ''));
+        $stmt->bindValue(':avantages', (string) ($data['avantages'] ?? ''));
 
         return $stmt->execute();
     }

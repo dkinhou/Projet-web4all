@@ -1,0 +1,33 @@
+{% extends 'template.twig.html' %}
+    
+{% block title %}Supprimer un Etudiant – StageAlternance{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="/css/connexion_admin.css">
+{% endblock %}
+
+{% block body %}
+<div class="admin-section">
+    <div class="admin-header">
+        <h1>🗑️ Supprimer l'Etudiant</h1>
+    </div>
+
+    <div class="confirmation-box">
+        <p class="warning-text">Etes-vous sur de vouloir supprimer cet etudiant ?</p>
+        <div class="user-info">
+            <p><strong>Nom:</strong> {{ etudiant.nom }} {{ etudiant.prenom }}</p>
+            <p><strong>Email:</strong> {{ etudiant.email }}</p>
+            <p><strong>ID:</strong> #{{ etudiant.id_utilisateur }}</p>
+            {% if etudiant.pilote_prenom %}
+                <p><strong>Pilote Attribue:</strong> {{ etudiant.pilote_prenom }} {{ etudiant.pilote_nom }}</p>
+            {% endif %}
+        </div>
+        <p class="danger-text">⚠️ Cette action est irreversible.</p>
+
+        <form method="POST" class="form-buttons">
+            <button type="submit" class="btn btn-danger">Confirmer la Suppression</button>
+            <a href="/admin-etudiants" class="btn">Annuler</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

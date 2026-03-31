@@ -15,11 +15,40 @@ class controllerOffres extends Controller {
     }
 
     public function index() {
-        $isPilot = isset($_SESSION['role']) && $_SESSION['role'] === 'Pilote';
+        $canManage = isset($_SESSION['role']) && in_array($_SESSION['role'], ['Pilote', 'Administrateur'], true);
 
-        if ($isPilot && $_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($canManage && $_SERVER['REQUEST_METHOD'] === 'POST') {
             $actionType = $_POST['action_type'] ?? '';
             $offreId = isset($_POST['id_offre']) ? (int) $_POST['id_offre'] : 0;
+
+            if ($actionType === 'create') {
+                $titre = trim((string) ($_POST['titre'] ?? ''));
+                $description = trim((string) ($_POST['description'] ?? ''));
+                $ville = trim((string) ($_POST['ville'] ?? ''));
+                $idEntreprise = (int) ($_POST['id_entreprise'] ?? 0);
+
+                if ($titre === '' || $description === '' || $ville === '' || $idEntreprise <= 0) {
+                    header('Location: /offres?create=1&manage=invalid');
+                    exit();
+                }
+
+                $payload = [
+                    'titre' => $titre,
+                    'description' => $description,
+                    'ville' => $ville,
+                    'id_entreprise' => $idEntreprise,
+                    'type_contrat' => ($_POST['type_contrat'] ?? 'Stage') === 'Alternance' ? 'Alternance' : 'Stage',
+                    'duree' => trim((string) ($_POST['duree'] ?? '')),
+                    'missions' => trim((string) ($_POST['missions'] ?? '')),
+                    'profil_recherche' => trim((string) ($_POST['profil_recherche'] ?? '')),
+                    'remuneration' => trim((string) ($_POST['remuneration'] ?? '')),
+                    'avantages' => trim((string) ($_POST['avantages'] ?? '')),
+                ];
+
+                $result = $this->offresModel->createOffre($payload);
+                header('Location: /offres?manage=' . ($result ? 'created' : 'error'));
+                exit();
+            }
 
             if ($offreId > 0 && $actionType === 'delete') {
                 $result = $this->offresModel->deleteOffre($offreId);
@@ -31,8 +60,9 @@ class controllerOffres extends Controller {
                 $titre = trim((string) ($_POST['titre'] ?? ''));
                 $description = trim((string) ($_POST['description'] ?? ''));
                 $ville = trim((string) ($_POST['ville'] ?? ''));
+                $idEntreprise = (int) ($_POST['id_entreprise'] ?? 0);
 
-                if ($titre === '' || $description === '' || $ville === '') {
+                if ($titre === '' || $description === '' || $ville === '' || $idEntreprise <= 0) {
                     header('Location: /offres?edit=' . $offreId . '&manage=invalid');
                     exit();
                 }
@@ -41,8 +71,11 @@ class controllerOffres extends Controller {
                     'titre' => $titre,
                     'description' => $description,
                     'ville' => $ville,
+                    'id_entreprise' => $idEntreprise,
                     'type_contrat' => ($_POST['type_contrat'] ?? 'Stage') === 'Alternance' ? 'Alternance' : 'Stage',
                     'duree' => trim((string) ($_POST['duree'] ?? '')),
+                    'missions' => trim((string) ($_POST['missions'] ?? '')),
+                    'profil_recherche' => trim((string) ($_POST['profil_recherche'] ?? '')),
                     'remuneration' => trim((string) ($_POST['remuneration'] ?? '')),
                 ];
 
@@ -85,20 +118,30 @@ class controllerOffres extends Controller {
         }
 
         $editOffer = null;
-        if ($isPilot && isset($_GET['edit'])) {
+        if ($canManage && isset($_GET['edit'])) {
             $editOffer = $this->offresModel->getOffreById((int) $_GET['edit']);
         }
 
+        $entreprisesOptions = $canManage ? $this->offresModel->getEntreprisesOptions() : [];
+        $createMode = $canManage && isset($_GET['create']);
+        $mode = isset($_GET['mode']) ? trim((string) $_GET['mode']) : '';
+
         $manage = $_GET['manage'] ?? '';
         $manageMessage = '';
-        if ($manage === 'updated') {
+        if ($manage === 'created') {
+            $manageMessage = 'Offre creee avec succes.';
+        } elseif ($manage === 'updated') {
             $manageMessage = 'Offre modifiee avec succes.';
         } elseif ($manage === 'deleted') {
             $manageMessage = 'Offre supprimee avec succes.';
         } elseif ($manage === 'invalid') {
-            $manageMessage = 'Veuillez renseigner titre, description et ville.';
+            $manageMessage = 'Veuillez renseigner titre, description, ville et entreprise.';
         } elseif ($manage === 'error') {
             $manageMessage = 'Une erreur est survenue pendant la mise a jour.';
+        } elseif ($mode === 'edit') {
+            $manageMessage = 'Selectionnez une offre puis cliquez sur Modifier.';
+        } elseif ($mode === 'delete') {
+            $manageMessage = 'Selectionnez une offre puis cliquez sur Supprimer.';
         }
 
         $queryParams = [];
@@ -117,7 +160,10 @@ class controllerOffres extends Controller {
                 'editOffer' => $editOffer,
                 'manageMessage' => $manageMessage,
                 'filters' => $filters,
-                'querySuffix' => $querySuffix
+                'querySuffix' => $querySuffix,
+                'canManage' => $canManage,
+                'createMode' => $createMode,
+                'entreprisesOptions' => $entreprisesOptions,
             ]);
     }
 

@@ -1,0 +1,30 @@
+{% extends 'template.twig.html' %}
+
+{% block title %}Supprimer une entreprise – StageAlternance{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="/css/entreprises.css">
+{% endblock %}
+
+{% block body %}
+<section class="offres">
+    <div class="entreprise-manage-card entreprise-delete-card">
+        <h2>Supprimer une entreprise</h2>
+        <p class="manage-feedback manage-feedback-warn">Cette action est irreversible.</p>
+
+        <div class="entreprise-delete-summary">
+            <p><strong>Nom:</strong> {{ entreprise.nom_societe }}</p>
+            <p><strong>Secteur:</strong> {{ entreprise.secteur|default('Non renseigne') }}</p>
+            <p><strong>Contact:</strong> {{ entreprise.contact|default('Non renseigne') }}</p>
+        </div>
+
+        <form method="post" class="entreprise-form-actions">
+            <input type="hidden" name="id_entreprise" value="{{ entreprise.id_entreprise }}">
+            <button type="submit" class="entreprise-action-btn entreprise-action-btn-danger">Confirmer la suppression</button>
+            <a href="/entreprises" class="entreprise-action-btn">Annuler</a>
+        </form>
+
+        <a href="{{ dashboardUrl }}" class="entreprise-return-link">Retour au tableau de bord</a>
+    </div>
+</section>
+{% endblock %}

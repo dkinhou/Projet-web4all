@@ -23,6 +23,14 @@
 <section class="offres">
     <h2>Entreprises partenaires</h2>
     <p class="offres-count">{{ compteur }} entreprises disponibles</p>
+    {% if message %}
+        <p class="manage-feedback">{{ message }}</p>
+    {% endif %}
+    {% if canManage %}
+        <div class="entreprise-list-actions">
+            <a href="/creer-entreprise" class="entreprise-action-btn entreprise-action-btn-primary">Creer une entreprise</a>
+        </div>
+    {% endif %}
     <div class="offres-list">
         {% for entreprise in entreprises %}
             <div class="offre-card">
@@ -37,8 +45,30 @@
                         Pas encore evaluee
                     {% endif %}
                 </p>
-                {% if session.role is defined and session.role == 'Pilote' %}
-                    <a href="/evaluer-entreprise?id={{ entreprise.id_entreprise }}" class="entreprise-eval-btn">Evaluer cette entreprise</a>
+                <div class="entreprise-comments">
+                    <p class="entreprise-comments-title"><strong>Commentaires recents :</strong></p>
+                    {% set evaluations = recentEvaluations[entreprise.id_entreprise]|default([]) %}
+                    {% if evaluations|length > 0 %}
+                        {% for eval in evaluations %}
+                            <div class="entreprise-comment-item">
+                                <p class="entreprise-comment-meta">
+                                    {{ eval.note }}/5 - {{ eval.prenom }} {{ eval.nom }} ({{ eval.role }}) - {{ eval.date_evaluation }}
+                                </p>
+                                <p class="entreprise-comment-text">
+                                    {{ eval.commentaire|default('Aucun commentaire') }}
+                                </p>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p class="entreprise-comment-empty">Aucun commentaire pour le moment.</p>
+                    {% endif %}
+                </div>
+                {% if canManage %}
+                    <div class="entreprise-card-actions">
+                        <a href="/evaluer-entreprise?id={{ entreprise.id_entreprise }}" class="entreprise-eval-btn">Evaluer</a>
+                        <a href="/modifier-entreprise?id={{ entreprise.id_entreprise }}" class="entreprise-action-btn">Modifier</a>
+                        <a href="/supprimer-entreprise?id={{ entreprise.id_entreprise }}" class="entreprise-action-btn entreprise-action-btn-danger">Supprimer</a>
+                    </div>
                 {% endif %}
             </div>
         {% else %}

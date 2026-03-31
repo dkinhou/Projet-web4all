@@ -61,7 +61,59 @@
                 <section class="manage-feedback">{{ manageMessage }}</section>
             {% endif %}
 
-            {% if session.role is defined and session.role == 'Pilote' and editOffer is defined and editOffer %}
+            {% if canManage is defined and canManage and createMode is defined and createMode %}
+                <section class="pilot-edit-panel">
+                    <h3>Creer une nouvelle offre</h3>
+                    <form action="/offres" method="post" class="pilot-edit-form">
+                        <input type="hidden" name="action_type" value="create">
+
+                        <label>Titre</label>
+                        <input type="text" name="titre" required>
+
+                        <label>Entreprise</label>
+                        <select name="id_entreprise" required>
+                            <option value="">Selectionner une entreprise</option>
+                            {% for entreprise in entreprisesOptions|default([]) %}
+                                <option value="{{ entreprise.id_entreprise }}">{{ entreprise.nom_societe }}</option>
+                            {% endfor %}
+                        </select>
+
+                        <label>Ville</label>
+                        <input type="text" name="ville" required>
+
+                        <label>Type de contrat</label>
+                        <select name="type_contrat">
+                            <option value="Stage">Stage</option>
+                            <option value="Alternance">Alternance</option>
+                        </select>
+
+                        <label>Duree</label>
+                        <input type="text" name="duree">
+
+                        <label>Remuneration</label>
+                        <input type="text" name="remuneration">
+
+                        <label>Missions</label>
+                        <textarea name="missions" rows="4"></textarea>
+
+                        <label>Profil recherche</label>
+                        <textarea name="profil_recherche" rows="4"></textarea>
+
+                        <label>Avantages</label>
+                        <textarea name="avantages" rows="3"></textarea>
+
+                        <label>Description</label>
+                        <textarea name="description" rows="5" required></textarea>
+
+                        <div class="pilot-edit-actions">
+                            <button type="submit">Creer l'offre</button>
+                            <a href="/offres">Annuler</a>
+                        </div>
+                    </form>
+                </section>
+            {% endif %}
+
+            {% if canManage is defined and canManage and editOffer is defined and editOffer %}
                 <section class="pilot-edit-panel">
                     <h3>Modifier l'offre: {{ editOffer.titre }}</h3>
                     <form action="/offres" method="post" class="pilot-edit-form">
@@ -70,6 +122,16 @@
 
                         <label>Titre</label>
                         <input type="text" name="titre" value="{{ editOffer.titre }}" required>
+
+                        <label>Entreprise</label>
+                        <select name="id_entreprise" required>
+                            <option value="">Selectionner une entreprise</option>
+                            {% for entreprise in entreprisesOptions|default([]) %}
+                                <option value="{{ entreprise.id_entreprise }}" {{ editOffer.id_entreprise == entreprise.id_entreprise ? 'selected' : '' }}>
+                                    {{ entreprise.nom_societe }}
+                                </option>
+                            {% endfor %}
+                        </select>
 
                         <label>Ville</label>
                         <input type="text" name="ville" value="{{ editOffer.ville }}" required>
@@ -85,6 +147,12 @@
 
                         <label>Remuneration</label>
                         <input type="text" name="remuneration" value="{{ editOffer.remuneration|default('') }}">
+
+                        <label>Missions</label>
+                        <textarea name="missions" rows="4">{{ editOffer.missions|default('') }}</textarea>
+
+                        <label>Profil recherche</label>
+                        <textarea name="profil_recherche" rows="4">{{ editOffer.profil_recherche|default('') }}</textarea>
 
                         <label>Description</label>
                         <textarea name="description" rows="5" required>{{ editOffer.description }}</textarea>
@@ -137,7 +205,7 @@
                             </div>
                         </div>
                         <a href="/detail_offres?id={{ offre.id_offre }}" class="details-button">Voir les détails</a>
-                        {% if session.role is defined and session.role == 'Pilote' %}
+                        {% if canManage is defined and canManage %}
                             <div class="pilot-offer-actions">
                                 <a href="/offres?edit={{ offre.id_offre }}" class="offer-action-btn offer-action-edit">Modifier</a>
                                 <form action="/offres" method="post" onsubmit="return confirm('Supprimer cette offre ?');">
@@ -169,5 +237,4 @@
                 </ul> 
             </nav>
 
-           <script src="/js/filtre.js"></script>
         {% endblock %}

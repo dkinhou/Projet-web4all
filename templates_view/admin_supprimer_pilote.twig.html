@@ -1,0 +1,30 @@
+{% extends 'template.twig.html' %}
+    
+{% block title %}Supprimer un Pilote – StageAlternance{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="/css/connexion_admin.css">
+{% endblock %}
+
+{% block body %}
+<div class="admin-section">
+    <div class="admin-header">
+        <h1>🗑️ Supprimer le Pilote</h1>
+    </div>
+
+    <div class="confirmation-box">
+        <p class="warning-text">Etes-vous sur de vouloir supprimer ce pilote ?</p>
+        <div class="user-info">
+            <p><strong>Nom:</strong> {{ pilote.nom }} {{ pilote.prenom }}</p>
+            <p><strong>Email:</strong> {{ pilote.email }}</p>
+            <p><strong>ID:</strong> #{{ pilote.id_utilisateur }}</p>
+        </div>
+        <p class="danger-text">⚠️ Cette action est irreversible.</p>
+
+        <form method="POST" class="form-buttons">
+            <button type="submit" class="btn btn-danger">Confirmer la Suppression</button>
+            <a href="/admin-pilotes" class="btn">Annuler</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

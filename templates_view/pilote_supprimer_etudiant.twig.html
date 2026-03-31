@@ -1,0 +1,36 @@
+{% extends 'template.twig.html' %}
+    
+{% block title %}Supprimer un Étudiant – StageAlternance{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="/css/connexion_admin.css">
+{% endblock %}
+        
+{% block body %}
+<div class="admin-space">
+    <div class="admin-hero-card">
+        <h1>Supprimer un Étudiant</h1>
+        <p class="admin-subtitle">Êtes-vous sûr de vouloir supprimer {{ etudiant.prenom }} {{ etudiant.nom }} ?</p>
+    </div>
+</div>
+
+<section class="offres">
+    <div style="max-width: 500px; margin: 30px auto; padding: 30px; border: 1px solid #ff6b6b; border-radius: 8px; background-color: #ffe0e0;">
+        <h3 style="color: #d32f2f; margin-top: 0;">Confirmation de suppression</h3>
+        
+        <div class="info-block" style="background-color: white; padding: 15px; border-radius: 4px; margin-bottom: 20px;">
+            <p><strong>Email :</strong> {{ etudiant.email }}</p>
+            <p><strong>Nom :</strong> {{ etudiant.nom }}</p>
+            <p><strong>Prénom :</strong> {{ etudiant.prenom }}</p>
+        </div>
+
+        <p style="color: #d32f2f; font-weight: bold; margin-bottom: 20px;">⚠️ Cette action est irréversible. L'étudiant et toutes ses données seront supprimés.</p>
+
+        <form method="post" style="display: flex; gap: 10px;">
+            <button type="submit" class="btn btn-danger" style="flex: 1; padding: 12px; background-color: #d32f2f; color: white;">Confirmer la suppression</button>
+            <a href="/etudiants" class="btn" style="flex: 1; text-align: center; padding: 12px;">Annuler</a>
+        </form>
+    </div>
+</section>
+
+{% endblock %}
