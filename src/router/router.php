@@ -31,12 +31,13 @@ class router
     {
         try 
         {
-            
+            // Dispatcher principal: chaque URL est envoyee vers le bon controleur.
             $url = '';
             if (isset($_GET['url']) && !empty($_GET['url']))
             {   
                 $url = explode('/', filter_var($_GET['url'], FILTER_SANITIZE_URL));
 
+                // Routes publiques accessibles sans session.
                 if ($url[0] === 'acceuil') 
                 {
                     require_once(__DIR__ . '/../controllers/controllerAcceuil.php');
@@ -76,6 +77,7 @@ class router
                 }
                 else if ($url[0] === 'dashboard-etudiant')
                 {
+                    // Routes protegees: on verifie le role avant d'afficher le tableau de bord.
                     if (!$this->isConnected() || !isset($_SESSION['role']) || $_SESSION['role'] !== 'Etudiant') {
                         header('Location: /connexion');
                         exit();
@@ -112,6 +114,7 @@ class router
                 }
                 else if ($url[0] === 'postuler')
                 {
+                    // Actions POST directes pour un etudiant connecte.
                     if (!$this->isConnected() || !isset($_SESSION['role']) || $_SESSION['role'] !== 'Etudiant') {
                         header('Location: /connexion');
                         exit();
@@ -137,6 +140,7 @@ class router
                 }
                 else if ($url[0] === 'wishlist')
                 {
+                    // Gestion de la wishlist sans passer par une vue intermédiaire.
                     if (!$this->isConnected() || !isset($_SESSION['role']) || $_SESSION['role'] !== 'Etudiant') {
                         header('Location: /connexion');
                         exit();
@@ -188,6 +192,7 @@ class router
                 }
                 else if ($url[0] === 'detail_offres') 
                 {
+                    // Page de detail d'offre: affichage + actions de l'offre courante.
                     require_once(__DIR__ . '/../controllers/controllerDetailOffres.php');
                     $this->_ctrl = new controllerDetailOffres($url);
                     $this->_ctrl->index();
@@ -199,6 +204,7 @@ class router
                 }
                 else if ($url[0] === 'offres') 
                 {
+                    // Liste des offres, filtres et actions de gestion selon le role.
                     require_once(__DIR__ . '/../controllers/controllerOffres.php');
                     $this->_ctrl = new controllerOffres($url);
                     $this->_ctrl->index();
@@ -246,6 +252,7 @@ class router
                 }
                 else if ($url[0] === 'admin-pilotes')
                 {
+                    // Espace administrateur: gestion des pilotes et des etudiants.
                     if (!$this->isConnected() || !isset($_SESSION['role']) || $_SESSION['role'] !== 'Administrateur') {
                         header('Location: /connexion');
                         exit();

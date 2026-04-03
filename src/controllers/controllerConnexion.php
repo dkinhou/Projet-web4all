@@ -23,6 +23,7 @@ class controllerConnexion extends Controller {
 
     private function deleteStoredStudentFile($publicPath)
     {
+        // Supprime un fichier deja stocke sans sortir du dossier public/static.
         $publicPath = (string) $publicPath;
         if ($publicPath === '' || strpos($publicPath, '/static/') !== 0) {
             return;
@@ -44,6 +45,7 @@ class controllerConnexion extends Controller {
 
     private function moveStudentFile($userId, $file, array $allowedExtensions, $prefix)
     {
+        // Gere l'upload du CV ou de la photo avec validation d'extension et nom de fichier securise.
         if (!isset($file) || !isset($file['error']) || $file['error'] !== UPLOAD_ERR_OK) {
             return [null, null];
         }
@@ -94,6 +96,7 @@ class controllerConnexion extends Controller {
     }
 
     public function indexetudiant(&$email) {
+        // Espace etudiant: profil, fichiers joints, candidatures et favoris.
         $offresModel = new offres();
         $etudiantActions = new EtudiantActions();
         $userId = $_SESSION['id'] ?? 0;
@@ -191,6 +194,7 @@ class controllerConnexion extends Controller {
     }
 
     public function indexadmin(&$email) {
+        // Tableau de bord admin: agrège les statistiques utiles a la gestion.
         $adminActions = new AdminActions();
         $statistiques = $adminActions->getStatistiques();
         
@@ -202,12 +206,14 @@ class controllerConnexion extends Controller {
     }
 
     public function indexpilote(&$email) {
+        // Tableau de bord pilote: point d'entree simple vers ses outils de gestion.
         $this->render('connexion_pilote.twig.html', [
            'Utilisateur' => $this->user->getuserprenom($email),
         ]);
     }
 
     public function listeCandidaturesPilote($idPilote) {
+        // Liste paginee des candidatures des etudiants rattaches au pilote.
         $candidaturesModel = new CandidaturesPilote();
         $itemsPerPage = 15;
         $currentPage = isset($_GET['page']) ? (int) $_GET['page'] : 1;
@@ -245,6 +251,7 @@ class controllerConnexion extends Controller {
     }
 
     public function evaluerEntreprise($idPilote) {
+        // Formulaire de notation d'une entreprise, reserve aux pilotes et administrateurs.
         $evaluationModel = new Evaluation();
         $entrepriseModel = new entreprises();
 

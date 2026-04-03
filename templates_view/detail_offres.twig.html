@@ -8,6 +8,7 @@
         
         {% block body %}
         <div class="offer-page">
+                {# En-tête de la page avec le nom de l'entreprise et les métadonnées de l'offre #}
             <section class="offer-hero">
                 <p class="hero-company">{{ offre.entreprises }}</p>
                 <h1>{{ offre.titre }}</h1>
@@ -19,6 +20,7 @@
             </section>
 
             <div class="offer-layout">
+                    {# Colonne latérale: actions de candidature, wishlist et statistiques rapides #}
                 <aside class="offer-sidebar">
                     <div class="info-card">
                         <h2>Informations clefs</h2>
@@ -107,6 +109,7 @@
                     </div>
                 </aside>
 
+                    {# Contenu principal de la page: description détaillée de l'offre #}
                 <section class="offer-content">
                     <article class="content-section">
                         <h3>Description du poste</h3>

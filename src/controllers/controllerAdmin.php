@@ -23,6 +23,7 @@ class controllerAdmin extends Controller {
     // ==================== GESTION DES PILOTES ====================
     
     public function listePilotes() {
+        // Liste admin paginee des pilotes existants.
         $itemsPerPage = 15;
         $currentPage = isset($_GET['page']) ? (int) $_GET['page'] : 1;
         if ($currentPage < 1) $currentPage = 1;
@@ -40,6 +41,7 @@ class controllerAdmin extends Controller {
     }
 
     public function creerPilote() {
+        // Formulaire de creation d'un pilote avec validation minimale.
         $message = '';
         $formData = ['email' => '', 'nom' => '', 'prenom' => '', 'password' => ''];
 
@@ -71,6 +73,7 @@ class controllerAdmin extends Controller {
     }
 
     public function modifierPilote() {
+        // Edition d'un pilote existant apres verification de l'identifiant.
         $idPilote = (int) ($_GET['id'] ?? $_POST['id'] ?? 0);
         if ($idPilote <= 0) {
             header('Location: /admin-pilotes');
@@ -108,6 +111,7 @@ class controllerAdmin extends Controller {
     }
 
     public function supprimerPilote() {
+        // Ecran de confirmation avant suppression definitive d'un pilote.
         $idPilote = (int) ($_GET['id'] ?? 0);
         if ($idPilote <= 0) {
             header('Location: /admin-pilotes');
@@ -135,6 +139,7 @@ class controllerAdmin extends Controller {
     // ==================== GESTION DES ETUDIANTS ====================
     
     public function listeEtudiants() {
+        // Liste admin paginee des etudiants.
         $itemsPerPage = 15;
         $currentPage = isset($_GET['page']) ? (int) $_GET['page'] : 1;
         if ($currentPage < 1) $currentPage = 1;
@@ -152,6 +157,7 @@ class controllerAdmin extends Controller {
     }
 
     public function creerEtudiant() {
+        // Creation d'un etudiant avec affectation obligatoire a un pilote.
         $message = '';
         $formData = ['email' => '', 'nom' => '', 'prenom' => '', 'password' => '', 'id_pilote' => ''];
         $pilotes = [];
@@ -191,6 +197,7 @@ class controllerAdmin extends Controller {
     }
 
     public function modifierEtudiant() {
+        // Mise a jour d'un etudiant existant et de son pilote attribue.
         $idEtudiant = (int) ($_GET['id'] ?? $_POST['id'] ?? 0);
         if ($idEtudiant <= 0) {
             header('Location: /admin-etudiants');
@@ -235,6 +242,7 @@ class controllerAdmin extends Controller {
     }
 
     public function supprimerEtudiant() {
+        // Confirmation avant suppression d'un etudiant et de ses relations.
         $idEtudiant = (int) ($_GET['id'] ?? 0);
         if ($idEtudiant <= 0) {
             header('Location: /admin-etudiants');

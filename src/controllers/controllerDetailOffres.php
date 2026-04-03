@@ -15,12 +15,14 @@ class controllerDetailOffres extends controller
 
     public function index()
     {
+        // Charge les models nécessaires à l'affichage du détail d'une offre.
         $detailOffreModel = new DetailOffre();
         $offresModel = new offres();
         $etudiantActions = new EtudiantActions();
         $offresId = $offresModel->getOffresId();
         $id_offre = isset($_GET['id']) ? (int)$_GET['id'] : null;
         if ($id_offre) {
+            // Récupère l'offre choisie puis enrichit la vue avec les infos utiles.
             $offreDetails = $detailOffreModel->getOffreDetails($id_offre);
             if ($offreDetails) {
             $offreDetails['postulants_count'] = $etudiantActions->countOfferApplicants($id_offre);
@@ -67,6 +69,7 @@ class controllerDetailOffres extends controller
 
     private function buildOfferStats($offreDetails)
     {
+        // Ces champs servent à calculer le niveau de complétude affiché dans la page.
         $sections = [
             'description',
             'missions',
@@ -83,8 +86,10 @@ class controllerDetailOffres extends controller
             }
         }
 
+        // Pourcentage de champs remplis dans l'offre.
         $completionRate = (int) round(($filledSections / count($sections)) * 100);
 
+        // Estimation simple du temps de lecture à partir du contenu textuel.
         $allText = implode(' ', [
             (string)($offreDetails['description'] ?? ''),
             (string)($offreDetails['missions'] ?? ''),
@@ -98,6 +103,7 @@ class controllerDetailOffres extends controller
         $daysOnline = null;
         if (!empty($offreDetails['date_publication'])) {
             try {
+                // Calcule le nombre de jours depuis la publication.
                 $publishedDate = new \DateTime($offreDetails['date_publication']);
                 $today = new \DateTime();
                 $daysOnline = (int) $publishedDate->diff($today)->days;

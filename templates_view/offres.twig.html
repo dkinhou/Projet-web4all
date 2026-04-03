@@ -7,6 +7,7 @@
     {% endblock %}
         
         {% block body %}
+        {# Zone de recherche et de filtrage principal des offres #}
         <section class="search-bar">
             <div class="search-bar-content">
                 <h2>Recherchez votre emploi en quelques clics</h2>
@@ -61,6 +62,7 @@
                 <section class="manage-feedback">{{ manageMessage }}</section>
             {% endif %}
 
+            {# Formulaires visibles seulement pour les rôles autorisés à gérer les offres #}
             {% if canManage is defined and canManage and createMode is defined and createMode %}
                 <section class="pilot-edit-panel">
                     <h3>Creer une nouvelle offre</h3>
@@ -166,6 +168,7 @@
             {% endif %}
 
             <section class="offres">
+                {# Liste paginée des offres affichées à l'utilisateur #}
                 <h2>Offres de stage et d'alternance</h2>
                 <p class="offres-count">{{ compteur }} offres disponibles</p>
                 <div class="offres-list">
@@ -206,6 +209,7 @@
                         </div>
                         <a href="/detail_offres?id={{ offre.id_offre }}" class="details-button">Voir les détails</a>
                         {% if canManage is defined and canManage %}
+                            {# Actions réservées aux gestionnaires: modifier ou supprimer #}
                             <div class="pilot-offer-actions">
                                 <a href="/offres?edit={{ offre.id_offre }}" class="offer-action-btn offer-action-edit">Modifier</a>
                                 <form action="/offres" method="post" onsubmit="return confirm('Supprimer cette offre ?');">

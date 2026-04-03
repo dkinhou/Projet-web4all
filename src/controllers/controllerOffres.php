@@ -15,9 +15,11 @@ class controllerOffres extends Controller {
     }
 
     public function index() {
+        // Les pilotes et administrateurs peuvent modifier les offres depuis cette page.
         $canManage = isset($_SESSION['role']) && in_array($_SESSION['role'], ['Pilote', 'Administrateur'], true);
 
         if ($canManage && $_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Une seule route gere creation, mise a jour et suppression selon action_type.
             $actionType = $_POST['action_type'] ?? '';
             $offreId = isset($_POST['id_offre']) ? (int) $_POST['id_offre'] : 0;
 
@@ -86,6 +88,7 @@ class controllerOffres extends Controller {
         }
 
         $filters = [
+            // Filtres GET utilises par le formulaire de recherche et la modale.
             'keyword' => trim((string) ($_GET['keyword'] ?? '')),
             'location' => trim((string) ($_GET['location'] ?? '')),
             'entreprise' => trim((string) ($_GET['entreprise'] ?? '')),
@@ -109,9 +112,11 @@ class controllerOffres extends Controller {
         $offset = ($currentPage - 1) * $this->offresPerPage;
 
         if ($hasFilters) {
+            // Lorsque des criteres sont actifs, on interroge le modele avec pagination et filtres.
             $totalCount = $this->offresModel->countOffresFiltered($filters);
             $paginatedOffres = $this->offresModel->getOffresFilteredPaginated($filters, $this->offresPerPage, $offset);
         } else {
+            // Sinon on affiche simplement la liste paginee de toutes les offres.
             $taboffres = $this->offresModel->getAllOffres();
             $totalCount = count($taboffres);
             $paginatedOffres = $this->offresModel->getOffresPaginated($this->offresPerPage, $offset);
@@ -127,6 +132,7 @@ class controllerOffres extends Controller {
         $mode = isset($_GET['mode']) ? trim((string) $_GET['mode']) : '';
 
         $manage = $_GET['manage'] ?? '';
+        // Messages d'etat affiches apres une creation, modification ou suppression.
         $manageMessage = '';
         if ($manage === 'created') {
             $manageMessage = 'Offre creee avec succes.';
