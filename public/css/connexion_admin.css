@@ -240,6 +240,152 @@
     font-weight: 500;
 }
 
+.badge-unassigned {
+    background-color: #ef4444;
+}
+
+.manage-feedback-spaced {
+    margin: 20px;
+}
+
+.student-form {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.student-form-group {
+    margin-bottom: 15px;
+}
+
+.student-form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.student-form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.student-form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.student-form-btn {
+    flex: 1;
+    padding: 12px;
+}
+
+.student-form-cancel-link {
+    text-align: center;
+}
+
+.pilote-actions {
+    margin: 20px;
+    text-align: center;
+}
+
+.pilote-etudiants-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.pilote-etudiants-table thead tr {
+    background-color: #f0f0f0;
+    border-bottom: 2px solid #ddd;
+}
+
+.pilote-etudiants-table th,
+.pilote-etudiants-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+.pilote-etudiants-table th {
+    text-align: left;
+}
+
+.pilote-etudiants-table tbody tr {
+    border-bottom: 1px solid #ddd;
+}
+
+.pilote-etudiants-actions-header,
+.pilote-etudiants-actions-cell {
+    text-align: center;
+}
+
+.pilote-etudiants-action-btn {
+    margin-right: 5px;
+}
+
+.pilote-etudiants-current-page {
+    font-weight: bold;
+    color: #006bb3;
+}
+
+.pilote-etudiants-empty {
+    text-align: center;
+    margin: 30px 0;
+    color: #6b7280;
+}
+
+.pilote-delete-box {
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 30px;
+    border: 1px solid #ff6b6b;
+    border-radius: 8px;
+    background-color: #ffe0e0;
+}
+
+.pilote-delete-title {
+    color: #d32f2f;
+    margin-top: 0;
+}
+
+.pilote-delete-info-block {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.pilote-delete-warning {
+    color: #d32f2f;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.pilote-delete-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.pilote-delete-btn {
+    flex: 1;
+    padding: 12px;
+}
+
+.pilote-delete-btn.btn-danger {
+    background-color: #d32f2f;
+    border-color: #d32f2f;
+    color: #fff;
+}
+
+.pilote-delete-cancel-link {
+    text-align: center;
+}
+
 
 .pagination {
     display: flex;

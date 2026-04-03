@@ -18,7 +18,7 @@
     <section class="manage-feedback">{{ manageMessage }}</section>
 {% endif %}
 
-<div class="actions" style="margin: 20px; text-align: center;">
+<div class="actions pilote-actions">
     <a href="/creer-etudiant" class="btn btn-primary">+ Créer un étudiant</a>
     <a href="/dashboard-pilote" class="btn">Retour au tableau de bord</a>
 </div>
@@ -27,24 +27,24 @@
     <p class="offres-count">{{ compteur }} étudiant{% if compteur != 1 %}s{% endif %} assigné{% if compteur != 1 %}s{% endif %}</p>
     
     {% if compteur > 0 %}
-    <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+    <table class="pilote-etudiants-table">
         <thead>
-            <tr style="background-color: #f0f0f0; border-bottom: 2px solid #ddd;">
-                <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Email</th>
-                <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Nom</th>
-                <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Prénom</th>
-                <th style="padding: 12px; text-align: center; border: 1px solid #ddd;">Actions</th>
+            <tr>
+                <th>Email</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th class="pilote-etudiants-actions-header">Actions</th>
             </tr>
         </thead>
         <tbody>
             {% for etudiant in etudiants %}
-            <tr style="border-bottom: 1px solid #ddd;">
-                <td style="padding: 12px; border: 1px solid #ddd;">{{ etudiant.email }}</td>
-                <td style="padding: 12px; border: 1px solid #ddd;">{{ etudiant.nom }}</td>
-                <td style="padding: 12px; border: 1px solid #ddd;">{{ etudiant.prenom }}</td>
-                <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">
-                    <a href="/modifier-etudiant?id={{ etudiant.id_utilisateur }}" class="btn" style="padding: 6px 12px; font-size: 0.85rem; margin-right: 5px;">Modifier</a>
-                    <a href="/supprimer-etudiant?id={{ etudiant.id_utilisateur }}" class="btn btn-danger" style="padding: 6px 12px; font-size: 0.85rem;">Supprimer</a>
+            <tr>
+                <td>{{ etudiant.email }}</td>
+                <td>{{ etudiant.nom }}</td>
+                <td>{{ etudiant.prenom }}</td>
+                <td class="pilote-etudiants-actions-cell">
+                    <a href="/modifier-etudiant?id={{ etudiant.id_utilisateur }}" class="btn btn-sm pilote-etudiants-action-btn">Modifier</a>
+                    <a href="/supprimer-etudiant?id={{ etudiant.id_utilisateur }}" class="btn btn-danger btn-sm">Supprimer</a>
                 </td>
             </tr>
             {% endfor %}
@@ -63,7 +63,7 @@
             {% for page in 1..totalPages %}
                 <li>
                     {% if page == currentPage %}
-                        <span style="font-weight: bold; color: #006bb3;">{{ page }}</span>
+                        <span class="pilote-etudiants-current-page">{{ page }}</span>
                     {% else %}
                         <a href="/etudiants?page={{ page }}">{{ page }}</a>
                     {% endif %}
@@ -78,7 +78,7 @@
     </nav>
     {% endif %}
     {% else %}
-        <p style="text-align: center; margin: 30px 0; color: #6b7280;">Vous n'avez pas encore d'étudiants assignés.</p>
+        <p class="pilote-etudiants-empty">Vous n'avez pas encore d'étudiants assignés.</p>
     {% endif %}
 
 </section>

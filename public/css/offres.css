@@ -252,6 +252,151 @@ select {
     font-weight: 600;
 }
 
+.candidatures-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.candidatures-stat-card {
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.candidatures-stat-value,
+.candidatures-stat-label {
+    margin: 0;
+}
+
+.candidatures-stat-value {
+    font-weight: bold;
+}
+
+.candidatures-stat-label {
+    font-size: 0.9rem;
+}
+
+.candidatures-stat-total {
+    background: #e5e7eb;
+}
+
+.candidatures-stat-total .candidatures-stat-value {
+    color: #111827;
+}
+
+.candidatures-stat-total .candidatures-stat-label {
+    color: #6b7280;
+}
+
+.candidatures-stat-attente {
+    background: #fef3c7;
+}
+
+.candidatures-stat-attente .candidatures-stat-value,
+.candidatures-stat-attente .candidatures-stat-label {
+    color: #92400e;
+}
+
+.candidatures-stat-acceptees {
+    background: #d1fae5;
+}
+
+.candidatures-stat-acceptees .candidatures-stat-value,
+.candidatures-stat-acceptees .candidatures-stat-label {
+    color: #047857;
+}
+
+.candidatures-stat-rejetees {
+    background: #fee2e2;
+}
+
+.candidatures-stat-rejetees .candidatures-stat-value,
+.candidatures-stat-rejetees .candidatures-stat-label {
+    color: #991b1b;
+}
+
+.candidatures-table-wrap {
+    overflow-x: auto;
+}
+
+.candidatures-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.candidatures-table thead tr {
+    background-color: #f3f4f6;
+}
+
+.candidatures-table th {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.candidatures-table tbody tr {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.candidatures-table td {
+    padding: 12px;
+}
+
+.candidatures-small-text {
+    font-size: 0.9rem;
+}
+
+.candidature-statut-pill {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.candidature-statut-attente {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.candidature-statut-acceptee {
+    background-color: #d1fae5;
+    color: #047857;
+}
+
+.candidature-statut-rejetee {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.candidature-statut-autre {
+    background-color: #e5e7eb;
+    color: #374151;
+}
+
+.candidatures-inline-form {
+    display: inline;
+}
+
+.candidatures-statut-select {
+    padding: 4px 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+}
+
+.candidatures-empty-row {
+    padding: 20px;
+    text-align: center;
+    color: #6b7280;
+}
+
+.candidatures-back-link-wrap {
+    text-align: center;
+    margin: 30px 0;
+}
+
 .pilot-edit-panel {
     margin: 18px 10% 0;
     background-color: #ffffff;

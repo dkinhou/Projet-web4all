@@ -15,31 +15,31 @@
 </div>
 
 {% if message %}
-    <section class="manage-feedback" style="margin: 20px;">{{ message }}</section>
+    <section class="manage-feedback manage-feedback-spaced">{{ message }}</section>
 {% endif %}
 
 <section class="offres">
-    <form method="post" style="max-width: 600px; margin: 30px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+    <form method="post" class="student-form">
         <input type="hidden" name="id" value="{{ etudiant.id_utilisateur }}">
 
-        <div class="form-group" style="margin-bottom: 15px;">
-            <label for="email" style="display: block; margin-bottom: 5px; font-weight: bold;">Email *</label>
-            <input type="email" id="email" name="email" value="{{ etudiant.email }}" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+        <div class="form-group student-form-group">
+            <label for="email" class="student-form-label">Email *</label>
+            <input type="email" id="email" name="email" value="{{ etudiant.email }}" required class="student-form-input">
         </div>
 
-        <div class="form-group" style="margin-bottom: 15px;">
-            <label for="nom" style="display: block; margin-bottom: 5px; font-weight: bold;">Nom *</label>
-            <input type="text" id="nom" name="nom" value="{{ etudiant.nom }}" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+        <div class="form-group student-form-group">
+            <label for="nom" class="student-form-label">Nom *</label>
+            <input type="text" id="nom" name="nom" value="{{ etudiant.nom }}" required class="student-form-input">
         </div>
 
-        <div class="form-group" style="margin-bottom: 15px;">
-            <label for="prenom" style="display: block; margin-bottom: 5px; font-weight: bold;">Prénom *</label>
-            <input type="text" id="prenom" name="prenom" value="{{ etudiant.prenom }}" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+        <div class="form-group student-form-group">
+            <label for="prenom" class="student-form-label">Prénom *</label>
+            <input type="text" id="prenom" name="prenom" value="{{ etudiant.prenom }}" required class="student-form-input">
         </div>
 
-        <div class="form-actions" style="display: flex; gap: 10px; margin-top: 20px;">
-            <button type="submit" class="btn btn-primary" style="flex: 1; padding: 12px;">Enregistrer les modifications</button>
-            <a href="/etudiants" class="btn" style="flex: 1; text-align: center; padding: 12px;">Annuler</a>
+        <div class="form-actions student-form-actions">
+            <button type="submit" class="btn btn-primary student-form-btn">Enregistrer les modifications</button>
+            <a href="/etudiants" class="btn student-form-btn student-form-cancel-link">Annuler</a>
         </div>
     </form>
 </section>

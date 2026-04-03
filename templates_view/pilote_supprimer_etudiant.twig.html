@@ -15,20 +15,20 @@
 </div>
 
 <section class="offres">
-    <div style="max-width: 500px; margin: 30px auto; padding: 30px; border: 1px solid #ff6b6b; border-radius: 8px; background-color: #ffe0e0;">
-        <h3 style="color: #d32f2f; margin-top: 0;">Confirmation de suppression</h3>
+    <div class="pilote-delete-box">
+        <h3 class="pilote-delete-title">Confirmation de suppression</h3>
         
-        <div class="info-block" style="background-color: white; padding: 15px; border-radius: 4px; margin-bottom: 20px;">
+        <div class="info-block pilote-delete-info-block">
             <p><strong>Email :</strong> {{ etudiant.email }}</p>
             <p><strong>Nom :</strong> {{ etudiant.nom }}</p>
             <p><strong>Prénom :</strong> {{ etudiant.prenom }}</p>
         </div>
 
-        <p style="color: #d32f2f; font-weight: bold; margin-bottom: 20px;">⚠️ Cette action est irréversible. L'étudiant et toutes ses données seront supprimés.</p>
+        <p class="pilote-delete-warning">⚠️ Cette action est irréversible. L'étudiant et toutes ses données seront supprimés.</p>
 
-        <form method="post" style="display: flex; gap: 10px;">
-            <button type="submit" class="btn btn-danger" style="flex: 1; padding: 12px; background-color: #d32f2f; color: white;">Confirmer la suppression</button>
-            <a href="/etudiants" class="btn" style="flex: 1; text-align: center; padding: 12px;">Annuler</a>
+        <form method="post" class="pilote-delete-actions">
+            <button type="submit" class="btn btn-danger pilote-delete-btn">Confirmer la suppression</button>
+            <a href="/etudiants" class="btn pilote-delete-btn pilote-delete-cancel-link">Annuler</a>
         </form>
     </div>
 </section>
